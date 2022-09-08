@@ -8,6 +8,6 @@ public class WelcomeController {
 
     @GetMapping("/w")
     public String welcome(){
-        return "Welcome!! I think this is working...";
+        return "this is a nice page!";
     }
 }
