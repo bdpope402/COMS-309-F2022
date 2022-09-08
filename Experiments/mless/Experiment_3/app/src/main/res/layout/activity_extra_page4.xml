@@ -10,13 +10,14 @@
         android:id="@+id/editTextTextMultiLine3"
         android:layout_width="225dp"
         android:layout_height="341dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:text="info info info info infoinfo info info info infoinfo info info info infoinfo info info info infoinfo info info info infoinfo info info info infoinfo info info info infoinfo info info info infoinfo info info info info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="189dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
         android:id="@+id/backButton4"
