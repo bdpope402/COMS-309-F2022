@@ -7,17 +7,6 @@ import java.util.Map;
 
 @RestController
 public class UserController {
-//
-//    // THIS IS THE DELETE OPERATION
-//    // Springboot gets the PATHVARIABLE from the URL
-//    // We return the entire list -- converted to JSON
-//    // in this case because of @ResponseBody
-//    // Note: To DELETE we use delete method
-//    @DeleteMapping("/employee/{name}")
-//    public @ResponseBody HashMap<String, User> deleteEmployee(@PathVariable String name) {
-//        employeeList.remove(name);
-//        return employeeList;
-//    }
 
     //List of all users
     HashMap<String, User> userList = new HashMap<>();
