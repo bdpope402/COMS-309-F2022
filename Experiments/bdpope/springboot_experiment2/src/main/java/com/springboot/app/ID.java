@@ -10,15 +10,12 @@ import java.util.Random;
 @RestController
 public class ID {
 
-    @GetMapping("/ID")
+    @GetMapping("/queue")
     //Gets username and company
     public String ID(@RequestParam(value = "name", defaultValue = "null") String name,
-                     @RequestParam(value = "company", defaultValue = "null") String company) {
-
-        //rand var for random ID (would add to database in future)
-        Random rand = new Random();
+                     @RequestParam(value = "line", defaultValue = "null") String line) {
 
         //Return a formatted string to display
-        return String.format("Hello %s, your ID is %d, welcome to %s", name, Math.abs(rand.nextInt()%100), company);
+        return String.format("Hello %s, you are number %s, in line.", name, line);
     }
 }
