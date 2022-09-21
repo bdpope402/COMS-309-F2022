@@ -18,4 +18,8 @@ public class SpringBackendApplication {
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return String.format("Hello %s!", name);
 	}
+	@GetMapping("/login")
+	public String hello(@RequestParam(value = "name", defaultValue = "Kevin") String name) {
+		return String.format("Welcome back %s!", name);
+	}
 }
