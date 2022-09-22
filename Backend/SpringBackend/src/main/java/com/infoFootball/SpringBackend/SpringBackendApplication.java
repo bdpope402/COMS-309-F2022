@@ -22,4 +22,10 @@ public class SpringBackendApplication {
 	public String hello(@RequestParam(value = "name", defaultValue = "Kevin") String name) {
 		return String.format("Welcome back %s!", name);
 	}
+
+	@GetMapping("/welcome")
+	public String hello(@RequestParam(value = "name", defaultValue = "Kevin") String name) {
+		return String.format("Welcome back %s!", name);
+	}
+
 }
