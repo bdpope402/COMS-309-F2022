@@ -15,6 +15,10 @@ public class AccountDetails extends AppCompatActivity {
         setContentView(R.layout.activity_account_details);
 
         Button back = findViewById((R.id.back_menu));
+        Button nameEdit=findViewById(R.id.edit_name);
+        Button emailEdit=findViewById(R.id.edit_email);
+        Button phoneNumberEdit=findViewById(R.id.edit_phoneNumber);
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
