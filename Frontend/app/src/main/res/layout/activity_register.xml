@@ -63,7 +63,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="-124dp"
         android:layout_marginEnd="-4dp"
-        app:srcCompat="@drawable/ISU" />
+        app:srcCompat="@drawable/isu" />
 
     <Button
         android:id="@+id/register"
@@ -71,11 +71,53 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="425dp"
-        android:layout_marginEnd="154dp"
+        android:layout_marginTop="673dp"
+        android:layout_marginEnd="153dp"
         android:backgroundTint="@color/dark_red"
-        android:textColor="@color/yellow"
-        android:text="REGISTER" />
+        android:text="REGISTER"
+        android:textColor="@color/yellow" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="449dp"
+        android:layout_marginEnd="101dp"
+        android:ems="10"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="528dp"
+        android:layout_marginEnd="101dp"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="509dp"
+        android:layout_marginEnd="188dp"
+        android:text="Email:" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="430dp"
+        android:layout_marginEnd="156dp"
+        android:text="Phone Number: " />
 
 
 </RelativeLayout>
