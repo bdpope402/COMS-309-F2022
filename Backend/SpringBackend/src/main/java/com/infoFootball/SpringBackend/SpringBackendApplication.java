@@ -19,12 +19,12 @@ public class SpringBackendApplication {
 		return String.format("Hello %s!", name);
 	}
 	@GetMapping("/login")
-	public String hello(@RequestParam(value = "name", defaultValue = "Kevin") String name) {
+	public String login(@RequestParam(value = "name", defaultValue = "Kevin") String name) {
 		return String.format("Welcome back %s!", name);
 	}
 
 	@GetMapping("/welcome")
-	public String hello(@RequestParam(value = "name", defaultValue = "Kevin") String name) {
+	public String welcome(@RequestParam(value = "name", defaultValue = "Kevin") String name) {
 		return String.format("Welcome back %s!", name);
 	}
 
