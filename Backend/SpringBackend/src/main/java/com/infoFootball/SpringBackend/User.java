@@ -1,6 +1,15 @@
 package com.infoFootball.SpringBackend;
 
-public class UserID {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     private String firstName;
     private String lastName;
@@ -16,7 +25,7 @@ public class UserID {
      * @param password
      * @param phoneNum
      */
-    public UserID(String firstName, String lastName, String password, String phoneNum) {
+    public User(String firstName, String lastName, String password, String phoneNum) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;

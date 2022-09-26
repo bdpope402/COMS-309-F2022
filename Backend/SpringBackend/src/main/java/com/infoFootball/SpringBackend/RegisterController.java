@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RegisterController {
 
+    private UserRepository userRepository;
+
     @GetMapping("login/register/{email}")
-    public void newUser(@PathVariable String email, @RequestParam UserID newUser) {
+    public String newUser(@PathVariable String email, @RequestParam User newUser) {
         newUser.setEmail(email);
+        userRepository.save(newUser);
+        return "Saved";
     }
 }
