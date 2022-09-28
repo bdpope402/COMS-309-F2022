@@ -1,4 +1,4 @@
-package com.spring.backend.app;
+package com.infoFootball.SpringBackend;
 
 import io.swagger.annotations.ApiModelProperty;
 
