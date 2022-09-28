@@ -75,20 +75,22 @@ public class login extends AppCompatActivity {
             e.printStackTrace();
         }
         final String requestBody = json.toString();
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(JSONObject response) {
-                try {
-                   JSONObject responseObj = response;
-                   String correctUser = responseObj.getString("username");
-                   String correctPass = responseObj.getString("password");
-                   if (correctUser.equals(userInput) && correctPass.equals(passInput)) {
-                       Intent intent = new Intent(login.this, activity_menu.class);
-                       startActivity(intent);
-                   }
-                   else {
-                       msgResponse.setText("Username or Password is wrong");
-                   }
+            public void onResponse(JSONArray response) {
+                try { for (int i = 0; i < response.length(); i++) {
+                    JSONObject responseObj = response.getJSONObject(i);
+                    String correctUser = responseObj.getString("username");
+                    String correctPass = responseObj.getString("password");
+                    if (correctUser.equals(userInput) && correctPass.equals(passInput)) {
+                        Intent intent = new Intent(login.this, activity_menu.class);
+                        startActivity(intent);
+                        break;
+                    }
+                    if (i == response.length() - 1) {
+                        msgResponse.setText("Username or Password is wrong");
+                    }
+                };
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
