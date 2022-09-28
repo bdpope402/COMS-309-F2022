@@ -9,12 +9,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
-import com.example.app.app.AppController;
-import com.example.app.utils.Const;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
@@ -23,17 +26,21 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class login extends Activity implements OnClickListener {
+public class login extends AppCompatActivity {
 
     private Button login;
     private TextView msgResponse;
-    private String TAG = login.class.getSimpleName();
-    private String tag_json_obj = "jobj_req";
+    private EditText username;
+    private EditText password;
+
+    public static String userInput;
+    public static String passInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,54 +49,56 @@ public class login extends Activity implements OnClickListener {
 
         login = (Button) findViewById(R.id.login);
         msgResponse = (TextView) findViewById(R.id.msgResponse);
+        username = (EditText) findViewById(R.id.username);
+        password = (EditText) findViewById(R.id.password);
 
-        login.setOnClickListener(this);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getReq();
+            }
+        });
     }
 
-    private void makeJsonObjReq() {
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
-                Const.URL_JSON_OBJECT, null,
-                new Response.Listener<JSONObject>() {
+    private void getReq() {
+        RequestQueue queue = Volley.newRequestQueue(login.this);
 
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
-                        msgResponse.setText(response.toString());
-                    }
-                }, new Response.ErrorListener() {
+        userInput = username.getText().toString();
+        passInput = password.getText().toString();
 
+        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
+        JSONObject json = new JSONObject();
+        try {
+            json.put("username", userInput);
+            json.put("password", passInput);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        final String requestBody = json.toString();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                   JSONObject responseObj = response;
+                   String correctUser = responseObj.getString("username");
+                   String correctPass = responseObj.getString("password");
+                   if (correctUser.equals(userInput) && correctPass.equals(passInput)) {
+                       Intent intent = new Intent(login.this, activity_menu.class);
+                       startActivity(intent);
+                   }
+                   else {
+                       msgResponse.setText("Username or Password is wrong");
+                   }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
+                msgResponse.setText(error.toString());
             }
-        }) {
-
-            /**
-             * Passing some request headers
-             */
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
-
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("username, "Androidhive");
-                params.put("email", "abc@androidhive.info");
-                params.put("pass", "password123");
-
-                return params;
-            }
-        };
-        AppController.getInstance().addToRequestQueue(jsonObjReq,
-                tag_json_obj);
-    }
-
-    @Override
-    public void onClick(View v) {
-        makeJsonObjReq();
-    }
+        });
+        queue.add(request);
+     }
 }
