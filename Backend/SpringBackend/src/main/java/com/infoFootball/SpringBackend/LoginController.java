@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 
 public class LoginController {
-    @GetMapping("login/")
+
+    @GetMapping("login/") //which type of mapping? post get etc
     public boolean checkLogin(User returningUser, String password){
         if(returningUser.getPassword().equals(password)){
             return true;

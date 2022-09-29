@@ -13,9 +13,9 @@ public class RegisterController {
 
     private UserRepository userRepository;
 
-    @GetMapping("login/register/{email}")
-    public String newUser(@PathVariable String email, @RequestParam User newUser) {
-        newUser.setEmail(email);
+    @GetMapping("login/register")
+    public String newUser(@RequestParam User newUser) {
+        //set random num id here?? @Bryan
         // userRepository.save(newUser); //Commenting this out because it's breaking the build -BP
         return "Saved";
     }
