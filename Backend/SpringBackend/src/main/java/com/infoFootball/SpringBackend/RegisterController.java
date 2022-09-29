@@ -16,7 +16,7 @@ public class RegisterController {
     @GetMapping("login/register/{email}")
     public String newUser(@PathVariable String email, @RequestParam User newUser) {
         newUser.setEmail(email);
-        userRepository.save(newUser);
+        // userRepository.save(newUser); //Commenting this out because it's breaking the build -BP
         return "Saved";
     }
 }

@@ -32,6 +32,13 @@ public class User {
     }
 
     /**
+     * Returns the value of the private name variable
+     * @return
+     */
+    public String getName() {
+        return this.name;
+    }
+    /**
      * Sets the first name of a user
      * @param name new first name
      */
@@ -40,6 +47,11 @@ public class User {
     }
 
     /**
+     * Returns a string containing the password
+     * @return the password
+     */
+    public String getPassword() {return this.password; }
+    /**
      * Sets the password of a user
      * @param password new password
      */
@@ -47,6 +59,7 @@ public class User {
         this.password = password;
     }
 
+    public String getEmail() {return this.email; }
     /**
      * Sets the email of a user
      * @param email email of user
@@ -55,6 +68,7 @@ public class User {
         this.email = email;
     }
 
+    public String getPhoneNum() {return this.phoneNum; }
     /**
      * Sets the phone number of a user
      * @param phoneNum new phone number
