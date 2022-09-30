@@ -5,12 +5,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * This class is the base for creating a user. Through it, you can set name
+ * email, phonenumber, and password, which then can be saved into the database
+ */
 @Entity
 public class User {
 
+    /*
+    * @ID marks the below field as the primary key for the table
+    * The @GeneratedValue generates a value if not present (Will start at 1, 2 etc.)
+     */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
     private String password;
     private String email;
@@ -19,25 +27,21 @@ public class User {
     /**
      * Creates a new userID object
      * Does not set email of user
-     * @param name
-     * @param email
-     * @param password
-     * @param phoneNum
+     * @param name User's name
+     * @param email User's email
+     * @param password User's password
+     * @param phoneNum User's phonenumber
      */
     public User(String name, String email, String password, String phoneNum) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNum = phoneNum;
+        //add id gen here
     }
 
-    /**
-     * Returns the value of the private name variable
-     * @return
-     */
-    public String getName() {
-        return this.name;
-    }
+    // SET FUNCTIONS //
+
     /**
      * Sets the first name of a user
      * @param name new first name
@@ -47,10 +51,13 @@ public class User {
     }
 
     /**
-     * Returns a string containing the password
-     * @return the password
+     * Sets the email of a user
+     * @param email email of user
      */
-    public String getPassword() {return this.password; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     /**
      * Sets the password of a user
      * @param password new password
@@ -59,22 +66,55 @@ public class User {
         this.password = password;
     }
 
-    public String getEmail() {return this.email; }
-    /**
-     * Sets the email of a user
-     * @param email email of user
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNum() {return this.phoneNum; }
     /**
      * Sets the phone number of a user
      * @param phoneNum new phone number
      */
     public void setPhoneNum(String phoneNum){
         this.phoneNum = phoneNum;
+    }
+
+
+    //GET FUNCTIONS //
+
+    /**
+     * Returns the ID value of a user
+     * @return int ID
+     */
+    public int getID() {
+        return this.id;
+    }
+
+    /**
+     * Returns the value of the private name variable
+     * @return string name
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Returns the value of the private email variable
+     * @return string email
+     */
+    public String getEmail() {
+        return this.email;
+    }
+
+    /**
+     * Returns a string containing the password
+     * @return string password
+     */
+    public String getPassword() {
+        return this.password;
+    }
+
+    /**
+     * Returns the string of phone number
+     * @return string phone numbers
+     */
+    public String getPhoneNum() {
+        return this.phoneNum;
     }
 
 }
