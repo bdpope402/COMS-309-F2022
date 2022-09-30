@@ -1,9 +1,10 @@
 package com.infoFootball.SpringBackend;
 
-public interface UserRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, String> {
+    User findById(int id);
+    User deleteById(int id);
 }
-//public interface UserRepository extends JpaRepository<User, String> {
-//
-//}
-//Commenting this out because it's breaking the build.
-// Idk what jpa repositiory is, but you gotta find a way to import it -BP

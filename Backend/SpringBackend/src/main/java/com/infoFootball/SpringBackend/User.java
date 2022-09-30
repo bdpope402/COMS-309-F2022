@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 /**
  * This class is the base for creating a user. Through it, you can set name
- * email, phonenumber, and password, which then can be saved into the database
+ * email, phone number, and password, which then can be saved into the database
  */
 @Entity
 public class User {
@@ -30,7 +30,7 @@ public class User {
      * @param name User's name
      * @param email User's email
      * @param password User's password
-     * @param phoneNum User's phonenumber
+     * @param phoneNum User's phone number
      */
     public User(String name, String email, String password, String phoneNum) {
         this.name = name;
