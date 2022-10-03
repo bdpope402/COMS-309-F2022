@@ -1,4 +1,4 @@
-package com.infoFootball.SpringBackend;
+package com.infoFootball.SpringBackend.User;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

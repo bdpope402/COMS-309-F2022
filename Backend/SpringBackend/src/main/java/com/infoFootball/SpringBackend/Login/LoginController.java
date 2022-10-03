@@ -1,4 +1,5 @@
-package com.infoFootball.SpringBackend;
+package com.infoFootball.SpringBackend.Login;
+import com.infoFootball.SpringBackend.User.*;
 import org.springframework.web.bind.annotation.GetMapping;
 /**
  *  Springboot controller for login

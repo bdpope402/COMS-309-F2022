@@ -1,4 +1,5 @@
 package com.infoFootball.SpringBackend;
+import com.infoFootball.SpringBackend.User.*;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

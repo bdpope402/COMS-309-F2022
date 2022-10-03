@@ -1,4 +1,4 @@
-package SpringBackend.User;
+package com.infoFootball.SpringBackend.User;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    LaptopRepository laptopRepository;
+//    @Autowired
+//    LaptopRepository laptopRepository;
 
     private String success = "{\"message\":\"success\"}";
     private String failure = "{\"message\":\"failure\"}";
@@ -53,17 +53,17 @@ public class UserController {
         return userRepository.findById(id);
     }
 
-    @PutMapping("/users/{userId}/laptops/{laptopId}")
-    String assignLaptopToUser(@PathVariable int userId,@PathVariable int laptopId){
-        User user = userRepository.findById(userId);
-        Laptop laptop = laptopRepository.findById(laptopId);
-        if(user == null || laptop == null)
-            return failure;
-        laptop.setUser(user);
-        user.setLaptop(laptop);
-        userRepository.save(user);
-        return success;
-    }
+//    @PutMapping("/users/{userId}/laptops/{laptopId}") //Assign this to profile information?
+//    String assignLaptopToUser(@PathVariable int userId,@PathVariable int laptopId){
+//        User user = userRepository.findById(userId);
+//        Laptop laptop = laptopRepository.findById(laptopId);
+//        if(user == null || laptop == null)
+//            return failure;
+//        laptop.setUser(user);
+//        user.setLaptop(laptop);
+//        userRepository.save(user);
+//        return success;
+//    }
 
     @DeleteMapping(path = "/users/{id}")
     String deleteUser(@PathVariable int id){
