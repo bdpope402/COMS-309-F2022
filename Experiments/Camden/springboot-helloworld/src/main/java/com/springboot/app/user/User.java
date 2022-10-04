@@ -9,7 +9,9 @@ class User {
     private String name;
     private String role;
 
-    User(String name, String role){
+    private String team;
+
+    User(String name, String role, String Team){
         this.name = name;
         this.role = role;
         Random rand = new Random();
@@ -44,9 +46,12 @@ class User {
         this.role = role;
     }
 
-    public void updateYearsWorked() {
+    public void updateYearsOnPlatform() {
         yearsWorked += 1;
     }
+
+    public String getTeam() {return this.team;}
+    public string setTeam(String s) { this.team = s; }
 
     @Override
     public String toString() {

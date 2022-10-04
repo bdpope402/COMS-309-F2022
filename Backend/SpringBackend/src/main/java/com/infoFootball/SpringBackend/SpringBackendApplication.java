@@ -1,5 +1,6 @@
 package com.infoFootball.SpringBackend;
 
+import User.UserController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,16 +19,6 @@ public class SpringBackendApplication {
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return String.format("Hello %s!", name);
 	}
-	@GetMapping("/login")
-	public String login(@RequestParam(value = "name", defaultValue = "Kevin") String name) {
-		return String.format("Welcome back %s!", name);
-	}
-
-	@GetMapping("/welcome")
-	public String welcome(@RequestParam(value = "name", defaultValue = "Kevin") String name) {
-		return String.format("Welcome back %s!", name);
-	}
-
 
 
 }
