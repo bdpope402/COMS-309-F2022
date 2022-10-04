@@ -10,5 +10,5 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     User deleteById(int id);
 
-    //User searchForId(String username);
+    User searchForId(String username);
 }
