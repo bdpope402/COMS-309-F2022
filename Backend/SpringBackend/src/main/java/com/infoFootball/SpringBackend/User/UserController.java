@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @todo Customize this to our users
+ *
  */
 @RestController
 public class UserController {
@@ -26,16 +26,30 @@ public class UserController {
     private String success = "{\"message\":\"success\"}";
     private String failure = "{\"message\":\"failure\"}";
 
+    /**
+     * Gets all users
+     * @return list of all users
+     */
     @GetMapping(path = "/users")
     List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
+    /**
+     * Gets a user by id
+     * @param id ID of user
+     * @return user related to ID
+     */
     @GetMapping(path = "/users/{id}")
     User getUserById( @PathVariable int id){
         return userRepository.findById(id);
     }
 
+    /**
+     * Creates user
+     * @param user User data
+     * @return success or failure of creating user
+     */
     @PostMapping(path = "/users")
     String createUser(@RequestBody User user){
         if (user == null)
@@ -44,6 +58,12 @@ public class UserController {
         return success;
     }
 
+    /**
+     * Updates user
+     * @param id ID of user
+     * @param request the updated user info
+     * @return new user
+     */
     @PutMapping("/users/{id}")
     User updateUser(@PathVariable int id, @RequestBody User request){
         User user = userRepository.findById(id);
@@ -51,6 +71,17 @@ public class UserController {
             return null;
         userRepository.save(request);
         return userRepository.findById(id);
+    }
+
+    /**
+     * Deletes a user by id
+     * @param id ID of user to be deleted
+     * @return if user was successfully deleted
+     */
+    @DeleteMapping(path = "/users/{id}")
+    String deleteUser(@PathVariable int id){
+        userRepository.deleteById(id);
+        return success;
     }
 
 //    @PutMapping("/users/{userId}/laptops/{laptopId}") //Assign this to profile information?
@@ -64,10 +95,4 @@ public class UserController {
 //        userRepository.save(user);
 //        return success;
 //    }
-
-    @DeleteMapping(path = "/users/{id}")
-    String deleteUser(@PathVariable int id){
-        userRepository.deleteById(id);
-        return success;
-    }
 }
