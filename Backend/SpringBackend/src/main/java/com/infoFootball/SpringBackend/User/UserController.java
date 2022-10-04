@@ -41,23 +41,12 @@ public class UserController {
      * @return user related to ID
      */
     @GetMapping(path = "/users/{id}")
-    User getUserById( @PathVariable int id){
+    User getUserById(@PathVariable int id){
         return userRepository.findById(id);
     }
 
-    /**
-     * Creates user
-     * @param user User data
-     * @return success or failure of creating user
-     */
-    @PostMapping(path = "/users")
-    String createUser(@RequestBody User user){
-        if (user == null)
-            return failure;
-        userRepository.save(user);
-        return success;
-    }
 
+    //Need to factor this to make it work with michaels edit user page
     /**
      * Updates user
      * @param id ID of user

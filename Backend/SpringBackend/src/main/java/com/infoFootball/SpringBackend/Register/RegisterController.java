@@ -13,7 +13,7 @@ public class RegisterController {
 
     @PostMapping("login/register")
     public String newUser(@RequestParam User newUser) {
-        userRepository.save(newUser); //Commenting this out because it's breaking the build -BP
+        userRepository.save(newUser);
         return "Saved";
     }
 }
