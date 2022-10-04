@@ -18,11 +18,17 @@ public class User {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
     private String name;
     private String password;
     private String email;
     private String phoneNum;
+
+    public User() {
+        this.name = null;
+        this.email = null;
+        this.password = null;
+        this.phoneNum = null;
+    }
 
     /**
      * Creates a new userID object
@@ -37,7 +43,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.phoneNum = phoneNum;
-        //add id gen here
     }
 
     // SET FUNCTIONS //
@@ -74,16 +79,7 @@ public class User {
         this.phoneNum = phoneNum;
     }
 
-
     //GET FUNCTIONS //
-
-    /**
-     * Returns the ID value of a user
-     * @return int ID
-     */
-    public int getID() {
-        return this.id;
-    }
 
     /**
      * Returns the value of the private name variable
