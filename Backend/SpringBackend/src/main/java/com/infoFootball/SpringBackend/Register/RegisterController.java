@@ -1,6 +1,7 @@
 package com.infoFootball.SpringBackend.Register;
 
 import com.infoFootball.SpringBackend.User.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -9,10 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class RegisterController {
 
-    private UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @PostMapping("login/register")
-    public String newUser(@RequestParam User newUser) {
+    public String newUser(@RequestBody User newUser) {
         userRepository.save(newUser);
         return "Saved";
     }
