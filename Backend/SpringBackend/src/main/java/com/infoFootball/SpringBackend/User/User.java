@@ -15,13 +15,13 @@ public class User {
     * The @GeneratedValue generates a value if not present (Will start at 1, 2 etc.)
      */
     @Id
-    private String name;
+    private String username;
     private String password;
     private String email;
     private String phoneNum;
 
     public User() {
-        this.name = null;
+        this.username = null;
         this.email = null;
         this.password = null;
         this.phoneNum = null;
@@ -30,13 +30,13 @@ public class User {
     /**
      * Creates a new userID object
      * Does not set email of user
-     * @param name User's name
+     * @param username User's name
      * @param email User's email
      * @param password User's password
      * @param phoneNum User's phone number
      */
-    public User(String name, String email, String password, String phoneNum) {
-        this.name = name;
+    public User(String username, String email, String password, String phoneNum) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.phoneNum = phoneNum;
@@ -46,10 +46,10 @@ public class User {
 
     /**
      * Sets the first name of a user
-     * @param name new first name
+     * @param username new first name
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
@@ -82,8 +82,8 @@ public class User {
      * Returns the value of the private name variable
      * @return string name
      */
-    public String getName() {
-        return this.name;
+    public String getUsername() {
+        return this.username;
     }
 
     /**
