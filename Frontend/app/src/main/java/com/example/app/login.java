@@ -66,8 +66,8 @@ public class login extends AppCompatActivity {
         userInput = username.getText().toString();
         passInput = password.getText().toString();
 
-        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
-//        String url = "https://coms-309-013.class.las.iastate.edu:8080/users";
+//        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/" + userInput;
         JSONObject json = new JSONObject();
         try {
             json.put("username", userInput);
@@ -76,22 +76,19 @@ public class login extends AppCompatActivity {
             e.printStackTrace();
         }
         final String requestBody = json.toString();
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
-                try { for (int i = 0; i < response.length(); i++) {
-                    JSONObject responseObj = response.getJSONObject(i);
-                    String correctUser = responseObj.getString("username");
-                    String correctPass = responseObj.getString("password");
+            public void onResponse(JSONObject response) {
+                try {
+                    String correctUser = response.getString("username");
+                    String correctPass = response.getString("password");
                     if (correctUser.equals(userInput) && correctPass.equals(passInput)) {
                         Intent intent = new Intent(login.this, activity_menu.class);
                         startActivity(intent);
-                        break;
                     }
-                    if (i == response.length() - 1) {
+                    else {
                         msgResponse.setText("Username or Password is wrong");
                     }
-                }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -99,9 +96,20 @@ public class login extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                msgResponse.setText(error.toString());
+                //msgResponse.setText(error.toString());
+                msgResponse.setText("Username or Password is wrong");
             }
-        });
+        }){
+            @Override
+            public byte[] getBody() {
+                return requestBody.getBytes();
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
         queue.add(request);
      }
 }

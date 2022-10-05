@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -87,9 +88,9 @@ public class register extends AppCompatActivity implements View.OnClickListener{
 
         final String request = regDetails.toString();
 
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+        StringRequest req = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
            @Override
-           public void onResponse(JSONObject response) {
+           public void onResponse(String response) {
                try {
                    msgResponse.setText("You have successfully created a new user!");
                    final Handler handler = new Handler();
@@ -98,7 +99,7 @@ public class register extends AppCompatActivity implements View.OnClickListener{
                        public void run() {
                            startActivity(new Intent(register.this, MainActivity.class));
                        }
-                   }, 5000);
+                   }, 2000);
                } catch( Exception e) {
                    e.printStackTrace();
                }
@@ -112,7 +113,7 @@ public class register extends AppCompatActivity implements View.OnClickListener{
         }) {
             @Override
             public byte[] getBody() {
-                return "your json string".getBytes();
+                return request.getBytes();
             }
 
             @Override
