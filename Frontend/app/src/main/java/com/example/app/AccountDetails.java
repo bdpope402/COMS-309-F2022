@@ -43,14 +43,19 @@ public class AccountDetails extends AppCompatActivity {
 
 
         Button back = findViewById((R.id.back_menu));
-        Button nameEdit=findViewById(R.id.edit_name);
-        Button emailEdit=findViewById(R.id.edit_email);
-        Button phoneNumberEdit=findViewById(R.id.edit_phoneNumber);
+        Button change_pass = findViewById((R.id.button_change_pass));
 
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), MainActivity.class));
+            }
+        });
+
+        change_pass.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
                 startActivity(new Intent(view.getContext(), MainActivity.class));
             }
         });
