@@ -18,17 +18,22 @@ public class LoginController {
     /**
      * Main login function, uses other functions to check for correct user then returns
      * the user if everything matches and exists
-     * @param password User inputted password
+     * //@param password User inputted password
      * @return User JSON object
      */
     @GetMapping("/login/{username}")
-    public User login(@PathVariable("username") String username, @RequestParam String password) {
+    public User login(@PathVariable("username") String username) {
+//    public User login(@PathVariable("username") String username, @RequestParam String password) {
         User curUser = userRepository.findByUsername(username);
-        if(comparePassword(curUser, password)) {
-            return curUser;
-        } else {
-            return null;
-        }
+
+        return curUser;
+
+//        if(comparePassword(curUser, password)) {
+//            return curUser;
+//        } else {
+//            //Create a null error user if there is no user errorUser = new User("Bad Password", "Null", "Null", "Null");
+//            return errorUser;
+//        }
     }
 
     /**
