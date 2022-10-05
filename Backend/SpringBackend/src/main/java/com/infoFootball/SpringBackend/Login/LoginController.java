@@ -19,7 +19,7 @@ public class LoginController {
      */
     @GetMapping("login/{username}")
     public User login(@PathVariable String username, @RequestParam String password) {
-        User curUser = userRepository.searchForId(username);
+        User curUser = userRepository.findByUsername(username);
         if(comparePassword(curUser, password)) {
             return curUser;
         } else {

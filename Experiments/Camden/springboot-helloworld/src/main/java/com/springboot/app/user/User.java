@@ -51,7 +51,7 @@ class User {
     }
 
     public String getTeam() {return this.team;}
-    public string setTeam(String s) { this.team = s; }
+    public String setTeam(String s) {return this.team = s;}
 
     @Override
     public String toString() {

@@ -36,40 +36,39 @@ public class UserController {
     }
 
     /**
-     * Gets a user by id
-     * @param id ID of user
-     * @return user related to ID
+     * Gets a user by username
+     * @param username username of user
+     * @return user related to username
      */
-    @GetMapping(path = "/users/{id}")
-    User getUserById(@PathVariable int id){
-        return userRepository.findById(id);
+    @GetMapping(path = "/users/{username}")
+    User getUserByUsername(@PathVariable String username){
+        return userRepository.findByUsername(username);
     }
-
 
     //Need to factor this to make it work with michaels edit user page
     /**
      * Updates user
-     * @param id ID of user
+     * @param username username of user
      * @param request the updated user info
      * @return new user
      */
-    @PutMapping("/users/{id}")
-    User updateUser(@PathVariable int id, @RequestBody User request){
-        User user = userRepository.findById(id);
+    @PutMapping("/users/{username}")
+    User updateUser(@PathVariable String username, @RequestBody User request){
+        User user = userRepository.findByUsername(username);
         if(user == null)
             return null;
         userRepository.save(request);
-        return userRepository.findById(id);
+        return userRepository.findByUsername(username);
     }
 
     /**
-     * Deletes a user by id
-     * @param id ID of user to be deleted
+     * Deletes a user by username
+     * @param username username of user to be deleted
      * @return if user was successfully deleted
      */
-    @DeleteMapping(path = "/users/{id}")
-    String deleteUser(@PathVariable int id){
-        userRepository.deleteById(id);
+    @DeleteMapping(path = "/users/{username}")
+    String deleteUser(@PathVariable String username){
+        userRepository.deleteByUsername(username);
         return success;
     }
 

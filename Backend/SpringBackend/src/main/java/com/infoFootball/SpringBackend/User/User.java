@@ -1,8 +1,6 @@
 package com.infoFootball.SpringBackend.User;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -17,7 +15,6 @@ public class User {
     * The @GeneratedValue generates a value if not present (Will start at 1, 2 etc.)
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String name;
     private String password;
     private String email;
