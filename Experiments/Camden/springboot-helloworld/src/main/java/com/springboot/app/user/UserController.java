@@ -16,12 +16,12 @@ public class UserController {
         return userList;
     }
 
-    @PostMapping("/users/create")
-    public String createUser(@RequestParam String name, @RequestParam String role) {
-        User newUser = new User(name, role);
-        userList.put(newUser.getName(), newUser);
-        return "New user " + newUser.getName() + " Added as " + newUser.getRole();
-    }
+//    @PostMapping("/users/create")
+//    public String createUser(@RequestParam String name, @RequestParam String role) {
+//        //User newUser = new User(name, role);
+//        //userList.put(newUser.getName(), newUser);
+//        //return "New user " + newUser.getName() + " Added as " + newUser.getRole();
+//    }
 
     @PostMapping("/users/create2")
     public String createUser(@RequestBody User newUser) {
