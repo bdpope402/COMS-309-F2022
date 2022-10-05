@@ -10,6 +10,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class register extends AppCompatActivity implements View.OnClickListener{
 
     private Button register;
@@ -56,7 +67,6 @@ public class register extends AppCompatActivity implements View.OnClickListener{
             error = 0;
         }
         else {
-            msgResponse.setText("You have successfully created a new user!");
             postReq();
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -69,6 +79,37 @@ public class register extends AppCompatActivity implements View.OnClickListener{
     }
 
     private void postReq() {
+        RequestQueue queue = Volley.newRequestQueue(register.this);
+        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/register/";
 
+        JSONObject regDetails = new JSONObject();
+        try {
+            regDetails.put("username", username.getText().toString());
+            regDetails.put("password", password.getText().toString());
+            regDetails.put("phone", phone.getText().toString());
+            regDetails.put("email", email.getText().toString());
+        } catch(JSONException e) {
+            e.printStackTrace();
+        }
+
+        final String request = regDetails.toString();
+
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+           @Override
+           public void onResponse(JSONObject response) {
+               try {
+                   msgResponse.setText("You have successfully created a new user!");
+               } catch( Exception e) {
+                   e.printStackTrace();
+               }
+           }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                msgResponse.setText("Looks like something went wrong. Please try again");
+                error.printStackTrace();
+            }
+        });
+        queue.add(req);
     }
 }
