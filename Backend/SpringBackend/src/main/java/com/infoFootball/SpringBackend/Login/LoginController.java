@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *  Springboot controller for login
  */
+@RestController
 public class LoginController {
 
     @Autowired
@@ -20,7 +22,7 @@ public class LoginController {
      * @return User JSON object
      */
     @GetMapping("login/{username}")
-    public User login(@PathVariable String username, @RequestParam String password) {
+    public User login(@PathVariable("username") String username, @RequestParam String password) {
         User curUser = userRepository.findByUsername(username);
         if(comparePassword(curUser, password)) {
             return curUser;
