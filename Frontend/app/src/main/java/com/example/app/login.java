@@ -90,7 +90,7 @@ public class login extends AppCompatActivity {
                     if (i == response.length() - 1) {
                         msgResponse.setText("Username or Password is wrong");
                     }
-                };
+                }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
