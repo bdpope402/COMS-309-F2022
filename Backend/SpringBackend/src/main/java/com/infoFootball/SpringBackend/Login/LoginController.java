@@ -18,7 +18,7 @@ public class LoginController {
     /**
      * Main login function, uses other functions to check for correct user then returns
      * the user if everything matches and exists
-     * @param password User inputed password
+     * @param password User inputted password
      * @return User JSON object
      */
     @GetMapping("/login/{username}")
@@ -33,16 +33,12 @@ public class LoginController {
 
     /**
      * Compares the password of the login to the database
-     * @param returningUser User object trying to login
+     * @param returningUser User object trying to log in
      * @param password Password that user is using
-     * @return true if same false if different
+     * @return true if same, false if different
      */
     public boolean comparePassword(User returningUser, String password){
-        if(returningUser.getPassword().equals(password)){
-            return true;
-        } else{
-            return false;
-        }
+        return returningUser.getPassword().equals(password);
     }
 
 }
