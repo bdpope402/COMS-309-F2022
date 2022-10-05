@@ -74,13 +74,13 @@ public class register extends AppCompatActivity implements View.OnClickListener{
     private void postReq() {
         RequestQueue queue = Volley.newRequestQueue(register.this);
 //        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/register/";
-        String url = "https://coms-309-013.class.las.iastate.edu:8080/login/register";
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/login/register/";
         JSONObject regDetails = new JSONObject();
         try {
             regDetails.put("username", username.getText().toString());
             regDetails.put("password", password.getText().toString());
-            regDetails.put("phone", phone.getText().toString());
             regDetails.put("email", email.getText().toString());
+            regDetails.put("phoneNum", phone.getText().toString());
         } catch(JSONException e) {
             e.printStackTrace();
         }
@@ -109,7 +109,17 @@ public class register extends AppCompatActivity implements View.OnClickListener{
                 msgResponse.setText("Looks like something went wrong. Please try again");
                 error.printStackTrace();
             }
-        });
+        }) {
+            @Override
+            public byte[] getBody() {
+                return "your json string".getBytes();
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
         queue.add(req);
     }
 }
