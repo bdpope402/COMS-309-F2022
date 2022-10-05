@@ -26,12 +26,19 @@ public class LoginController {
 //    public User login(@PathVariable("username") String username, @RequestParam String password) {
         User curUser = userRepository.findByUsername(username);
 
-        return curUser;
+        if (curUser != null) {
+            return curUser;
+        } else {
+            User errorUser = new User("UserNull", "Null", "Null", "Null");
+            return errorUser;
+        }
+
 
 //        if(comparePassword(curUser, password)) {
 //            return curUser;
 //        } else {
-//            //Create a null error user if there is no user errorUser = new User("Bad Password", "Null", "Null", "Null");
+//            //Create a null error user if there is no user error
+//            User = new User("Bad Password", "Null", "Null", "Null");
 //            return errorUser;
 //        }
     }
