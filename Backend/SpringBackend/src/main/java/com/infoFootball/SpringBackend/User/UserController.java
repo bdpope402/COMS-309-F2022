@@ -20,9 +20,6 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-//    @Autowired
-//    LaptopRepository laptopRepository;
-
     private String success = "{\"message\":\"success\"}";
     private String failure = "{\"message\":\"failure\"}";
 
@@ -45,7 +42,6 @@ public class UserController {
         return userRepository.findByUsername(username);
     }
 
-    //Need to factor this to make it work with michaels edit user page
     /**
      * Updates user
      * @param username username of user
@@ -66,21 +62,9 @@ public class UserController {
      * @param username username of user to be deleted
      * @return if user was successfully deleted
      */
-    @DeleteMapping(path = "/users/{username}")
+    @DeleteMapping("/users/{username}")
     String deleteUser(@PathVariable String username){
         userRepository.deleteByUsername(username);
         return success;
     }
-
-//    @PutMapping("/users/{userId}/laptops/{laptopId}") //Assign this to profile information?
-//    String assignLaptopToUser(@PathVariable int userId,@PathVariable int laptopId){
-//        User user = userRepository.findById(userId);
-//        Laptop laptop = laptopRepository.findById(laptopId);
-//        if(user == null || laptop == null)
-//            return failure;
-//        laptop.setUser(user);
-//        user.setLaptop(laptop);
-//        userRepository.save(user);
-//        return success;
-//    }
 }

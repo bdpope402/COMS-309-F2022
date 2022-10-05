@@ -21,7 +21,7 @@ public class LoginController {
      * @param password User inputed password
      * @return User JSON object
      */
-    @GetMapping("login/{username}")
+    @GetMapping("/login/{username}")
     public User login(@PathVariable("username") String username, @RequestParam String password) {
         User curUser = userRepository.findByUsername(username);
         if(comparePassword(curUser, password)) {

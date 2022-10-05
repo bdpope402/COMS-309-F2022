@@ -13,9 +13,9 @@ public class RegisterController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("login/register")
+    @PostMapping("/login/register")
     public String newUser(@RequestBody User newUser) {
         userRepository.save(newUser);
-        return "Saved";
+        return "Success";
     }
 }
