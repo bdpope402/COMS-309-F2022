@@ -68,20 +68,13 @@ public class register extends AppCompatActivity implements View.OnClickListener{
         }
         else {
             postReq();
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    startActivity(new Intent(register.this, MainActivity.class));
-                }
-            }, 5000);
         }
     }
 
     private void postReq() {
         RequestQueue queue = Volley.newRequestQueue(register.this);
-        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/register/";
-
+//        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/register/";
+        String url = "https://coms-309-013.class.las.iastate.edu:8080/login/register";
         JSONObject regDetails = new JSONObject();
         try {
             regDetails.put("username", username.getText().toString());
@@ -99,6 +92,13 @@ public class register extends AppCompatActivity implements View.OnClickListener{
            public void onResponse(JSONObject response) {
                try {
                    msgResponse.setText("You have successfully created a new user!");
+                   final Handler handler = new Handler();
+                   handler.postDelayed(new Runnable() {
+                       @Override
+                       public void run() {
+                           startActivity(new Intent(register.this, MainActivity.class));
+                       }
+                   }, 5000);
                } catch( Exception e) {
                    e.printStackTrace();
                }
