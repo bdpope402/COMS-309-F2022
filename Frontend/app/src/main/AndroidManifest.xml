@@ -15,14 +15,7 @@
         android:theme="@style/Theme.App"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
             android:name=".activity_menu"
-=======
-            android:name=".AccountDetails"
-            android:exported="false" />
-        <activity
-            android:name=".login"
->>>>>>> b5feba6b9488836d57a97bb7cf27134db6ec5432
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -33,19 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity
             android:name=".login"
             android:exported="false" />
         <activity
             android:name=".register"
             android:exported="false" />
-=======
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
->>>>>>> b5feba6b9488836d57a97bb7cf27134db6ec5432
     </application>
 
 </manifest>
