@@ -7,7 +7,7 @@
     tools:context=".AccountDetails">
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/password_here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteX="16dp" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/email_here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -25,7 +25,7 @@
         tools:layout_editor_absoluteX="16dp" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/number_here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -42,7 +42,7 @@
         android:text="Password"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/number_here" />
 
     <TextView
         android:id="@+id/phoneNumber_title"
@@ -53,7 +53,7 @@
         android:text="Phone Number"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/email_here" />
 
     <TextView
         android:id="@+id/Page_title"
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="Name"
+        android:text="Username"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Page_title" />
@@ -96,7 +96,7 @@
         android:text="Email"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/name_here" />
 
     <Button
         android:id="@+id/button_change_pass"
@@ -104,46 +104,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Change Password"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/password_here"
         tools:layout_editor_absoluteX="16dp" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/name_here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="placeholder"
         app:layout_constraintTop_toBottomOf="@+id/name_title"
         tools:layout_editor_absoluteX="16dp" />
-
-    <Button
-        android:id="@+id/edit_phoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="76dp"
-        android:text="Edit"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/edit_email" />
-
-    <Button
-        android:id="@+id/edit_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="48dp"
-        android:text="Edit"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/edit_name" />
-
-    <Button
-        android:id="@+id/edit_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="116dp"
-        android:text="Edit"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
