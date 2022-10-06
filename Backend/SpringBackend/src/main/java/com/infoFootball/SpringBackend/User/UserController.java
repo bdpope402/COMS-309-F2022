@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
+ * This controller is for controlling a user entity
+ * It has all the functions to edit and delete as well as return all users
+ * @Author Camden Fergen and Bryan Pope
  */
 @RestController
 public class UserController {
