@@ -69,7 +69,7 @@ public class AccountDetails extends AppCompatActivity {
     private void Req() {
         RequestQueue queue = Volley.newRequestQueue(AccountDetails.this);
 
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/";
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/"+login.userInput;
 
         JSONObject json = new JSONObject();
 

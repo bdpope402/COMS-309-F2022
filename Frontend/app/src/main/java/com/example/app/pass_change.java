@@ -57,7 +57,7 @@ public class pass_change extends AppCompatActivity {
     private void putReq() {
         RequestQueue queue = Volley.newRequestQueue(pass_change.this);
 
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/";
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/"+login.userInput;
 
 
 
