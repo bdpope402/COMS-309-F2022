@@ -13,6 +13,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -58,20 +59,20 @@ public class pass_change extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(pass_change.this);
 
         String url = "http://coms-309-013.class.las.iastate.edu:8080/users/"+login.userInput;
-
-
-
         JSONObject json = new JSONObject();
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, url, null, new Response.Listener<JSONObject>() {
+        try {
+            json.put("password", pass1.getText().toString());
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        final String jsonString = json.toString();
+        StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
-                try {
-                        json.put("username", pass1.getText().toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void onResponse(String response) {
+
             }
 
         }, new Response.ErrorListener() {
@@ -79,7 +80,17 @@ public class pass_change extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
             }
-        });
+        }) {
+            @Override
+            public byte[] getBody() {
+                return jsonString.getBytes();
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
 
         queue.add(request);
     }
