@@ -12,8 +12,7 @@ public class User {
 
     /*
     * @ID marks the below field as the primary key for the table
-    * The @GeneratedValue generates a value if not present (Will start at 1, 2 etc.)
-     */
+    */
     @Id
     private String username;
     private String password;
