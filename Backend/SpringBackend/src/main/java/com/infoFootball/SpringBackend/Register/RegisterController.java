@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
- *  Springboot controller for registering a user
+ * Springboot controller for registering a user
+ * @Author Camden Fergen
  */
 @RestController
 public class RegisterController {
