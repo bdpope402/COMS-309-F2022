@@ -29,7 +29,7 @@
         android:layout_marginTop="272dp"
         android:layout_marginEnd="102dp"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         tools:layout_editor_absoluteX="100dp"
         tools:layout_editor_absoluteY="360dp" />
 
@@ -71,14 +71,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="673dp"
         android:layout_marginEnd="153dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="@color/dark_red"
         android:text="REGISTER"
         android:textColor="@color/yellow" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -89,7 +91,7 @@
         android:inputType="phone" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -118,6 +120,17 @@
         android:layout_marginTop="430dp"
         android:layout_marginEnd="156dp"
         android:text="Phone Number: " />
+
+    <TextView
+        android:id="@+id/msgResponse"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="593dp"
+        android:layout_marginEnd="57dp"
+        android:text=""
+        android:textAlignment="center" />
 
 
 </RelativeLayout>
