@@ -32,4 +32,35 @@
         android:textAlignment="center"
         android:text="Who would you like to grant permissions to?" />
 
+    <Button
+        android:id="@+id/privileges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="461dp"
+        android:layout_marginEnd="118dp"
+        android:text="Grant Privileges" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="254dp"
+        android:layout_marginEnd="62dp"
+        android:text="What level of privileges would you like to grant" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="293dp"
+        android:layout_marginEnd="0dp"
+        android:spinnerMode="dropdown" />
+
+
 </RelativeLayout>
