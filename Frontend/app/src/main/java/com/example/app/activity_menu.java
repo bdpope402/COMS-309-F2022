@@ -24,7 +24,7 @@ public class activity_menu extends AppCompatActivity {
         page1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), MainActivity.class));
+                startActivity(new Intent(view.getContext(), admin_page.class));
             }
         });
 
