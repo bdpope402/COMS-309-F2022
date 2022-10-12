@@ -38,6 +38,7 @@ public class login extends AppCompatActivity {
     private TextView msgResponse;
     private EditText username;
     private EditText password;
+    private Button back;
 
     public static String userInput;
     public static String passInput;
@@ -51,7 +52,16 @@ public class login extends AppCompatActivity {
         msgResponse = (TextView) findViewById(R.id.msgResponse);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
+        back = (Button) findViewById(R.id.back);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(login.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
