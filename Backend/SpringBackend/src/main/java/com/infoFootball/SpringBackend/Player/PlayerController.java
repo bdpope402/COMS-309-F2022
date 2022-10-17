@@ -1,8 +1,5 @@
 package com.infoFootball.SpringBackend.Player;
 import java.util.List;
-
-import com.infoFootball.SpringBackend.User.User;
-import com.infoFootball.SpringBackend.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PlayerController {
     @Autowired
-    UserRepository userRepository;
+    playerRepository playerRepository;
 
     final private String success = "{\"message\":\"success\"}";
     final private String failure = "{\"message\":\"failure\"}";
 
     @GetMapping(path = "/players")
-    List<User> getAllPlayers(){
-        return userRepository.findAll();
+    List<Player> getAllPlayers(){
+        return playerRepository.findAll();
     }
 }
