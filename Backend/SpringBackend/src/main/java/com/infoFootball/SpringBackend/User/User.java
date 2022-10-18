@@ -4,16 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * This class is the base for creating a user. Through it, you can set name
- * email, phone number, and password, which then can be saved into the database
+ * This class is the base for creating a user.
+ * Through it, you can set name email, phone number, and password, which then can be saved into the database
  */
 @Entity
 public class User {
 
-    /*
-    * @ID marks the below field as the primary key for the table
-    * The @GeneratedValue generates a value if not present (Will start at 1, 2 etc.)
-     */
+    //@ID marks the below field as the primary key for the table
     @Id
     private String username;
     private String password;
