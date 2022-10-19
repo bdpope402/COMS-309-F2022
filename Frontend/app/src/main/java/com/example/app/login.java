@@ -97,15 +97,15 @@ public class login extends AppCompatActivity {
                         String email = response.getString("email");
                         String phone = response.getString("phoneNum");
                         //String perms = response.getString("perms");
-                        try {
-                            profile.put("username", correctUser);
-                            profile.put("password", correctPass);
-                            profile.put("email", email);
-                            profile.put("phoneNum", phone);
-                            //profile.put("perms", perms);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            profile.put("username", correctUser);
+//                            profile.put("password", correctPass);
+//                            profile.put("email", email);
+//                            profile.put("phoneNum", phone);
+//                            //profile.put("perms", perms);
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
                         Intent intent = new Intent(login.this, activity_menu.class);
                         startActivity(intent);
                     }

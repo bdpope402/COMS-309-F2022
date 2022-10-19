@@ -36,8 +36,4 @@ public class admin_page extends AppCompatActivity {
             }
         });
     }
-
-
-    }
-
 }
