@@ -39,6 +39,7 @@ public class login extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private Button back;
+    public static JSONObject profile;
 
     public static String userInput;
     public static String passInput;
@@ -93,6 +94,18 @@ public class login extends AppCompatActivity {
                     String correctUser = response.getString("username");
                     String correctPass = response.getString("password");
                     if (correctUser.equals(userInput) && correctPass.equals(passInput)) {
+                        String email = response.getString("email");
+                        String phone = response.getString("phoneNum");
+                        //String perms = response.getString("perms");
+                        try {
+                            profile.put("username", correctUser);
+                            profile.put("password", correctPass);
+                            profile.put("email", email);
+                            profile.put("phoneNum", phone);
+                            //profile.put("perms", perms);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         Intent intent = new Intent(login.this, activity_menu.class);
                         startActivity(intent);
                     }

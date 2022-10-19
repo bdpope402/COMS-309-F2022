@@ -1,12 +1,20 @@
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.app.adminfeatures.grant_admin;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import org.json.JSONObject;
 
 public class admin_page extends AppCompatActivity {
 
@@ -22,9 +30,14 @@ public class admin_page extends AppCompatActivity {
         grant_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(admin_page.this, grant_admin.class);
                 startActivity(intent);
             }
         });
     }
+
+
+    }
+
 }

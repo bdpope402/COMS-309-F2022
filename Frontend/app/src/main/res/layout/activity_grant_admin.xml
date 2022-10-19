@@ -33,7 +33,7 @@
         android:text="Who would you like to grant permissions to?" />
 
     <Button
-        android:id="@+id/privileges"
+        android:id="@+id/grant_privileges"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

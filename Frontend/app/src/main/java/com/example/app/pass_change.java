@@ -59,16 +59,15 @@ public class pass_change extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(pass_change.this);
 
         String url = "http://coms-309-013.class.las.iastate.edu:8080/users/"+login.userInput;
-        JSONObject json = new JSONObject();
 
         try {
-            json.put("password", pass1.getText().toString());
-
+            login.profile.remove("password");
+            login.profile.put("password", pass1.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        final String jsonString = json.toString();
+        final String jsonString = login.profile.toString();
         StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

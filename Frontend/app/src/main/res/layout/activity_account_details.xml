@@ -7,15 +7,6 @@
     tools:context=".AccountDetails">
 
     <TextView
-        android:id="@+id/password_here"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="placeholder"
-        app:layout_constraintTop_toBottomOf="@+id/password_title"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <TextView
         android:id="@+id/email_here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,17 +23,6 @@
         android:text="placeholder"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumber_title"
         tools:layout_editor_absoluteX="16dp" />
-
-    <TextView
-        android:id="@+id/password_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:text="Password"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/number_here" />
 
     <TextView
         android:id="@+id/phoneNumber_title"
@@ -102,10 +82,9 @@
         android:id="@+id/button_change_pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Change Password"
-        app:layout_constraintTop_toBottomOf="@+id/password_here"
-        tools:layout_editor_absoluteX="16dp" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="494dp" />
 
     <TextView
         android:id="@+id/name_here"
