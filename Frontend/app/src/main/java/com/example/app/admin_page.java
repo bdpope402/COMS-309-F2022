@@ -15,12 +15,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class admin_page extends AppCompatActivity {
 
     private Button grant_admin;
     private TextView admin_level;
+    private Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +31,24 @@ public class admin_page extends AppCompatActivity {
 
         grant_admin = (Button) findViewById(R.id.grant_admin);
         admin_level = (TextView) findViewById(R.id.adminlevel);
+        back = (Button) findViewById(R.id.back);
 
-        admin_level.setText("Current admin level: ");
+        try { admin_level.setText("Current admin level: " + login.profile.getString("permLv")); }
+        catch (JSONException e) { e.printStackTrace(); }
 
         grant_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                if (login.profile.getText("perms").toString().equals(""))
                 Intent intent = new Intent(admin_page.this, grant_admin.class);
+                startActivity(intent);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(admin_page.this, activity_menu.class);
                 startActivity(intent);
             }
         });

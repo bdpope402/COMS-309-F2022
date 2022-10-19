@@ -99,13 +99,13 @@ public class login extends AppCompatActivity {
                     if (correctUser.equals(userInput) && correctPass.equals(passInput)) {
                         String email = response.getString("email");
                         String phone = response.getString("phoneNum");
-                        String perms = response.getString("perms");
+                        String perms = response.getString("permLv");
                         try {
                             profile.put("username", correctUser);
                             profile.put("password", correctPass);
                             profile.put("email", email);
                             profile.put("phoneNum", phone);
-                            profile.put("perms", perms);
+                            profile.put("permLv", perms);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
