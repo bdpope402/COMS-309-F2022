@@ -23,6 +23,7 @@ public class admin_page extends AppCompatActivity {
     private Button grant_admin;
     private TextView admin_level;
     private Button back;
+    private TextView response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class admin_page extends AppCompatActivity {
         grant_admin = (Button) findViewById(R.id.grant_admin);
         admin_level = (TextView) findViewById(R.id.adminlevel);
         back = (Button) findViewById(R.id.back);
+        response = (TextView) findViewById(R.id.response);
 
         try { admin_level.setText("Current admin level: " + login.profile.getString("permLv")); }
         catch (JSONException e) { e.printStackTrace(); }
@@ -39,9 +41,17 @@ public class admin_page extends AppCompatActivity {
         grant_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if (login.profile.getText("perms").toString().equals(""))
-                Intent intent = new Intent(admin_page.this, grant_admin.class);
-                startActivity(intent);
+                try {
+                    if (login.profile.getString("permLv").equals("Admin")) {
+                        Intent intent = new Intent(admin_page.this, grant_admin.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        response.setText("You don't have the right permission level");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

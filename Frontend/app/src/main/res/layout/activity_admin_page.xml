@@ -41,8 +41,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="164dp"
         android:layout_marginBottom="74dp"
-        android:textAlignment="center"
-        android:text="" />
+        android:text=""
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/change_vendor"
@@ -84,5 +84,13 @@
         android:layout_marginEnd="160dp"
         android:text="BACK" />
 
+    <TextView
+        android:id="@+id/response"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="119dp"
+        android:text=""
+        android:textAlignment="center" />
 
 </RelativeLayout>
