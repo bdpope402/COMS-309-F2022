@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Player {
 
     @Id @GeneratedValue
-    private int IdNum;
+    private int ID;
     private String firstName;
     private String lastName;
     private String playerNum;
@@ -45,8 +45,8 @@ public class Player {
         this.playerNum = playerNum;
     }
 
-    public int getIdNum(){
-        return IdNum;
+    public int getID(){
+        return ID;
     }
 
 }
