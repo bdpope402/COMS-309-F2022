@@ -13,12 +13,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONObject;
 
 public class admin_page extends AppCompatActivity {
 
-    Button grant_admin;
+    private Button grant_admin;
+    private TextView admin_level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,9 @@ public class admin_page extends AppCompatActivity {
         setContentView(R.layout.activity_admin_page);
 
         grant_admin = (Button) findViewById(R.id.grant_admin);
+        admin_level = (TextView) findViewById(R.id.adminlevel);
+
+        admin_level.setText("Current admin level: ");
 
         grant_admin.setOnClickListener(new View.OnClickListener() {
             @Override

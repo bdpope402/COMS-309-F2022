@@ -54,12 +54,13 @@
 
     <Spinner
         android:id="@+id/privileges"
-        android:layout_width="match_parent"
+        android:layout_width="279dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="293dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginEnd="65dp"
+        android:textAlignment="center"
         android:spinnerMode="dropdown" />
 
 </RelativeLayout>

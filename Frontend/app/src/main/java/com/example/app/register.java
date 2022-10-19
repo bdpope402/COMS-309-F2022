@@ -82,6 +82,7 @@ public class register extends AppCompatActivity implements View.OnClickListener{
             regDetails.put("password", password.getText().toString());
             regDetails.put("email", email.getText().toString());
             regDetails.put("phoneNum", phone.getText().toString());
+            regDetails.put("perms", "User");
         } catch(JSONException e) {
             e.printStackTrace();
         }

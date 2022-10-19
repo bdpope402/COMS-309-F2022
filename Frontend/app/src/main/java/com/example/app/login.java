@@ -67,6 +67,8 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getReq();
+//                Intent intent = new Intent(login.this, activity_menu.class);
+//                startActivity(intent);
             }
         });
     }
@@ -80,6 +82,7 @@ public class login extends AppCompatActivity {
 //        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
         String url = "http://coms-309-013.class.las.iastate.edu:8080/users/" + userInput;
         JSONObject json = new JSONObject();
+        profile = new JSONObject();
         try {
             json.put("username", userInput);
             json.put("password", passInput);
@@ -96,16 +99,16 @@ public class login extends AppCompatActivity {
                     if (correctUser.equals(userInput) && correctPass.equals(passInput)) {
                         String email = response.getString("email");
                         String phone = response.getString("phoneNum");
-                        //String perms = response.getString("perms");
-//                        try {
-//                            profile.put("username", correctUser);
-//                            profile.put("password", correctPass);
-//                            profile.put("email", email);
-//                            profile.put("phoneNum", phone);
-//                            //profile.put("perms", perms);
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
+//                        String perms = response.getString("perms");
+                        try {
+                            profile.put("username", correctUser);
+                            profile.put("password", correctPass);
+                            profile.put("email", email);
+                            profile.put("phoneNum", phone);
+//                            profile.put("perms", perms);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         Intent intent = new Intent(login.this, activity_menu.class);
                         startActivity(intent);
                     }

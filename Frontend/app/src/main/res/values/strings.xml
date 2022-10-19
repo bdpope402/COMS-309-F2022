@@ -24,6 +24,7 @@
         <item>Moderator</item>
         <item>Vendor</item>
         <item>Information Maintainer</item>
+        <item>User</item>
     </string-array>
     <string name="action_settings">Settings</string>
     <string name="title_activity_admin_page">admin_page</string>

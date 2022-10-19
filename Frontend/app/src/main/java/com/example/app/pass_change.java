@@ -38,8 +38,6 @@ public class pass_change extends AppCompatActivity {
         pass2=(EditText)findViewById(R.id.new_pass2);
         msgResponse=(TextView)findViewById(R.id.response);
 
-        putReq();
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +79,7 @@ public class pass_change extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 msgResponse.setText("It looks like something went wrong. Please try again");
+                error.printStackTrace();
             }
         }) {
             @Override

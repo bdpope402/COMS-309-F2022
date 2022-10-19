@@ -20,4 +20,33 @@
         android:layout_marginEnd="258dp"
         android:layout_marginBottom="506dp"
         android:text="Grant Admin" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="326dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="630dp"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:text="ADMIN ACTIONS" />
+
+    <TextView
+        android:id="@+id/adminlevel"
+        android:layout_width="79dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="74dp"
+        android:textAlignment="center"
+        android:text="" />
+
+
 </RelativeLayout>

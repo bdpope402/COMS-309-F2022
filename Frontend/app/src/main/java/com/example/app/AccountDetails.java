@@ -45,14 +45,8 @@ public class AccountDetails extends AppCompatActivity {
         Button back = findViewById((R.id.back_menu));
         Button change_pass = findViewById((R.id.button_change_pass));
 
-        try {
-            username.setText(login.profile.getString("username"));
-            number.setText(login.profile.getString("phoneNum"));
-            email.setText(login.profile.getString("email"));
-            password.setText(login.profile.getString("password"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        getReq();
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,5 +60,42 @@ public class AccountDetails extends AppCompatActivity {
                 startActivity(new Intent(view.getContext(), pass_change.class));
             }
         });
+    }
+
+    private void getReq() {
+        RequestQueue queue = Volley.newRequestQueue(AccountDetails.this);
+
+//        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/" + login.userInput;
+        JSONObject json = new JSONObject();
+        final String requestBody = json.toString();
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    username.setText(response.getString("username"));
+                    number.setText(response.getString("phoneNum"));
+                    email.setText(response.getString("email"));
+                    password.setText(response.getString("password"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }){
+            @Override
+            public byte[] getBody() {
+                return requestBody.getBytes();
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
+        queue.add(request);
     }
 }
