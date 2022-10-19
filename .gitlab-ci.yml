@@ -1,7 +1,7 @@
 # Example  .gitlab-ci.yml file
 stages:
   - maventry
-  - androidtry
+#  - androidtry
 
 maven-build:   #this is a JOB
   stage: maventry
