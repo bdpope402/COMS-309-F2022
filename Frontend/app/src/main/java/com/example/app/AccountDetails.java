@@ -24,8 +24,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
 public class AccountDetails extends AppCompatActivity {
 
     //private TextView msgResponse;
@@ -43,6 +41,7 @@ public class AccountDetails extends AppCompatActivity {
         username = (TextView) findViewById(R.id.name_here);
         number = (TextView) findViewById(R.id.number_here);
         email = (TextView) findViewById(R.id.email_here);
+        password = (TextView) findViewById(R.id.password_here);
         Button back = findViewById((R.id.back_menu));
         Button change_pass = findViewById((R.id.button_change_pass));
 
@@ -50,6 +49,7 @@ public class AccountDetails extends AppCompatActivity {
             username.setText(login.profile.getString("username"));
             number.setText(login.profile.getString("phoneNum"));
             email.setText(login.profile.getString("email"));
+            password.setText(login.profile.getString("password"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

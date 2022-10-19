@@ -30,7 +30,7 @@ public class admin_page extends AppCompatActivity {
         grant_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+//                if (login.profile.getText("perms").toString().equals(""))
                 Intent intent = new Intent(admin_page.this, grant_admin.class);
                 startActivity(intent);
             }
