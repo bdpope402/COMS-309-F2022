@@ -18,8 +18,8 @@ public class Vendor {
     private boolean status; //True for open - false for closed
     private String location;
 
-    @ManyToOne
-    private Menu menu;
+//    @ManyToOne
+//    private Menu menu;
 
     /**
      * Creates a null Vendor object
@@ -29,7 +29,7 @@ public class Vendor {
         this.name = null;
         this.status = false;
         this.location = null;
-        this.menu = null;
+//        this.menu = null;
     }
 
     /**
@@ -45,7 +45,7 @@ public class Vendor {
         this.name = name;
         this.status = status;
         this.location = location;
-        this.menu = menu;
+//        this.menu = menu;
     }
 
 
@@ -83,13 +83,13 @@ public class Vendor {
         this.location = location;
     }
 
-    /**
-     * Sets the menu of the vendor
-     * @param menu vendor menu (table ID)
-     */
-    public void setMenu(Menu menu) {
-        this.menu = menu;
-    }
+//    /**
+//     * Sets the menu of the vendor
+//     * @param menu vendor menu (table ID)
+//     */
+//    public void setMenu(Menu menu) {
+//        this.menu = menu;
+//    }
 
     // GET FUNCTIONS //
 
@@ -125,12 +125,12 @@ public class Vendor {
         return this.location;
     }
 
-    /**
-     * Gets vendor menu ID
-     * @return vendor menu ID
-     */
-    public Menu getMenu() {
-        return this.menu;
-    }
+//    /**
+//     * Gets vendor menu ID
+//     * @return vendor menu ID
+//     */
+//    public Menu getMenu() {
+//        return this.menu;
+//    }
 
 }
