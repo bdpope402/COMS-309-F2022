@@ -17,7 +17,7 @@ maven-test:
   tags:
     - backend_tag
   script:
-    - cd Backend
+    - cd Backend/SpringBackend
     - mvn test
   artifacts:
     paths:
