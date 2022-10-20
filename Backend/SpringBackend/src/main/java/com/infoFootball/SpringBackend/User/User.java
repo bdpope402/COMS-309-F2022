@@ -17,6 +17,9 @@ public class User {
     private String email;
     private String phoneNum;
 
+    /**
+     * Creates a null user object
+     */
     public User() {
         this.username = null;
         this.email = null;
