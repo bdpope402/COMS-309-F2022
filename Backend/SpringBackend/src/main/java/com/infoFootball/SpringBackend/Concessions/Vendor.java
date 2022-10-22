@@ -18,8 +18,8 @@ public class Vendor {
     private boolean status; //True for open - false for closed
     private String location;
 
-//    @ManyToOne
-//    private Menu menu;
+    @ManyToOne
+    private MenuDB menuDBKey;
 
     /**
      * Creates a null Vendor object
@@ -29,7 +29,7 @@ public class Vendor {
         this.name = null;
         this.status = false;
         this.location = null;
-//        this.menu = null;
+        this.menuDBKey = null;
     }
 
     /**
@@ -38,14 +38,14 @@ public class Vendor {
      * @param name vendor name (string)
      * @param status vendor status (open closed, true false) (bool)
      * @param location vendor location (string)
-     * @param menu vendor menu (table)
+     * @param menuDBKey vendor menu (table)
      */
-    public Vendor(int id, String name, boolean status, String location, Menu menu) {
+    public Vendor(int id, String name, boolean status, String location, MenuDB menuDBKey) {
         this.id = id;
         this.name = name;
         this.status = status;
         this.location = location;
-//        this.menu = menu;
+        this.menuDBKey = menuDBKey;
     }
 
 
@@ -83,13 +83,13 @@ public class Vendor {
         this.location = location;
     }
 
-//    /**
-//     * Sets the menu of the vendor
-//     * @param menu vendor menu (table ID)
-//     */
-//    public void setMenu(Menu menu) {
-//        this.menu = menu;
-//    }
+    /**
+     * Sets the menuDB key of the vendor
+     * @param menuDBKey vendor menu (table ID)
+     */
+    public void setMenu(MenuDB menuDBKey) {
+        this.menuDBKey = menuDBKey;
+    }
 
     // GET FUNCTIONS //
 
@@ -125,12 +125,12 @@ public class Vendor {
         return this.location;
     }
 
-//    /**
-//     * Gets vendor menu ID
-//     * @return vendor menu ID
-//     */
-//    public Menu getMenu() {
-//        return this.menu;
-//    }
+    /**
+     * Gets vendor menuDB key
+     * @return vendor menuDB key
+     */
+    public MenuDB getMenu() {
+        return this.menuDBKey;
+    }
 
 }

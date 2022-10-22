@@ -10,13 +10,10 @@ public class Menu {
 
     @Id
     @GeneratedValue
-    private int Id;
+    private int menuId; //Id for menu
     private String name;
     private boolean stock; //True for in stock - false for out of stock
     private int stockNum; //Num for stock left
     private int price;
-
-    @ManyToOne
-    private Vendor vendor; //To correlate to a vendor
 
 }
