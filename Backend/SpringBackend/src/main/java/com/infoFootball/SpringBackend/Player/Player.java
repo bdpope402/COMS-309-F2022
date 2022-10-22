@@ -1,6 +1,7 @@
 package com.infoFootball.SpringBackend.Player;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -11,12 +12,18 @@ import javax.persistence.Id;
 @Entity
 public class Player {
 
-    @Id @GeneratedValue
-    private int ID;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer ID;
     private String firstName;
     private String lastName;
     private String playerNum;
 
+    public Player(){
+        this.firstName = null;
+        this.lastName = null;
+        this.playerNum = null;
+    }
     public Player(String firstName, String lastName, String playerNum){
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,18 +41,21 @@ public class Player {
     public String getLastName(){
         return lastName;
     }
-    public void setlastName(String lastName){
+    public void setLastName(String lastName){
         this.lastName = lastName;
     }
 
-    public String getplayerNum(){
+    public String getPlayerNum(){
         return playerNum;
     }
-    public void setplayerNum(String playerNum){
+    public void setPlayerNum(String playerNum){
         this.playerNum = playerNum;
     }
 
-    public int getID(){
+    public void setID(int ID){
+        this.ID = ID;
+    }
+    public Integer getID(){
         return ID;
     }
 
