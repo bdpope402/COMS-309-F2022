@@ -2,6 +2,7 @@
 stages:
   - mavenbuild
   - maventest
+  - mavenDeploy
 #  - androidtry
 
 maven-build:   #this is a JOB
@@ -22,6 +23,16 @@ maven-test:
   artifacts:
     paths:
       - Backend/target/*.jar
+maven-deploy:
+  stage: mavenDeploy
+  tags:
+    - backend_tag
+  script:
+    - cd Backend
+    - mvn package
+    - sudo mv target/*.jar/target/web-demo.jar
+    - sudo systemctl stop system-web-demo
+    - sudo systemctl start system-web-demo
 
 
 #android-build: #this is another job
