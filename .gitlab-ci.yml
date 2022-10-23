@@ -28,7 +28,7 @@ maven-deploy:
   tags:
     - backend_tag
   script:
-    - cd Backend
+    - cd Backend/SpringBackend
     - mvn package
     - sudo mv target/*.jar/target/web-demo.jar
     - sudo systemctl stop system-web-demo
