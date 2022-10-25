@@ -28,4 +28,5 @@
     </string-array>
     <string name="action_settings">Settings</string>
     <string name="title_activity_admin_page">admin_page</string>
+    <string name="title_activity_concessions">concessions</string>
 </resources>

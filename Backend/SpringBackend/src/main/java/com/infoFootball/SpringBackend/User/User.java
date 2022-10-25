@@ -19,6 +19,7 @@ public class User {
     private String password;
     private String email;
     private String phoneNum;
+    private String permLv;
 
     public User() {
         this.username = null;
@@ -76,6 +77,12 @@ public class User {
         this.phoneNum = phoneNum;
     }
 
+    /**
+     * Sets the user perm level
+     * @param permLv user perm level
+     */
+    public void setPermLv(String permLv) { this.permLv = permLv;}
+
     //GET FUNCTIONS //
 
     /**
@@ -108,6 +115,14 @@ public class User {
      */
     public String getPhoneNum() {
         return this.phoneNum;
+    }
+
+    /**
+     * Returns the perm level
+     * @return string perm level
+     */
+    public String getPermLv() {
+        return this.permLv;
     }
 
 }
