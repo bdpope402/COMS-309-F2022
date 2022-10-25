@@ -24,7 +24,6 @@
             android:exported="false"
             android:label="@string/title_activity_admin_page" />
         <activity
-
             android:name=".concessions"
             android:exported="false"
             android:label="@string/title_activity_concessions"
