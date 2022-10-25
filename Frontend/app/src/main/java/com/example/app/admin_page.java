@@ -21,10 +21,12 @@ import org.json.JSONObject;
 public class admin_page extends AppCompatActivity {
 
     private Button grant_admin;
-    private TextView admin_level;
     private Button back;
     private Button vendor_info;
+    private Button schedule_info;
+    private Button player_info;
     private TextView response;
+    private TextView admin_level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,8 @@ public class admin_page extends AppCompatActivity {
         admin_level = (TextView) findViewById(R.id.adminlevel);
         back = (Button) findViewById(R.id.back);
         vendor_info = (Button) findViewById(R.id.change_vendor);
+        schedule_info = (Button) findViewById(R.id.change_schedule);
+        player_info = (Button) findViewById(R.id.change_player);
         response = (TextView) findViewById(R.id.response);
 
         try { admin_level.setText("Current admin level: " + login.profile.getString("permLv")); }
@@ -63,6 +67,40 @@ public class admin_page extends AppCompatActivity {
                 try {
                     if (login.profile.getString("permLv").equals("Vendor") || login.profile.getString("permLv").equals("Admin")) {
                         Intent intent = new Intent(admin_page.this, activity_menu.class); //placeholder for when concessions are made
+                        startActivity(intent);
+                    }
+                    else {
+                        response.setText("You don't have the right permission level");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        schedule_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if (login.profile.getString("permLv").equals("Information Maintainer") || login.profile.getString("permLb").equals("Admin")) {
+                        Intent intent = new Intent(admin_page.this, activity_menu.class); //placeholder for when schedules are made
+                        startActivity(intent);
+                    }
+                    else {
+                        response.setText("You don't have the right permission level");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        player_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if (login.profile.getString("permLv").equals("Information Maintainer") || login.profile.getString("permLb").equals("Admin")) {
+                        Intent intent = new Intent(admin_page.this, activity_menu.class); //placeholder for when players are made
                         startActivity(intent);
                     }
                     else {

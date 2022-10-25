@@ -61,9 +61,18 @@ public class grant_admin extends AppCompatActivity {
         grant_privileges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String perms = privileges.getSelectedItem().toString();
-                String user = username.getText().toString();
-                putReq(perms, user);
+                try {
+                    if (login.profile.getString("permLv").equals("Admin")) {
+                        String perms = privileges.getSelectedItem().toString();
+                        String user = username.getText().toString();
+                        putReq(perms, user);
+                    }
+                    else {
+                        msgResponse.setText("You do not have the permission to do this");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
