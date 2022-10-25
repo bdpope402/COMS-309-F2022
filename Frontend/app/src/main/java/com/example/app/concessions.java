@@ -4,6 +4,13 @@ import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -19,11 +26,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class concessions extends AppCompatActivity {
     private ArrayList<Button> buttons;
     private Button back;
+    private JSONArray vendors = new JSONArray();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +46,13 @@ public class concessions extends AppCompatActivity {
         back = (Button) findViewById(R.id.back);
 
         ConstraintLayout lin = findViewById(R.id.concessions);
+//        getReq();
+        
         int y = 400;
         int x = 300;
         int i;
-        int count = 10;
+//        int count = vendors.length();
+        int count = 20;
         ConstraintSet constraint = new ConstraintSet();
 
         for (i = 0; i < count; i++) {
@@ -45,6 +62,12 @@ public class concessions extends AppCompatActivity {
             n.setText("hi");
             n.setTextColor(getResources().getColor(R.color.white));
             n.setBackgroundColor(getResources().getColor(R.color.purple_500));
+            n.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //something here that I haven't figured out yet
+                }
+            });
             buttons.add(n);
         }
 
@@ -66,13 +89,42 @@ public class concessions extends AppCompatActivity {
         constraint.connect(back.getId(), ConstraintSet.TOP, buttons.get(count - 1).getId(), ConstraintSet.TOP, 200);
         constraint.applyTo(lin);
 
-//        n.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                System.out.print("hi");
-//            }
-//        });
-//
-//        lin.addView(n);
+    }
+
+    private void getReq() {
+        RequestQueue queue = Volley.newRequestQueue(concessions.this);
+
+//        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor_all";
+        JSONObject json = new JSONObject();
+        final String requestBody = json.toString();
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject responseObj = response.getJSONObject(i);
+                        vendors.put(responseObj.toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }){
+            @Override
+            public byte[] getBody() {
+                return requestBody.getBytes();
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
+        queue.add(request);
     }
 }
