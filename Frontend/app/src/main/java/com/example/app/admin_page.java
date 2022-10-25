@@ -8,6 +8,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.app.adminfeatures.grant_admin;
+import com.example.app.adminfeatures.vendor_info;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -66,7 +67,7 @@ public class admin_page extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     if (login.profile.getString("permLv").equals("Vendor") || login.profile.getString("permLv").equals("Admin")) {
-                        Intent intent = new Intent(admin_page.this, activity_menu.class); //placeholder for when concessions are made
+                        Intent intent = new Intent(admin_page.this, com.example.app.adminfeatures.vendor_info.class); //placeholder for when concessions are made
                         startActivity(intent);
                     }
                     else {
