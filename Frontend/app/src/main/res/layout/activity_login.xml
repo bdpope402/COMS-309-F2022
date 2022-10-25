@@ -11,8 +11,10 @@
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="361dp"
         android:layout_marginEnd="102dp"
         android:ems="10"
@@ -26,7 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-
         android:layout_marginTop="251dp"
         android:layout_marginEnd="175dp"
         android:text="Username:" />
@@ -37,7 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-
         android:layout_marginTop="342dp"
         android:layout_marginEnd="174dp"
         android:text="Password:" />
@@ -56,10 +56,10 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="423dp"
-        android:layout_marginEnd="163dp"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="429dp"
         android:backgroundTint="@color/dark_red"
         android:text="LOGIN"
         android:textColor="@color/yellow" />
@@ -68,10 +68,14 @@
         android:id="@+id/msgResponse"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="55dp"
         android:layout_marginTop="502dp"
         android:layout_marginEnd="56dp"
+        android:layout_marginBottom="210dp"
         android:text=""
         android:textAlignment="center" />
 
@@ -86,5 +90,19 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="549dp"
+        android:layout_marginBottom="134dp"
+        android:backgroundTint="@color/dark_red"
+        android:text="Back"
+        android:textColor="@color/yellow" />
 
 </RelativeLayout>

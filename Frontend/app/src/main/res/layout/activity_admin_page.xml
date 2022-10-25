@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin_page">
+
+    <Button
+        android:id="@+id/grant_admin"
+        android:layout_width="115dp"
+        android:layout_height="68dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="157dp"
+        android:text="Grant Admin" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="326dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="630dp"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:text="ADMIN ACTIONS" />
+
+    <TextView
+        android:id="@+id/adminlevel"
+        android:layout_width="79dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="74dp"
+        android:text=""
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/change_vendor"
+        android:layout_width="115dp"
+        android:layout_height="68dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="157dp"
+        android:layout_marginEnd="48dp"
+        android:text="Change Vendor info" />
+
+    <Button
+        android:id="@+id/change_schedule"
+        android:layout_width="115dp"
+        android:layout_height="68dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="319dp"
+        android:text="Change Schedule Info" />
+
+    <Button
+        android:id="@+id/change_player"
+        android:layout_width="115dp"
+        android:layout_height="68dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="318dp"
+        android:layout_marginEnd="54dp"
+        android:text="Change Player Info" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="468dp"
+        android:layout_marginEnd="160dp"
+        android:text="BACK" />
+
+    <TextView
+        android:id="@+id/response"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="119dp"
+        android:text=""
+        android:textAlignment="center" />
+
+</RelativeLayout>

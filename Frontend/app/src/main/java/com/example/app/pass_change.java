@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,6 +24,7 @@ public class pass_change extends AppCompatActivity {
 
     private EditText pass1;
     private EditText pass2;
+    private TextView msgResponse;
 
 
     @Override
@@ -34,8 +36,7 @@ public class pass_change extends AppCompatActivity {
         Button confirm=findViewById(R.id.confirm_button);
         pass1=(EditText)findViewById(R.id.new_pass1);
         pass2=(EditText)findViewById(R.id.new_pass2);
-
-        putReq();
+        msgResponse=(TextView)findViewById(R.id.response);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,26 +60,26 @@ public class pass_change extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(pass_change.this);
 
         String url = "http://coms-309-013.class.las.iastate.edu:8080/users/"+login.userInput;
-        JSONObject json = new JSONObject();
 
         try {
-            json.put("password", pass1.getText().toString());
-
+            login.profile.remove("password");
+            login.profile.put("password", pass1.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        final String jsonString = json.toString();
+        final String jsonString = login.profile.toString();
         StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                msgResponse.setText("You have successfully changed your password!");
             }
 
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                msgResponse.setText("It looks like something went wrong. Please try again");
+                error.printStackTrace();
             }
         }) {
             @Override

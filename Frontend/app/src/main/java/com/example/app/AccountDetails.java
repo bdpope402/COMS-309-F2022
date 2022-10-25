@@ -24,8 +24,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
 public class AccountDetails extends AppCompatActivity {
 
     //private TextView msgResponse;
@@ -41,13 +39,13 @@ public class AccountDetails extends AppCompatActivity {
         setContentView(R.layout.activity_account_details);
 
         username = (TextView) findViewById(R.id.name_here);
-        password = (TextView) findViewById(R.id.password_here);
         number = (TextView) findViewById(R.id.number_here);
         email = (TextView) findViewById(R.id.email_here);
+        password = (TextView) findViewById(R.id.password_here);
         Button back = findViewById((R.id.back_menu));
         Button change_pass = findViewById((R.id.button_change_pass));
 
-        Req();
+        getReq();
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,38 +60,42 @@ public class AccountDetails extends AppCompatActivity {
                 startActivity(new Intent(view.getContext(), pass_change.class));
             }
         });
-
-
     }
 
-    private void Req() {
+    private void getReq() {
         RequestQueue queue = Volley.newRequestQueue(AccountDetails.this);
 
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/"+login.userInput;
-
+//        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/" + login.userInput;
         JSONObject json = new JSONObject();
-
+        final String requestBody = json.toString();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     username.setText(response.getString("username"));
-                    email.setText(response.getString("email"));
                     number.setText(response.getString("phoneNum"));
+                    email.setText(response.getString("email"));
                     password.setText(response.getString("password"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
             }
-        });
+        }){
+            @Override
+            public byte[] getBody() {
+                return requestBody.getBytes();
+            }
 
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
         queue.add(request);
     }
 }
