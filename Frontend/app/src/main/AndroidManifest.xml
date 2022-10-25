@@ -17,7 +17,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
             android:name=".adminfeatures.grant_admin"
             android:exported="false" />
         <activity
@@ -25,8 +24,7 @@
             android:exported="false"
             android:label="@string/title_activity_admin_page" />
         <activity
-=======
->>>>>>> 0022e4a265ca1d71217c8bac25691a84f2c93c86
+
             android:name=".concessions"
             android:exported="false"
             android:label="@string/title_activity_concessions"

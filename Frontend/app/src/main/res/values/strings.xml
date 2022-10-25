@@ -27,9 +27,6 @@
         <item>User</item>
     </string-array>
     <string name="action_settings">Settings</string>
-<<<<<<< HEAD
     <string name="title_activity_admin_page">admin_page</string>
-=======
->>>>>>> 0022e4a265ca1d71217c8bac25691a84f2c93c86
     <string name="title_activity_concessions">concessions</string>
 </resources>
