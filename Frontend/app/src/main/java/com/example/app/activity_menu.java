@@ -27,14 +27,14 @@ public class activity_menu extends AppCompatActivity {
         page1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), admin_page.class));
+                startActivity(new Intent(view.getContext(), MainActivity.class));
             }
         });
 
         page2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), MainActivity.class));
+                startActivity(new Intent(view.getContext(), concessions.class));
             }
         });
 
@@ -55,7 +55,7 @@ public class activity_menu extends AppCompatActivity {
         page5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), concessions.class));
+                startActivity(new Intent(view.getContext(), admin_page.class));
             }
         });
 
