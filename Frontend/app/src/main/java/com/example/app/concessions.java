@@ -47,7 +47,7 @@ public class concessions extends AppCompatActivity {
 
         ConstraintLayout lin = findViewById(R.id.concessions);
 //        getReq();
-        
+
         int y = 400;
         int x = 300;
         int i;
@@ -60,6 +60,7 @@ public class concessions extends AppCompatActivity {
             n.setId(i + 1);
             n.setTag(i + 1);
             n.setText("hi");
+            //n.setText(vendors.get(i).getString("name") + ", location: " + vendors.get(i).getString("location"));
             n.setTextColor(getResources().getColor(R.color.white));
             n.setBackgroundColor(getResources().getColor(R.color.purple_500));
             n.setOnClickListener(new View.OnClickListener() {
