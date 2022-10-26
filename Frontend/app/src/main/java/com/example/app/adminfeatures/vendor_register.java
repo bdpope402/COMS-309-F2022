@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -22,13 +25,37 @@ import org.json.JSONObject;
 public class vendor_register extends AppCompatActivity {
 
     private TextView msgResponse;
+    private Button back;
+    private Button register;
+    private EditText name;
+    private EditText username;
+    private EditText location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_register);
 
-        //msgResponse = findViewById(R.id.msgResponse);
+        msgResponse = findViewById(R.id.msgResponse);
+        back = findViewById(R.id.back);
+        register = findViewById(R.id.register);
+        name = findViewById(R.id.vendor_name);
+        username = findViewById(R.id.maintainer_username);
+        location = findViewById(R.id.location);
+
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                postReq();
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity( new Intent(vendor_register.this, vendor_info.class));
+            }
+        });
     }
 
     private void postReq() {
@@ -37,9 +64,9 @@ public class vendor_register extends AppCompatActivity {
         String url = "http://coms-309-013.class.las.iastate.edu:8080/vendors/register/";
         JSONObject regDetails = new JSONObject();
         try {
-            regDetails.put("name", null);
-            regDetails.put("location", null);
-            regDetails.put("maintainer_username", null);
+            regDetails.put("name", name.getText());
+            regDetails.put("location", location.getText());
+            regDetails.put("maintainer_username", username.getText());
         } catch(JSONException e) {
             e.printStackTrace();
         }
@@ -55,7 +82,7 @@ public class vendor_register extends AppCompatActivity {
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            startActivity(new Intent(vendor_info.this, admin_page.class));
+                            startActivity(new Intent(vendor_register.this, vendor_info.class));
                         }
                     }, 2000);
                 } catch( Exception e) {
