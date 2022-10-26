@@ -96,7 +96,7 @@ public class concessions extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(concessions.this);
 
 //        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor_all";
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendors/all";
         JSONObject json = new JSONObject();
         final String requestBody = json.toString();
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
