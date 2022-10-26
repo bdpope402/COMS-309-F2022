@@ -1,6 +1,7 @@
 package com.example.app;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -37,6 +38,7 @@ public class concessions extends AppCompatActivity {
     private ArrayList<Button> buttons;
     private Button back;
     private JSONArray vendors = new JSONArray();
+    public static String vendor_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,13 @@ public class concessions extends AppCompatActivity {
         int count = 20;
         ConstraintSet constraint = new ConstraintSet();
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(concessions.this, activity_menu.class));
+            }
+        });
+
         for (i = 0; i < count; i++) {
             Button n = (Button) LayoutInflater.from(this).inflate(R.layout.button, null);
             n.setId(i + 1);
@@ -66,7 +75,8 @@ public class concessions extends AppCompatActivity {
             n.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //something here that I haven't figured out yet
+                    vendor_name = n.getText().toString();
+                    startActivity(new Intent(concessions.this, concessions_info.class));
                 }
             });
             buttons.add(n);
@@ -94,8 +104,6 @@ public class concessions extends AppCompatActivity {
 
     private void getReq() {
         RequestQueue queue = Volley.newRequestQueue(concessions.this);
-
-//        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
         String url = "http://coms-309-013.class.las.iastate.edu:8080/vendors/all";
         JSONObject json = new JSONObject();
         final String requestBody = json.toString();
