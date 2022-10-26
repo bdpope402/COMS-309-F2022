@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".vendor_change"
+            android:exported="false" />
+        <activity
             android:name=".concessions_info"
             android:exported="false" />
         <activity

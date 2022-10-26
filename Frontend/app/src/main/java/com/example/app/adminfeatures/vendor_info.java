@@ -86,7 +86,7 @@ public class vendor_info extends AppCompatActivity {
                         vendor.put("maintainer_username",response.getString("maintainer_name"));
                         vendor.put("name", response.getString("name"));
                         vendor.put("location", response.getString("location"));
-                        startActivity(new Intent(vendor_info.this, MainActivity.class)); //placeholder
+                        startActivity(new Intent(vendor_info.this, vendor_change.class)); //placeholder
                     }
                     else {
                         msgResponse.setText("This is not the correct maintainer username");

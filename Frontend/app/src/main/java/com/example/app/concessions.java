@@ -53,7 +53,7 @@ public class concessions extends AppCompatActivity {
         int y = 400;
         int x = 300;
         int i;
-//        int count = vendors.length();
+//        int count = vendors.size();
         int count = 20;
         ConstraintSet constraint = new ConstraintSet();
 
