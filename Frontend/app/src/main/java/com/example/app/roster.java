@@ -25,11 +25,19 @@ public class roster extends AppCompatActivity {
         setContentView(R.layout.activity_roster);
 
         Button back= findViewById(R.id.back_button_roster);
-
+        Button edit = findViewById(R.id.edit_roster_button);
 
         getReq();
 
         back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), activity_menu.class));
+            }
+        });
+
+        //TODO make only maintainers can edit
+        edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(view.getContext(), activity_menu.class));
