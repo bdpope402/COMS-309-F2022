@@ -24,10 +24,10 @@ public class roster extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roster);
 
-        Button back= findViewById(R.id.back_button_roster);
+        Button back = findViewById(R.id.back_button_roster);
         Button edit = findViewById(R.id.edit_roster_button);
 
-        getReq();
+//        getReq();
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,41 +47,41 @@ public class roster extends AppCompatActivity {
 
 
 
-    private void getReq() {
-        RequestQueue queue = Volley.newRequestQueue(roster.this);
-
-        //TODO get right URL from bryan
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/" + login.userInput;
-        JSONObject json = new JSONObject();
-        final String requestBody = json.toString();
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                //TODO FILL TABLE HERE
-                //how to do scrollable? way too many to fit on one screen but is scrollable easier than mul. pages?
-                try {
-                    username.setText(response.getString("username"));
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }){
-            @Override
-            public byte[] getBody() {
-                return requestBody.getBytes();
-            }
-
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
-        };
-        queue.add(request);
-    }
+//    private void getReq() {
+//        RequestQueue queue = Volley.newRequestQueue(roster.this);
+//
+//        //TODO get right URL from bryan
+//        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/" + login.userInput;
+//        JSONObject json = new JSONObject();
+//        final String requestBody = json.toString();
+//        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject response) {
+//
+//                //TODO FILL TABLE HERE
+//                //how to do scrollable? way too many to fit on one screen but is scrollable easier than mul. pages?
+//                try {
+//                    username.setText(response.getString("username"));
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//            }
+//        }){
+//            @Override
+//            public byte[] getBody() {
+//                return requestBody.getBytes();
+//            }
+//
+//            @Override
+//            public String getBodyContentType() {
+//                return "application/json; charset=utf-8";
+//            }
+//        };
+//        queue.add(request);
+//    }
 }
