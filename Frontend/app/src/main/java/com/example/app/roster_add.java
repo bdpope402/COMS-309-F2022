@@ -23,8 +23,8 @@ import org.json.JSONObject;
 public class roster_add extends AppCompatActivity {
 
     private Button add;
-    private EditText name;
-    private EditText input_position;
+    private EditText firstName;
+    private EditText lastName;
     private EditText number;
     private TextView response;
 
@@ -36,9 +36,9 @@ public class roster_add extends AppCompatActivity {
 
         response = findViewById(R.id.response_msg);
         Button back = findViewById(R.id.roster_add_back);
-        input_position = findViewById(R.id.input_postion);
+        lastName = findViewById(R.id.input_postion);
         number = findViewById(R.id.input_number);
-        name = findViewById(R.id.input_name);
+        firstName = findViewById(R.id.input_name);
         Button submit = findViewById(R.id.roster_add_submit);
 
 
@@ -59,11 +59,11 @@ public class roster_add extends AppCompatActivity {
     }
         private void postReq() {
             RequestQueue queue = Volley.newRequestQueue(roster_add.this);
-            String url = "http://coms-309-013.class.las.iastate.edu:8080/players/new/";
+            String url = "http://coms-309-013.class.las.iastate.edu:8080/players/new";
             JSONObject playerDetails = new JSONObject();
             try {
-                playerDetails.put("name", name.getText());
-                playerDetails.put("position", input_position.getText());
+                playerDetails.put("first name", firstName.getText());
+                playerDetails.put("last name", lastName.getText());
                 playerDetails.put("number", number.getText());
             } catch (JSONException e) {
                 e.printStackTrace();
