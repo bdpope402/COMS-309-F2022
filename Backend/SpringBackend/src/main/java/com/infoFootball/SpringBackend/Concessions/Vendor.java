@@ -13,39 +13,39 @@ public class Vendor {
     //@GeneratedValue will auto generate a num (1, 2, 3...)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int VendorId;
     private String name;
-    private boolean status; //True for open - false for closed
+    private boolean OC; //True for open - false for closed
     private String location;
 
-    @ManyToOne
-    private MenuDB menuDBKey;
+    @OneToOne
+    private FoodMenu menu;
 
     /**
      * Creates a null Vendor object
      */
     public Vendor() {
-        this.id = -1;
+        this.VendorId = -1;
         this.name = null;
-        this.status = false;
+        this.OC = false;
         this.location = null;
-        this.menuDBKey = null;
+        this.menu = null;
     }
 
     /**
      * Creates a new vendor object
-     * @param id vendor id num (int)
+     * @param Id vendor id num (int)
      * @param name vendor name (string)
      * @param status vendor status (open closed, true false) (bool)
      * @param location vendor location (string)
-     * @param menuDBKey vendor menu (table)
+     * @param menuId vendor menu (table)
      */
-    public Vendor(int id, String name, boolean status, String location, MenuDB menuDBKey) {
-        this.id = id;
+    public Vendor(int Id, String name, boolean status, String location, FoodMenu menuId) {
+        this.VendorId = Id;
         this.name = name;
-        this.status = status;
+        this.OC = status;
         this.location = location;
-        this.menuDBKey = menuDBKey;
+        this.menu = menuId;
     }
 
 
@@ -53,10 +53,10 @@ public class Vendor {
 
     /**
      * Sets ID of vendor
-     * @param id vendor ID (int)
+     * @param VendorId vendor ID (int)
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int VendorId) {
+        this.VendorId = VendorId;
     }
 
     /**
@@ -72,7 +72,7 @@ public class Vendor {
      * @param status vendor status (bool)
      */
     public void setStatus(boolean status) {
-        this.status = status;
+        this.OC = status;
     }
 
     /**
@@ -85,10 +85,10 @@ public class Vendor {
 
     /**
      * Sets the menuDB key of the vendor
-     * @param menuDBKey vendor menu (table ID)
+     * @param menuId vendor menu (table ID)
      */
-    public void setMenu(MenuDB menuDBKey) {
-        this.menuDBKey = menuDBKey;
+    public void setMenu(FoodMenu menuId) {
+        this.menu = menuId;
     }
 
     // GET FUNCTIONS //
@@ -97,8 +97,8 @@ public class Vendor {
      * Gets vendor ID
      * @return vendor ID (int)
      */
-    public int getId() {
-        return this.id;
+    public int getVendorId() {
+        return this.VendorId;
     }
 
     /**
@@ -114,7 +114,7 @@ public class Vendor {
      * @return vendor status (bool)
      */
     public boolean getStatus() {
-        return this.status;
+        return this.OC;
     }
 
     /**
@@ -129,8 +129,8 @@ public class Vendor {
      * Gets vendor menuDB key
      * @return vendor menuDB key
      */
-    public MenuDB getMenu() {
-        return this.menuDBKey;
+    public FoodMenu getMenu() {
+        return this.menu;
     }
 
 }

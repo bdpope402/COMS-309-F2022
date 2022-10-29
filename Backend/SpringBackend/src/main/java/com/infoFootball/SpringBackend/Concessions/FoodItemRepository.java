@@ -4,9 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MenuDBRepository extends JpaRepository<MenuDB, String> {
+public interface FoodItemRepository extends JpaRepository<FoodItem, String> {
 
-    MenuDB findByVendorKey(int vendorKey);
+    FoodItem findById(int Id);
 
-    MenuDB deleteByVendorKey(int vendorKey);
+    FoodItem deleteById(int Id);
 }
