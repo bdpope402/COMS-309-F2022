@@ -28,4 +28,53 @@ public class FoodItem {
         this.stock = stock;
     }
 
+    //Getters and setters
+
+    public int getFoodId() {
+        return FoodId;
+    }
+
+    public void setFoodId(int foodId) {
+        FoodId = foodId;
+    }
+
+    public FoodMenu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(FoodMenu menu) {
+        this.menu = menu;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
+    public int getCal() {
+        return cal;
+    }
+
+    public void setCal(int cal) {
+        this.cal = cal;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 }

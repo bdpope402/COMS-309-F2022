@@ -28,4 +28,46 @@ public class FoodMenu {
         this.desc = desc;
         this.items = items;
     }
+
+    //Getters and setters
+
+    public int getMenuId() {
+        return MenuId;
+    }
+
+    public void setMenuId(int menuId) {
+        MenuId = menuId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public Vendor getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
+    }
+
+    public List<FoodItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<FoodItem> items) {
+        this.items = items;
+    }
 }
