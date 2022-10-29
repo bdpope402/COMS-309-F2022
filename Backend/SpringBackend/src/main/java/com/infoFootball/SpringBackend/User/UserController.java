@@ -50,8 +50,9 @@ public class UserController {
     @PutMapping("/users/{username}")
     User updateUser(@PathVariable String username, @RequestBody User request){
         User user = userRepository.findByUsername(username);
-        if(user == null)
+        if(user == null) {
             return null;
+        }
         userRepository.save(request);
         return userRepository.findByUsername(username);
     }
