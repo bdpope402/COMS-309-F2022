@@ -75,7 +75,7 @@ public class roster_add extends AppCompatActivity {
                 @Override
                 public void onResponse(String msgResponse) {
                     try {
-                        response.setText("You have successfully created a new user!");
+                        response.setText("You have successfully created a new player!");
                         //final Handler handler = new Handler();
 //                        handler.postDelayed(new Runnable() {
 //                            @Override
