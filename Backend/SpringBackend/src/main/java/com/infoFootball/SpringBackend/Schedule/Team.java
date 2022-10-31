@@ -16,27 +16,32 @@ public class Team {
 
     private Integer losses;
 
+    private String imgPath;
+
     public Team(){
         this.teamName = null;
         this.teamLocation = null;
         this.wins = null;
         this.losses = null;
         this.rank = null;
+        this.imgPath = null;
     }
 
-    public Team(String teamName, String teamLocation, Integer wins, Integer losses){
+    public Team(String teamName, String teamLocation, Integer wins, Integer losses, String imgPath){
         this.teamName = teamName;
         this.teamLocation = teamLocation;
         this.wins = wins;
         this.losses = losses;
+        this.imgPath = imgPath;
         this.rank = null;
     }
 
-    public Team(String teamName, String teamLocation, Integer wins, Integer losses, Integer rank){
+    public Team(String teamName, String teamLocation, Integer wins, Integer losses, String imgPath, Integer rank){
         this.teamName = teamName;
         this.teamLocation = teamLocation;
         this.wins = wins;
         this.losses = losses;
+        this.imgPath = imgPath;
         this.rank = rank;
     }
 
@@ -79,5 +84,9 @@ public class Team {
     public void setLosses(Integer losses) {
         this.losses = losses;
     }
+
+    public String getImgPath(){ return imgPath; }
+
+    public void setImgPath(String imgPath){ this.imgPath = imgPath;}
 
 }
