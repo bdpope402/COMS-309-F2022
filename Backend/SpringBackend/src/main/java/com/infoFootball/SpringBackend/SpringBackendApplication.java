@@ -1,5 +1,6 @@
 package com.infoFootball.SpringBackend;
 
+import com.infoFootball.SpringBackend.Concessions.ConcessionsController;
 import com.infoFootball.SpringBackend.Login.LoginController;
 import com.infoFootball.SpringBackend.Register.RegisterController;
 import com.infoFootball.SpringBackend.User.UserController;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @SpringBootConfiguration(proxyBeanMethods = false)
 @EnableAutoConfiguration
-@Import({LoginController.class, RegisterController.class, UserController.class})
+@Import({LoginController.class, RegisterController.class, UserController.class, ConcessionsController.class})
 public class SpringBackendApplication {
 
 	public static void main(String[] args) {

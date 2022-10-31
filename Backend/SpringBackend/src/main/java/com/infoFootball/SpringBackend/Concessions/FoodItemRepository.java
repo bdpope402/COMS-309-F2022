@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FoodItemRepository extends JpaRepository<FoodItem, String> {
 
-    FoodItem findById(int Id);
+    FoodItem findByFoodId(int foodId);
 
-    FoodItem deleteById(int Id);
+    FoodItem deleteByFoodId(int foodId);
 }

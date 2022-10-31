@@ -111,7 +111,7 @@ public class ConcessionsController {
 
     @GetMapping(path = "/item/{id}")
     FoodItem getItem(@PathVariable int id) {
-        return foodItemRepository.findById(id);
+        return foodItemRepository.findByFoodId(id);
     }
 
     @PostMapping(path = "/item/create")
@@ -122,17 +122,17 @@ public class ConcessionsController {
 
     @PutMapping(path = "/item/update/{id}")
     FoodItem updateItem(@RequestBody FoodItem newItem, @PathVariable int id) {
-        FoodItem oldItem = foodItemRepository.findById(id);
+        FoodItem oldItem = foodItemRepository.findByFoodId(id);
         if (oldItem == null) {
             return null;
         }
         foodItemRepository.save(newItem);
-        return foodItemRepository.findById(id);
+        return foodItemRepository.findByFoodId(id);
     }
 
     @DeleteMapping(path = "/item/delete/{id}")
     String delete(@PathVariable int id) {
-        foodItemRepository.deleteById(id);
+        foodItemRepository.deleteByFoodId(id);
         return "Success";
     }
 

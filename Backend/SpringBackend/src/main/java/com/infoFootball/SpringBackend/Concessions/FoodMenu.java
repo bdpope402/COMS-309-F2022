@@ -9,23 +9,26 @@ public class FoodMenu {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int MenuId; //Id for menu
-
-    private String name; //Name of menu
-    private String desc; //Description of menu/season
+    private String menuName; //Name of menu
+    private String menuDesc; //Description of menu/season
 
     @OneToOne
     private Vendor vendor;
 
     @OneToMany
-    @JoinColumn
     private List<FoodItem> items; //List of items in menu
 
     public FoodMenu() {
+        this.MenuId = -1;
+        this.menuName = null;
+        this.menuDesc = null;
+        this.vendor = null;
+        this.items = null;
     }
 
     public FoodMenu(String name, String desc, List<FoodItem> items) {
-        this.name = name;
-        this.desc = desc;
+        this.menuName = name;
+        this.menuDesc = desc;
         this.items = items;
     }
 
@@ -40,19 +43,19 @@ public class FoodMenu {
     }
 
     public String getName() {
-        return name;
+        return menuName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.menuName = name;
     }
 
     public String getDesc() {
-        return desc;
+        return menuDesc;
     }
 
     public void setDesc(String desc) {
-        this.desc = desc;
+        this.menuDesc = desc;
     }
 
     public Vendor getVendor() {
