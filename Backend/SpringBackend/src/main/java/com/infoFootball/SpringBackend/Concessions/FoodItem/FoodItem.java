@@ -10,10 +10,8 @@ import javax.persistence.*;
 public class FoodItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int foodId;
 
-    @JsonBackReference
     @ManyToOne
     private FoodMenu menu;
 

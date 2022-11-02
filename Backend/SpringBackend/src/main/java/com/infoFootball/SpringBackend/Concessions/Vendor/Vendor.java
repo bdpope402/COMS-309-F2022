@@ -12,9 +12,7 @@ import javax.persistence.*;
 public class Vendor {
 
     //@ID marks the below field as the primary key for the table
-    //@GeneratedValue will auto generate a num (1, 2, 3...)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int vendorId;
     private String name;
     private boolean OC; //True for open - false for closed

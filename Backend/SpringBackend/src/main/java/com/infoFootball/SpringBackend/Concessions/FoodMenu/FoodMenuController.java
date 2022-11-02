@@ -3,6 +3,7 @@ package com.infoFootball.SpringBackend.Concessions.FoodMenu;
 import com.infoFootball.SpringBackend.Concessions.Vendor.Vendor;
 import com.infoFootball.SpringBackend.Concessions.Vendor.VendorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,11 +11,11 @@ import java.util.List;
 @RestController
 public class FoodMenuController {
 
-
     @Autowired
     MenuRepository menuRepository;
     @Autowired
     VendorRepository vendorRepository;
+
     @Autowired
     FoodMenuService foodMenuService;
 
@@ -29,21 +30,27 @@ public class FoodMenuController {
     }
 
     @PostMapping(path = "/menu/create")
-    String createMenu(@RequestParam String menuName, @RequestParam String menuDesc, @RequestParam int vendorId) {
+    String createMenu(@RequestParam String menuName, @RequestParam String menuDesc, @RequestParam int menuId, @RequestParam int vendorId) {
         Vendor vendor = vendorRepository.findByVendorId(vendorId);
-        return foodMenuService.createNewMenu(menuName, menuDesc, vendor);
+        return foodMenuService.createNewMenu(menuName, menuDesc, menuId, vendor);
     }
 
     @PutMapping(path = "/menu/update/{id}")
-    FoodMenu updateMenu(@RequestBody FoodMenu newMenu, @PathVariable int id) {
-        FoodMenu oldMenu = menuRepository.findByMenuId(id);
+    FoodMenu updateMenu(@RequestParam String menuName, @RequestParam String menuDesc, @RequestParam int menuId, @RequestParam int vendorId) {
+        FoodMenu oldMenu = menuRepository.findByMenuId(menuId);
         if (oldMenu == null) {
             return null;
+        } else {
+            oldMenu.setName(menuName);
+            oldMenu.setDesc(menuDesc);
+            oldMenu.setMenuId(menuId);
+            oldMenu.setVendor(vendorRepository.findByVendorId(vendorId));
+            menuRepository.save(oldMenu);
         }
-        menuRepository.save(newMenu);
-        return menuRepository.findByMenuId(id);
+        return menuRepository.findByMenuId(menuId);
     }
 
+    @Transactional
     @DeleteMapping(path = "/menu/delete/{id}")
     String deleteMenu(@PathVariable int id) {
         menuRepository.deleteByMenuId(id);

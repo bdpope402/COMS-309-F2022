@@ -12,13 +12,11 @@ import java.util.List;
 public class FoodMenu {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int menuId; //Id for menu
     private String menuName; //Name of menu
     private String menuDesc; //Description of menu/season
 
-    @JsonBackReference
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne
     private Vendor vendor;
 
     @OneToMany
@@ -32,9 +30,10 @@ public class FoodMenu {
         this.items = null;
     }
 
-    public FoodMenu(String name, String desc) {
+    public FoodMenu(String name, String desc, int menuId) {
         this.menuName = name;
         this.menuDesc = desc;
+        this.menuId = menuId;
     }
 
     //Getters and setters
