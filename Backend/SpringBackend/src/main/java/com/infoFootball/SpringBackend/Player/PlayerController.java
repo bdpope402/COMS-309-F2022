@@ -1,9 +1,7 @@
 package com.infoFootball.SpringBackend.Player;
 import java.util.List;
 
-import com.infoFootball.SpringBackend.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
