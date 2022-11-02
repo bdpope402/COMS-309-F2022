@@ -1,5 +1,7 @@
 package com.infoFootball.SpringBackend.Concessions;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,7 +14,8 @@ public class FoodMenu {
     private String menuName; //Name of menu
     private String menuDesc; //Description of menu/season
 
-    @OneToOne
+    @JsonBackReference
+    @OneToOne(cascade = CascadeType.MERGE)
     private Vendor vendor;
 
     @OneToMany

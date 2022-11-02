@@ -13,7 +13,9 @@ public class ConcessionsController {
     //Repositories for tables
     @Autowired
     VendorRepository vendorRepository;
+    @Autowired
     MenuRepository menuRepository;
+    @Autowired
     FoodItemRepository foodItemRepository;
 
     /*----------------------------VENDOR----------------------------*/
@@ -94,8 +96,18 @@ public class ConcessionsController {
         return menuRepository.findAll();
     }
 
+//    @PostMapping(path = "/menu/create/{vendorId}")
+//    String createMenu(@RequestBody FoodMenu newMenu, @PathVariable int vendorId) {
+//        newMenu.setVendor(vendorRepository.findByVendorId(vendorId));
+//        menuRepository.save(newMenu);
+//        return "Success";
+//    }
+
     @PostMapping(path = "/menu/create")
-    String createMenu(@RequestBody FoodMenu newMenu) {
+    String createMenu2(@RequestParam int vendorId, @RequestParam String menuName, @RequestParam String menuDesc) {
+        FoodMenu newMenu = new FoodMenu(menuName, menuDesc, null);
+        newMenu.setVendor(vendorRepository.findByVendorId(vendorId));
+        vendorRepository.findByVendorId(vendorId).setMenu(newMenu);
         menuRepository.save(newMenu);
         return "Success";
     }
@@ -106,6 +118,7 @@ public class ConcessionsController {
         if (oldMenu == null) {
             return null;
         }
+        newMenu.setMenuId(id);
         menuRepository.save(newMenu);
         return menuRepository.findByMenuId(id);
     }

@@ -1,5 +1,7 @@
 package com.infoFootball.SpringBackend.Concessions;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +11,7 @@ public class FoodItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int foodId;
 
+    @JsonBackReference
     @ManyToOne
     private FoodMenu menu;
 
