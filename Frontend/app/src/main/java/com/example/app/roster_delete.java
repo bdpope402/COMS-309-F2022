@@ -10,5 +10,9 @@ public class roster_delete extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roster_delete);
+
+        //       /players/delete/ID
+
+
     }
 }

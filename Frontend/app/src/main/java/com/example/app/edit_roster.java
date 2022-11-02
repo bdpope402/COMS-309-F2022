@@ -35,6 +35,19 @@ public class edit_roster extends AppCompatActivity {
             }
         });
 
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), roster_update.class));
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), roster_delete.class));
+            }
+        });
 
     }
 }

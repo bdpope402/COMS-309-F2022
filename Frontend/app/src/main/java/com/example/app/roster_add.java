@@ -76,14 +76,6 @@ public class roster_add extends AppCompatActivity {
                 public void onResponse(String msgResponse) {
                     try {
                         response.setText("You have successfully created a new player!");
-                        //final Handler handler = new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//
-//                                startActivity(new Intent(view.getContext(), edit_roster.class));
-//                            }
-//                        }, 2000);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
