@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 
 /**
- * @todo update all of this to player junk
  * This class is for controlling player entry and all the critical
  * bits for adding, updating, getting, and deleting players
  */

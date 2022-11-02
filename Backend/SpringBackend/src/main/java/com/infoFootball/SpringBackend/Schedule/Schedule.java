@@ -13,28 +13,27 @@ import java.util.List;
 public class Schedule {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer ID;
 
-    private List<Game> gameList;
+    private Game game;
 
-    public Schedule(){
-        gameList = null;
+    public Schedule() {
+        game = null;
     }
 
-    public Schedule(List<Game> gameList){
-        this.gameList.addAll(gameList);
+    public Schedule(Game game) {
+        this.game = game;
     }
 
-    public void addGame(Game newGame){
-        this.gameList.add(newGame);
+    public Game getGame() {
+        return game;
     }
 
-    public void removeGame(Game badGame){
-        gameList.remove(badGame);
-    }
-
-    public List<Game> getSchedule(){
-        return gameList;
+    public void setGame(Game game){
+        this.game = game;
     }
 }
+
+
+
