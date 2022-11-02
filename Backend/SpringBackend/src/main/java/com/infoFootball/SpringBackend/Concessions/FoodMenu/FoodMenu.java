@@ -1,4 +1,7 @@
-package com.infoFootball.SpringBackend.Concessions;
+package com.infoFootball.SpringBackend.Concessions.FoodMenu;
+
+import com.infoFootball.SpringBackend.Concessions.FoodItem.FoodItem;
+import com.infoFootball.SpringBackend.Concessions.Vendor.Vendor;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
