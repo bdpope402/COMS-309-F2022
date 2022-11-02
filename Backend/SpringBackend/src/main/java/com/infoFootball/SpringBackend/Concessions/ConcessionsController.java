@@ -13,7 +13,7 @@ public class ConcessionsController {
 
     //Repositories for tables
 
-    MenuRepository menuRepository;
+
     FoodItemRepository foodItemRepository;
 
     /*----------------------------VENDOR----------------------------*/
@@ -22,37 +22,7 @@ public class ConcessionsController {
 
     /*----------------------------Food Menu----------------------------*/
 
-    @GetMapping(path = "/menu/{id}")
-    FoodMenu getOneMenu(@PathVariable int id) {
-        return menuRepository.findByMenuId(id);
-    }
 
-    @GetMapping(path = "/menu/all")
-    List<FoodMenu> getAllMenus() {
-        return menuRepository.findAll();
-    }
-
-    @PostMapping(path = "/menu/create")
-    String createMenu(@RequestBody FoodMenu newMenu) {
-        menuRepository.save(newMenu);
-        return "Success";
-    }
-
-    @PutMapping(path = "/menu/update/{id}")
-    FoodMenu updateMenu(@RequestBody FoodMenu newMenu, @PathVariable int id) {
-        FoodMenu oldMenu = menuRepository.findByMenuId(id);
-        if (oldMenu == null) {
-            return null;
-        }
-        menuRepository.save(newMenu);
-        return menuRepository.findByMenuId(id);
-    }
-
-    @DeleteMapping(path = "/menu/delete/{id}")
-    String deleteMenu(@PathVariable int id) {
-        menuRepository.deleteByMenuId(id);
-        return "Success";
-    }
 
     /*----------------------------Food Item----------------------------*/
 

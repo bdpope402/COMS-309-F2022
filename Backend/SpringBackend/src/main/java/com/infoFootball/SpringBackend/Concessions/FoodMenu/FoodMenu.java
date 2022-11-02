@@ -32,10 +32,9 @@ public class FoodMenu {
         this.items = null;
     }
 
-    public FoodMenu(String name, String desc, List<FoodItem> items) {
+    public FoodMenu(String name, String desc) {
         this.menuName = name;
         this.menuDesc = desc;
-        this.items = items;
     }
 
     //Getters and setters

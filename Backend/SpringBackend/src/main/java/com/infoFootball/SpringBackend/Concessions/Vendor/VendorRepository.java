@@ -12,7 +12,7 @@ public interface VendorRepository extends JpaRepository<Vendor, String> {
     Vendor findByVendorId(int vendorId);
 
     @Transactional
-    Vendor deleteByName(String name);
+    void deleteByName(String name);
     @Transactional
-    Vendor deleteByVendorId(int vendorId);
+    void deleteByVendorId(int vendorId);
 }
