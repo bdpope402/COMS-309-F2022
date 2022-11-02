@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 public interface MenuRepository extends JpaRepository<FoodMenu, String> {
 
     //FoodMenu findByName(String name);
-    FoodMenu findById(int Id);
+    FoodMenu findByMenuId(int MenuId);
 
     //FoodMenu deleteByName(String name);
-    FoodMenu deleteById(int Id);
+    FoodMenu deleteByMenuId(int MenuId);
 }

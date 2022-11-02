@@ -13,7 +13,7 @@ public class Vendor {
     //@GeneratedValue will auto generate a num (1, 2, 3...)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int VendorId;
+    private int vendorId;
     private String name;
     private boolean OC; //True for open - false for closed
     private String location;
@@ -25,7 +25,7 @@ public class Vendor {
      * Creates a null Vendor object
      */
     public Vendor() {
-        this.VendorId = -1;
+        this.vendorId = -1;
         this.name = null;
         this.OC = false;
         this.location = null;
@@ -41,7 +41,7 @@ public class Vendor {
      * @param menuId vendor menu (table)
      */
     public Vendor(int Id, String name, boolean status, String location, FoodMenu menuId) {
-        this.VendorId = Id;
+        this.vendorId = Id;
         this.name = name;
         this.OC = status;
         this.location = location;
@@ -56,7 +56,7 @@ public class Vendor {
      * @param VendorId vendor ID (int)
      */
     public void setId(int VendorId) {
-        this.VendorId = VendorId;
+        this.vendorId = VendorId;
     }
 
     /**
@@ -98,7 +98,7 @@ public class Vendor {
      * @return vendor ID (int)
      */
     public int getVendorId() {
-        return this.VendorId;
+        return this.vendorId;
     }
 
     /**

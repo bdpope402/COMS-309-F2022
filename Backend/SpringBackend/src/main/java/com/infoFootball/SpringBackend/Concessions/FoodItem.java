@@ -7,7 +7,7 @@ public class FoodItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int FoodId;
+    private int foodId;
 
     @ManyToOne
     private FoodMenu menu;
@@ -31,11 +31,11 @@ public class FoodItem {
     //Getters and setters
 
     public int getFoodId() {
-        return FoodId;
+        return foodId;
     }
 
     public void setFoodId(int foodId) {
-        FoodId = foodId;
+        this.foodId = foodId;
     }
 
     public FoodMenu getMenu() {

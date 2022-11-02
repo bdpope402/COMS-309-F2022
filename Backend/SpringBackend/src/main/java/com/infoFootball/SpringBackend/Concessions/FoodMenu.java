@@ -8,7 +8,7 @@ public class FoodMenu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int MenuId; //Id for menu
+    private int menuId; //Id for menu
     private String menuName; //Name of menu
     private String menuDesc; //Description of menu/season
 
@@ -19,7 +19,7 @@ public class FoodMenu {
     private List<FoodItem> items; //List of items in menu
 
     public FoodMenu() {
-        this.MenuId = -1;
+        this.menuId = -1;
         this.menuName = null;
         this.menuDesc = null;
         this.vendor = null;
@@ -35,11 +35,11 @@ public class FoodMenu {
     //Getters and setters
 
     public int getMenuId() {
-        return MenuId;
+        return menuId;
     }
 
     public void setMenuId(int menuId) {
-        MenuId = menuId;
+        this.menuId = menuId;
     }
 
     public String getName() {

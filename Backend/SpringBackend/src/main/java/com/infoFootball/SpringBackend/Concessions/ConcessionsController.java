@@ -77,7 +77,7 @@ public class ConcessionsController {
 
     @GetMapping(path = "/menu/{id}")
     FoodMenu getOneMenu(@PathVariable int id) {
-        return menuRepository.findById(id);
+        return menuRepository.findByMenuId(id);
     }
 
     @GetMapping(path = "/menu/all")
@@ -93,17 +93,17 @@ public class ConcessionsController {
 
     @PutMapping(path = "/menu/update/{id}")
     FoodMenu updateMenu(@RequestBody FoodMenu newMenu, @PathVariable int id) {
-        FoodMenu oldMenu = menuRepository.findById(id);
+        FoodMenu oldMenu = menuRepository.findByMenuId(id);
         if (oldMenu == null) {
             return null;
         }
         menuRepository.save(newMenu);
-        return menuRepository.findById(id);
+        return menuRepository.findByMenuId(id);
     }
 
     @DeleteMapping(path = "/menu/delete/{id}")
     String deleteMenu(@PathVariable int id) {
-        menuRepository.deleteById(id);
+        menuRepository.deleteByMenuId(id);
         return "Success";
     }
 
