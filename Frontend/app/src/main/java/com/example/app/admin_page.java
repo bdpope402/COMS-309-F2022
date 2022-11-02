@@ -67,7 +67,7 @@ public class admin_page extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     if (login.profile.getString("permLv").equals("Vendor") || login.profile.getString("permLv").equals("Admin")) {
-                        Intent intent = new Intent(admin_page.this, com.example.app.adminfeatures.vendor_info.class);
+                        Intent intent = new Intent(admin_page.this, vendor_info.class);
                         startActivity(intent);
                     }
                     else {
