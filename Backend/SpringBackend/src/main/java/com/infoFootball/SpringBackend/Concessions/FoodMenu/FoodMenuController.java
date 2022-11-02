@@ -50,8 +50,6 @@ public class FoodMenuController {
         return menuRepository.findByMenuId(menuId);
     }
 
-    //ADD A SET ITEMS FUNCTION
-
     @Transactional
     @DeleteMapping(path = "/menu/delete/{id}")
     String deleteMenu(@PathVariable int id) {

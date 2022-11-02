@@ -29,11 +29,12 @@ public class FoodItemController {
     }
 
     @PutMapping(path = "/item/update/{id}")
-    FoodItem updateItem(@RequestBody FoodItem newItem, @PathVariable int id) {
+    FoodItem updateItem(@RequestBody FoodItem newItem, @PathVariable int id, @RequestParam int menuId) {
         FoodItem oldItem = foodItemRepository.findByFoodId(id);
         if (oldItem == null) {
             return null;
         }
+        newItem.setMenu(menuRepository.findByMenuId(menuId));
         foodItemRepository.save(newItem);
         return foodItemRepository.findByFoodId(id);
     }
