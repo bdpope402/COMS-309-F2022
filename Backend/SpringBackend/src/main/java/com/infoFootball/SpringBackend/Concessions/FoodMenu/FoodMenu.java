@@ -77,4 +77,8 @@ public class FoodMenu {
     public void setItems(List<FoodItem> items) {
         this.items = items;
     }
+
+    public void addItem(FoodItem item) {
+        items.add(item);
+    }
 }
