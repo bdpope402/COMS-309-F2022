@@ -1,11 +1,13 @@
 package com.infoFootball.SpringBackend.Concessions;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Transactional
 public class ConcessionsController {
 
     //Repositories for tables
@@ -21,9 +23,10 @@ public class ConcessionsController {
      * @param vendorName name of vendor
      * @return JSON object of vendor
      */
-    @GetMapping(path = "/vendors/{vendorName}")
+    @GetMapping(path = "/vendor/{vendorName}")
     Vendor getOneVendor(@PathVariable String vendorName) {
-        return vendorRepository.findByName(vendorName);
+        int vendorId = vendorRepository.findByName(vendorName).getVendorId();
+        return vendorRepository.findByVendorId(vendorId);
     }
 
     /**
@@ -42,6 +45,7 @@ public class ConcessionsController {
      */
     @PostMapping(path = "/vendor/register")
     String createVendor(@RequestBody Vendor newVendor) {
+        newVendor.setMenu(null);
         vendorRepository.save(newVendor);
         return "Success";
     }
@@ -50,16 +54,19 @@ public class ConcessionsController {
      * Updates a vendor with a new vendor
      * @param newVendor JSON object of new vendor
      * @param oldVendorName String of old vendor name
-     * @return JSON of updated vendor object
+     * @return New id of vendor
      */
+    @Transactional
     @PutMapping(path = "/vendor/update/{vendorName}")
-    Vendor updateVendor(@RequestBody Vendor newVendor, @PathVariable String oldVendorName) {
+    Vendor updateVendor(@RequestBody Vendor newVendor, @PathVariable("vendorName") String oldVendorName) {
         Vendor oldVendor = vendorRepository.findByName(oldVendorName);
         if (oldVendor == null) {
             return null;
         }
+        int vendorId = oldVendor.getVendorId();
+        newVendor.setId(vendorId);
         vendorRepository.save(newVendor);
-        return vendorRepository.findByName(oldVendorName);
+        return vendorRepository.findByVendorId(vendorId);
     }
 
     /**
@@ -67,9 +74,11 @@ public class ConcessionsController {
      * @param vendorName name of vendor to be removed
      * @return Success string if completed
      */
+    @Transactional
     @DeleteMapping(path = "/vendor/delete/{vendorName}")
     String deleteVendor(@PathVariable String vendorName) {
-        vendorRepository.deleteByName(vendorName);
+        int vendorId = vendorRepository.findByName(vendorName).getVendorId();
+        vendorRepository.deleteByVendorId(vendorId);
         return "Success";
     }
 

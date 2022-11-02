@@ -2,13 +2,16 @@ package com.infoFootball.SpringBackend.Concessions;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface VendorRepository extends JpaRepository<Vendor, String> {
 
     Vendor findByName(String name);
-    //Vendor findById(int Id);
+    Vendor findByVendorId(int vendorId);
 
+    @Transactional
     Vendor deleteByName(String name);
-    //Vendor deleteById(int Id);
+    @Transactional
+    Vendor deleteByVendorId(int vendorId);
 }
