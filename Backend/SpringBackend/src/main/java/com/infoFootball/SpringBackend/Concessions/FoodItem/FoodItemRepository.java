@@ -1,4 +1,4 @@
-package com.infoFootball.SpringBackend.Concessions;
+package com.infoFootball.SpringBackend.Concessions.FoodItem;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,6 @@
-package com.infoFootball.SpringBackend.Concessions;
+package com.infoFootball.SpringBackend.Concessions.Vendor;
+
+import com.infoFootball.SpringBackend.Concessions.FoodMenu.FoodMenu;
 
 import javax.persistence.*;
 
