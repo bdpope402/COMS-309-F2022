@@ -60,12 +60,15 @@ public class vendor_register extends AppCompatActivity {
 
     private void postReq() {
         RequestQueue queue = Volley.newRequestQueue(vendor_register.this);
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendors/register/";
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/register/";
         JSONObject regDetails = new JSONObject();
         try {
+            regDetails.put("VendorID", 1);
+            regDetails.put("OC", true);
             regDetails.put("name", name.getText());
             regDetails.put("location", location.getText());
             regDetails.put("maintainer_username", username.getText());
+            regDetails.put("menu", null);
         } catch(JSONException e) {
             e.printStackTrace();
         }
