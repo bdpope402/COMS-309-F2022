@@ -52,7 +52,7 @@ public class roster extends AppCompatActivity {
 
         getReq();
 
-        //TABLE NO WORK DELETE
+        //TABLE NO WORK DELETED
 
         for (i=0;i<players.length()*3;i+=3){
             TextView first = (TextView) LayoutInflater.from(this).inflate(R.layout.activity_roster, null);

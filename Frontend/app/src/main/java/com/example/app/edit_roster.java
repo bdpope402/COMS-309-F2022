@@ -18,7 +18,7 @@ public class edit_roster extends AppCompatActivity {
         Button back = findViewById(R.id.roster_edit_back);
         Button add= findViewById(R.id.roster_add);
         Button update= findViewById(R.id.roster_update);
-        Button delete= findViewById(R.id.roster_delete);
+//        Button delete= findViewById(R.id.roster_delete);
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -42,12 +42,12 @@ public class edit_roster extends AppCompatActivity {
             }
         });
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), roster_delete.class));
-            }
-        });
+//        delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(view.getContext(), roster_delete.class));
+//            }
+//        });
 
     }
 }
