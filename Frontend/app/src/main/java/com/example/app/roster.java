@@ -46,8 +46,8 @@ public class roster extends AppCompatActivity {
         lastName=new ArrayList<>();
         numberList=new ArrayList<>();
         int i;
-        int y= 30;
-        int x = 50;
+        int y= 150;
+        int x = 200;
         int length= players.length();
         ConstraintLayout lay=findViewById(R.id.roster_layout);
         ConstraintSet con=new ConstraintSet();
@@ -69,7 +69,7 @@ public class roster extends AppCompatActivity {
             }
         });
 
-        //getReq();
+        getPlayersReq();
 
         //TABLE NO WORK DELETED
 
@@ -81,16 +81,20 @@ public class roster extends AppCompatActivity {
             last.setId(i+1);
             number.setId(i+2);
 
-//            try{
-//                first.setText(players.getJSONObject((i+1)/3).getString("first name"));
-//                last.setText(players.getJSONObject((i+1)/3).getString("last name"));
+            try{
+//                first.setText(players.getJSONObject((i+1)/3).getString("firstName"));
+//                last.setText(players.getJSONObject((i+1)/3).getString("lastName"));
 //                number.setText(players.getJSONObject((i+1)/3).getString("number"));
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-            first.setText("First Name: ");
-            last.setText("Last Name: ");
-            number.setText("Number: ");
+                String temp0 = players.getJSONObject((i+1)/3).getString("firstName");
+                String temp1 = players.getJSONObject((i+1)/3).getString("lastName");
+                String temp2 = players.getJSONObject((i+1)/3).getString("number");
+                first.setText("First Name: "+temp0);
+                last.setText("Last Name: "+temp1);
+                number.setText("Number: "+temp2);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
 
 
             firstName.add(first);

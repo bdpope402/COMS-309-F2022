@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,11 +21,12 @@ import org.json.JSONObject;
 
 public class roster_add extends AppCompatActivity {
 
-    private Button add;
+    private Button submit;
     private EditText firstName;
     private EditText lastName;
     private EditText number;
     private TextView response;
+
 
 
     @Override
@@ -34,12 +34,14 @@ public class roster_add extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roster_add);
 
-        response = findViewById(R.id.response_msg);
+        response = (TextView)findViewById(R.id.response_msg);
         Button back = findViewById(R.id.roster_add_back);
-        lastName = findViewById(R.id.input_postion);
-        number = findViewById(R.id.input_number);
-        firstName = findViewById(R.id.input_name);
-        Button submit = findViewById(R.id.roster_add_submit);
+        lastName = (EditText)findViewById(R.id.input_postion);
+        number = (EditText)findViewById(R.id.input_number);
+        firstName = (EditText)findViewById(R.id.input_name);
+        submit = (Button)findViewById(R.id.roster_add_submit);
+
+        //submit.setOnClickListener(this);
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -49,14 +51,36 @@ public class roster_add extends AppCompatActivity {
             }
         });
 
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                postReq();
+            public void onClick(View v) {
+                int error = 0;
+
+                if (firstName.getText().toString().trim().length() <= 0) {
+                    error += 1;
+                }
+                else if (lastName.getText().toString().trim().length() <= 0) {
+                    error += 1;
+                }
+                else if (number.getText().toString().trim().length() <= 0) {
+                    error += 1;
+                }
+
+                if (error != 0) {
+                    response.setText("Error: Left fields empty!");
+                    error = 0;
+                }
+                else {
+                    postReq();
+                }
             }
         });
 
+
     }
+
+
         private void postReq() {
             RequestQueue queue = Volley.newRequestQueue(roster_add.this);
             String url = "http://coms-309-013.class.las.iastate.edu:8080/players/new";
