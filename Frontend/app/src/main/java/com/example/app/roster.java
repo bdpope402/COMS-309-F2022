@@ -42,33 +42,57 @@ public class roster extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roster);
         players=new JSONArray();
+        firstName=new ArrayList<>();
+        lastName=new ArrayList<>();
+        numberList=new ArrayList<>();
         int i;
         int y= 30;
         int x = 50;
+        int length= players.length();
         ConstraintLayout lay=findViewById(R.id.roster_layout);
         ConstraintSet con=new ConstraintSet();
         Button back = findViewById(R.id.back_button_roster);
         Button edit = findViewById(R.id.edit_roster_button);
 
-        getReq();
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), activity_menu.class));
+            }
+        });
+
+        //TODO make only maintainers can edit
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), edit_roster.class));
+            }
+        });
+
+        //getReq();
 
         //TABLE NO WORK DELETED
 
-        for (i=0;i<players.length()*3;i+=3){
-            TextView first = (TextView) LayoutInflater.from(this).inflate(R.layout.activity_roster, null);
-            TextView last = (TextView) LayoutInflater.from(this).inflate(R.layout.activity_roster, null);
-            TextView number = (TextView) LayoutInflater.from(this).inflate(R.layout.activity_roster, null);
+        for (i=0;i<length*3;i+=3){
+            TextView first = (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
+            TextView last = (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
+            TextView number = (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
             first.setId(i);
             last.setId(i+1);
             number.setId(i+2);
 
-            try{
-                first.setText(players.getJSONObject((i+1)/3).getString("first name"));
-                last.setText(players.getJSONObject((i+1)/3).getString("last name"));
-                number.setText(players.getJSONObject((i+1)/3).getString("number"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+//            try{
+//                first.setText(players.getJSONObject((i+1)/3).getString("first name"));
+//                last.setText(players.getJSONObject((i+1)/3).getString("last name"));
+//                number.setText(players.getJSONObject((i+1)/3).getString("number"));
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+            first.setText("First Name: ");
+            last.setText("Last Name: ");
+            number.setText("Number: ");
+
+
             firstName.add(first);
             lastName.add(last);
             numberList.add(number);
@@ -94,29 +118,21 @@ public class roster extends AppCompatActivity {
             con.connect(numberList.get(i).getId(), ConstraintSet.LEFT, R.id.roster_layout, ConstraintSet.LEFT, y);
             con.connect(numberList.get(i).getId(), ConstraintSet.TOP, R.id.roster_layout, ConstraintSet.TOP, (x + 200 + (200 * i)));
             con.applyTo(lay);
+            x+=100;
         }
 
+        con.clone(lay);
+        con.connect(back.getId(), ConstraintSet.RIGHT, R.id.roster_layout, ConstraintSet.RIGHT, y);
+        con.connect(back.getId(), ConstraintSet.LEFT, R.id.roster_layout, ConstraintSet.LEFT, y);
+        con.connect(back.getId(), ConstraintSet.TOP, numberList.get(length - 1).getId(), ConstraintSet.TOP, 200);
+        con.applyTo(lay);
 
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), activity_menu.class));
-            }
-        });
-
-        //TODO make only maintainers can edit
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), edit_roster.class));
-            }
-        });
     }
 
 
 
-    private void getReq() {
+    private void getPlayersReq() {
         RequestQueue queue = Volley.newRequestQueue(roster.this);
 
 

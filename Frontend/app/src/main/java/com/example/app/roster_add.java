@@ -62,9 +62,9 @@ public class roster_add extends AppCompatActivity {
             String url = "http://coms-309-013.class.las.iastate.edu:8080/players/new";
             JSONObject playerDetails = new JSONObject();
             try {
-                playerDetails.put("first name", firstName.getText());
-                playerDetails.put("last name", lastName.getText());
-                playerDetails.put("number", number.getText());
+                playerDetails.put("firstName", firstName.getText().toString());
+                playerDetails.put("lastName", lastName.getText().toString());
+                playerDetails.put("number", number.getText().toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
