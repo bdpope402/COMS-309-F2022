@@ -31,9 +31,6 @@ public class roster extends AppCompatActivity {
     private ArrayList<TextView> firstName;
     private ArrayList<TextView> lastName;
     private ArrayList<TextView> numberList;
-    private TextView number_title;
-    private TextView first_title;
-    private TextView last_title;
     private String id;
 
 
