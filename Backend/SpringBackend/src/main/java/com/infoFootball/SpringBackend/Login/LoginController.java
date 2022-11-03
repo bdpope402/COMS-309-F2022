@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *  Springboot controller for login
+ * Springboot controller for login
+ * @Author Camden Fergen and Bryan Pope
  */
 @RestController
 public class LoginController {
@@ -33,7 +34,9 @@ public class LoginController {
             return errorUser;
         }
 
-
+        //This code was for comparing user passwords, then only sending the user back if it was correct
+        //It was removed as the frontend already had a password compare function
+        //In the future this can replace the code above and compare passwords
 //        if(comparePassword(curUser, password)) {
 //            return curUser;
 //        } else {

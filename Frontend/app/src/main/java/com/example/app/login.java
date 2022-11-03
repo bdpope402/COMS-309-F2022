@@ -38,6 +38,8 @@ public class login extends AppCompatActivity {
     private TextView msgResponse;
     private EditText username;
     private EditText password;
+    private Button back;
+    public static JSONObject profile;
 
     public static String userInput;
     public static String passInput;
@@ -51,11 +53,22 @@ public class login extends AppCompatActivity {
         msgResponse = (TextView) findViewById(R.id.msgResponse);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
+        back = (Button) findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(login.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getReq();
+//                Intent intent = new Intent(login.this, activity_menu.class);
+//                startActivity(intent);
             }
         });
     }
@@ -69,6 +82,7 @@ public class login extends AppCompatActivity {
 //        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
         String url = "http://coms-309-013.class.las.iastate.edu:8080/users/" + userInput;
         JSONObject json = new JSONObject();
+        profile = new JSONObject();
         try {
             json.put("username", userInput);
             json.put("password", passInput);
@@ -83,6 +97,18 @@ public class login extends AppCompatActivity {
                     String correctUser = response.getString("username");
                     String correctPass = response.getString("password");
                     if (correctUser.equals(userInput) && correctPass.equals(passInput)) {
+                        String email = response.getString("email");
+                        String phone = response.getString("phoneNum");
+                        String perms = response.getString("permLv");
+                        try {
+                            profile.put("username", correctUser);
+                            profile.put("password", correctPass);
+                            profile.put("email", email);
+                            profile.put("phoneNum", phone);
+                            profile.put("permLv", perms);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         Intent intent = new Intent(login.this, activity_menu.class);
                         startActivity(intent);
                     }

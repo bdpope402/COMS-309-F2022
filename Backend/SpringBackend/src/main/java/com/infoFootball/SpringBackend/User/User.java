@@ -16,6 +16,7 @@ public class User {
     private String password;
     private String email;
     private String phoneNum;
+    private String permLv;
 
     /**
      * Creates a null user object
@@ -72,9 +73,15 @@ public class User {
      * Sets the phone number of a user
      * @param phoneNum new phone number
      */
-    public void setPhoneNum(String phoneNum){
+    public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
+
+    /**
+     * Sets the user perm level
+     * @param permLv user perm level
+     */
+    public void setPermLv(String permLv) { this.permLv = permLv;}
 
     //GET FUNCTIONS //
 
@@ -108,6 +115,14 @@ public class User {
      */
     public String getPhoneNum() {
         return this.phoneNum;
+    }
+
+    /**
+     * Returns the perm level
+     * @return string perm level
+     */
+    public String getPermLv() {
+        return this.permLv;
     }
 
 }

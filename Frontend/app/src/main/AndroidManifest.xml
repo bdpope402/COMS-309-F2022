@@ -17,6 +17,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".adminfeatures.grant_admin"
+            android:exported="false" />
+        <activity
+            android:name=".admin_page"
+            android:exported="false"
+            android:label="@string/title_activity_admin_page" />
+        <activity
             android:name=".concessions"
             android:exported="false"
             android:label="@string/title_activity_concessions"
@@ -38,6 +45,12 @@
             android:exported="false" />
         <activity
             android:name=".register"
+            android:exported="false" />
+        <activity
+            android:name=".AccountDetails"
+            android:exported="false" />
+        <activity
+            android:name=".pass_change"
             android:exported="false" />
     </application>
 

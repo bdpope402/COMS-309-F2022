@@ -7,6 +7,7 @@ import com.infoFootball.SpringBackend.Concessions.Vendor.VendorController;
 import com.infoFootball.SpringBackend.Login.LoginController;
 import com.infoFootball.SpringBackend.Register.RegisterController;
 import com.infoFootball.SpringBackend.User.UserController;
+import com.infoFootball.SpringBackend.Player.PlayerController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
