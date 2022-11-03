@@ -40,6 +40,18 @@
             android:name=".roster"
             android:exported="false" />
         <activity
+            android:name=".adminfeatures.vendor_change"
+            android:exported="false" />
+        <activity
+            android:name=".concessions_info"
+            android:exported="false" />
+        <activity
+            android:name=".adminfeatures.vendor_register"
+            android:exported="false" />
+        <activity
+            android:name=".adminfeatures.vendor_info"
+            android:exported="false" />
+        <activity
             android:name=".adminfeatures.grant_admin"
             android:exported="false" />
         <activity
