@@ -1,11 +1,33 @@
 package com.infoFootball.SpringBackend.Schedule;
 
-public class Game {
 
+import javax.persistence.*;
+
+@Entity
+public class Game {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer gameID;
+    @ManyToOne
+    @JoinColumn(name = "home_team_team_name")
     private Team homeTeam;
+    @ManyToOne
+    @JoinColumn(name = "away_team_team_name")
     private Team awayTeam;
 
     private String time;
+
+    @ManyToOne
+    @JoinColumn(name = "game_controller_ID")
+    private GameController gameController;
+
+    public GameController getGameController() {
+        return gameController;
+    }
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
 
     public Game(){
         this.homeTeam = null;

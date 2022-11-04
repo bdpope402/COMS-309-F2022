@@ -4,7 +4,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Team {
-
     @Id
     private String teamName;
 
