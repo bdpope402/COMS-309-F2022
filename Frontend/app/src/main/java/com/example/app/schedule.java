@@ -85,9 +85,9 @@ public class schedule extends AppCompatActivity {
                 String temp0 = games.getJSONObject((i+1)/3).getString("opponent");
                 String temp1 = games.getJSONObject((i+1)/3).getString("date");
                 String temp2 = games.getJSONObject((i+1)/3).getString("location");
-                opponent.setText("First Name: "+temp0);
-                date.setText("Last Name: "+temp1);
-                location.setText("Number: "+temp2);
+                opponent.setText("Opponent: "+temp0);
+                date.setText("Date: "+temp1);
+                location.setText("Location: "+temp2);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
