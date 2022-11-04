@@ -54,7 +54,7 @@ public class PlayerController {
      * @param newPlayer
      * @return
      */
-    @PostMapping("/players/new")
+    @PostMapping(path="/players/new")
     public String newPlayer(@RequestBody Player newPlayer) {
         playerRespository.save(newPlayer);
         return "Success";
