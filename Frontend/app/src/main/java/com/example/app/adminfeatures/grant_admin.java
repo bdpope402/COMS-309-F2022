@@ -106,7 +106,6 @@ public class grant_admin extends AppCompatActivity {
             public void onResponse(String response) {
                 msgResponse.setText("You have successfully granted permissions!");
             }
-
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
