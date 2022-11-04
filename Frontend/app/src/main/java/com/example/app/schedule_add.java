@@ -75,7 +75,7 @@ public class schedule_add extends AppCompatActivity {
     private void postReq() {
         RequestQueue queue = Volley.newRequestQueue(schedule_add.this);
         //TODO ADD CORRECT URL
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/players/new";
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/schedule/new";
         JSONObject gameDetails = new JSONObject();
         try {
             gameDetails.put("opponent", opponent.getText().toString());
