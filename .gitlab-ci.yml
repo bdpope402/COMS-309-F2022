@@ -3,7 +3,9 @@ stages:
   - mavenbuild
   - maventest
   - mavenDeploy
-#  - androidtry
+  # - androidtry
+  - androidbuild
+  - androidtest
 
 maven-build:   #this is a JOB
   stage: mavenbuild
@@ -26,7 +28,7 @@ maven-test:
 maven-deploy:
   stage: mavenDeploy
   tags:
-    - backend_tag
+    - bdpope_tag
   script:
     - cd Backend/SpringBackend
     - mvn package
@@ -46,3 +48,30 @@ maven-deploy:
 #  script:
 #    - cd Frontend                    #change directory to where you have your android application
 #    - ./gradlew assemble
+android-build:
+  image: gjandres/android-ci:latest
+  stage: androidbuild
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+    - chmod +x ./Frontend/gradlew
+  tags:
+   - android_tag
+  script:
+    - cd Frontend
+    - ./gradlew build
+  artifacts:
+    paths:
+    - Android_test/app/build/outputs/
+
+
+android-test:
+  image: gjandres/android-ci:latest
+  stage: androidtest
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+    - chmod +x ./Frontend/gradlew
+  tags:
+   - android_tag
+  script:
+    - cd Frontend
+    - ./gradlew test

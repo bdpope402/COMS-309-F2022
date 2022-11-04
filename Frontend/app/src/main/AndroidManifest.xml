@@ -17,6 +17,41 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".roster_update_inputs"
+            android:exported="false" />
+        <activity
+            android:name=".roster_update2"
+            android:exported="false"
+            android:label="@string/title_activity_roster_update2"
+            android:theme="@style/Theme.App.NoActionBar" />
+        <activity
+            android:name=".roster_update"
+            android:exported="false" />
+        <activity
+            android:name=".roster_delete"
+            android:exported="false" />
+        <activity
+            android:name=".roster_add"
+            android:exported="false" />
+        <activity
+            android:name=".edit_roster"
+            android:exported="false" />
+        <activity
+            android:name=".roster"
+            android:exported="false" />
+        <activity
+            android:name=".adminfeatures.vendor_change"
+            android:exported="false" />
+        <activity
+            android:name=".concessions_info"
+            android:exported="false" />
+        <activity
+            android:name=".adminfeatures.vendor_register"
+            android:exported="false" />
+        <activity
+            android:name=".adminfeatures.vendor_info"
+            android:exported="false" />
+        <activity
             android:name=".adminfeatures.grant_admin"
             android:exported="false" />
         <activity
