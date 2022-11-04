@@ -35,6 +35,7 @@ public class concessions_info extends AppCompatActivity {
     private ArrayList<TextView> item_prices;
     private ArrayList<TextView> item_calories;
     private Button back;
+    private ConstraintLayout lin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +46,13 @@ public class concessions_info extends AppCompatActivity {
         item_names = new ArrayList<>();
         item_prices = new ArrayList<>();
         item_calories = new ArrayList<>();
-        int y = 150;
-        int x = 200;
-        int i;
-        int length = 10;
         back = (Button) findViewById(R.id.back);
         //int length = menuItems.length()
 
         vend_name = findViewById(R.id.vendor_name);
         vend_name.setText(concessions.vendor_name);
         location = findViewById(R.id.location);
-        ConstraintLayout lin = findViewById(R.id.menu);
-        ConstraintSet constraint = new ConstraintSet();
+        lin = findViewById(R.id.menu);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,64 +61,7 @@ public class concessions_info extends AppCompatActivity {
             }
         });
 
-//        getVendorReq();
-//        try {
-//            location.setText(vendor.getString("location"));
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        getMenuReq();
-
-        for (i = 0; i < length * 3; i += 3) {
-            TextView menu = (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
-            TextView price = (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
-            TextView calories = (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
-            menu.setId(i);
-            price.setId(i + 1);
-            calories.setId(i + 2);
-//            try {
-//                menu.setText("Item: " + menuItems.getJSONObject((i + 1) / 3).getString("item_name"));
-//                price.setText("Price: " + menuItems.getJSONObject((i + 1) / 3).getString("price"));
-//                calories.setText("Calories: " + menuItems.getJSONObject((i + 1) / 3).getString("calories"));
-                menu.setText("Item: ");
-                price.setText("Price: ");
-                calories.setText("Calories: ");
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-            item_names.add(menu);
-            item_prices.add(price);
-            item_calories.add(calories);
-        }
-
-        for (i = 0; i < item_names.size(); i++) {
-            lin.addView(item_names.get(i));
-            lin.addView(item_prices.get(i));
-            lin.addView(item_calories.get(i));
-        }
-
-        for (i = 0; i < item_names.size(); i++) {
-            constraint.clone(lin);
-            constraint.connect(item_names.get(i).getId(), ConstraintSet.LEFT, R.id.menu, ConstraintSet.LEFT, y);
-            constraint.connect(item_names.get(i).getId(), ConstraintSet.TOP, R.id.menu, ConstraintSet.TOP, (x + (200 * i)));
-            constraint.applyTo(lin);
-            constraint.clone(lin);
-            constraint.connect(item_prices.get(i).getId(), ConstraintSet.LEFT, R.id.menu, ConstraintSet.LEFT, y);
-            constraint.connect(item_prices.get(i).getId(), ConstraintSet.TOP, R.id.menu, ConstraintSet.TOP, (x + 100 + (200 * i)));
-            constraint.applyTo(lin);
-            constraint.clone(lin);
-            constraint.connect(item_calories.get(i).getId(), ConstraintSet.LEFT, R.id.menu, ConstraintSet.LEFT, y);
-            constraint.connect(item_calories.get(i).getId(), ConstraintSet.TOP, R.id.menu, ConstraintSet.TOP, (x + 200 + (200 * i)));
-            constraint.applyTo(lin);
-            x += 100;
-        }
-
-        constraint.clone(lin);
-        constraint.connect(back.getId(), ConstraintSet.RIGHT, R.id.menu, ConstraintSet.RIGHT, y);
-        constraint.connect(back.getId(), ConstraintSet.LEFT, R.id.menu, ConstraintSet.LEFT, y);
-        constraint.connect(back.getId(), ConstraintSet.TOP, item_calories.get(length - 1).getId(), ConstraintSet.TOP, 200);
-        constraint.applyTo(lin);
-
+        getVendorReq();
     }
 
     private void getVendorReq() {
@@ -134,12 +73,16 @@ public class concessions_info extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    String locationString = "Location: ";
+                    locationString += response.getString("location");
+                    location.setText(locationString);
                     vendor.put("name", response.getString("name"));
-                    vendor.put("location", response.getString("location"));
+                    vendor.put("location", locationString);
                     vendor.put("id", response.getString("id"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                getMenuReq();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -160,42 +103,97 @@ public class concessions_info extends AppCompatActivity {
     }
 
     private void getMenuReq() {
-        RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
-        String url = null;
-        try {
-            url = "http://coms-309-013.class.las.iastate.edu:8080/menus/" + vendor.getString("id");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JSONObject json = new JSONObject();
-        final String requestBody = json.toString();
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject responseObj = response.getJSONObject(i);
-                        menuItems.put(responseObj.toString());
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        }){
-            @Override
-            public byte[] getBody() {
-                return requestBody.getBytes();
-            }
+//        RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
+//        String url = null;
+//        try {
+//            url = "http://coms-309-013.class.las.iastate.edu:8080/menu/" + vendor.getString("id");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        JSONObject json = new JSONObject();
+//        final String requestBody = json.toString();
+//        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+//            @Override
+//            public void onResponse(JSONArray response) {
+//                try {
+//                    for (int i = 0; i < response.length(); i++) {
+//                        JSONObject responseObj = response.getJSONObject(i);
+//                        menuItems.put(responseObj.toString());
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+                int y = 150;
+                int x = 200;
+                int i;
+                int length = 10;
+                ConstraintSet constraint = new ConstraintSet();
 
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
-        };
-        queue.add(request);
+                for (i = 0; i < length * 3; i += 3) {
+                    TextView menu = (TextView) LayoutInflater.from(concessions_info.this).inflate(R.layout.textview, null);
+                    TextView price = (TextView) LayoutInflater.from(concessions_info.this).inflate(R.layout.textview, null);
+                    TextView calories = (TextView) LayoutInflater.from(concessions_info.this).inflate(R.layout.textview, null);
+                    menu.setId(i);
+                    price.setId(i + 1);
+                    calories.setId(i + 2);
+//            try {
+//                menu.setText("Item: " + menuItems.getJSONObject((i + 1) / 3).getString("item_name"));
+//                price.setText("Price: " + menuItems.getJSONObject((i + 1) / 3).getString("price"));
+//                calories.setText("Calories: " + menuItems.getJSONObject((i + 1) / 3).getString("calories"));
+                    menu.setText("Item: ");
+                    price.setText("Price: ");
+                    calories.setText("Calories: ");
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+                    item_names.add(menu);
+                    item_prices.add(price);
+                    item_calories.add(calories);
+                }
+
+                for (i = 0; i < item_names.size(); i++) {
+                    lin.addView(item_names.get(i));
+                    lin.addView(item_prices.get(i));
+                    lin.addView(item_calories.get(i));
+                }
+
+                for (i = 0; i < item_names.size(); i++) {
+                    constraint.clone(lin);
+                    constraint.connect(item_names.get(i).getId(), ConstraintSet.LEFT, R.id.menu, ConstraintSet.LEFT, y);
+                    constraint.connect(item_names.get(i).getId(), ConstraintSet.TOP, R.id.menu, ConstraintSet.TOP, (x + (200 * i)));
+                    constraint.applyTo(lin);
+                    constraint.clone(lin);
+                    constraint.connect(item_prices.get(i).getId(), ConstraintSet.LEFT, R.id.menu, ConstraintSet.LEFT, y);
+                    constraint.connect(item_prices.get(i).getId(), ConstraintSet.TOP, R.id.menu, ConstraintSet.TOP, (x + 100 + (200 * i)));
+                    constraint.applyTo(lin);
+                    constraint.clone(lin);
+                    constraint.connect(item_calories.get(i).getId(), ConstraintSet.LEFT, R.id.menu, ConstraintSet.LEFT, y);
+                    constraint.connect(item_calories.get(i).getId(), ConstraintSet.TOP, R.id.menu, ConstraintSet.TOP, (x + 200 + (200 * i)));
+                    constraint.applyTo(lin);
+                    x += 100;
+                }
+
+                constraint.clone(lin);
+                constraint.connect(back.getId(), ConstraintSet.RIGHT, R.id.menu, ConstraintSet.RIGHT, y);
+                constraint.connect(back.getId(), ConstraintSet.LEFT, R.id.menu, ConstraintSet.LEFT, y);
+                constraint.connect(back.getId(), ConstraintSet.TOP, item_calories.get(length - 1).getId(), ConstraintSet.TOP, 200);
+                constraint.applyTo(lin);
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//            }
+//        }){
+//            @Override
+//            public byte[] getBody() {
+//                return requestBody.getBytes();
+//            }
+//
+//            @Override
+//            public String getBodyContentType() {
+//                return "application/json; charset=utf-8";
+//            }
+//        };
+//        queue.add(request);
     }
 }

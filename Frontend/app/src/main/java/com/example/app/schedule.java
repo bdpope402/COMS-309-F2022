@@ -31,6 +31,9 @@ public class schedule extends AppCompatActivity {
     private ArrayList<TextView> locationList;
     private ArrayList<TextView> opponentList;
     private ArrayList<TextView> dateList;
+    private ConstraintLayout lay;
+    private Button back;
+    private Button edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +43,10 @@ public class schedule extends AppCompatActivity {
         locationList=new ArrayList<>();
         opponentList = new ArrayList<>();
         dateList=new ArrayList<>();
+        lay=findViewById(R.id.schedule_layout);
 
-        int i;
-        int y= 150;
-        int x = 200;
-        //int length= games.length();
-        int length = 5;
-
-        ConstraintLayout lay=findViewById(R.id.schedule_layout);
-        ConstraintSet con=new ConstraintSet();
-
-        Button back = findViewById(R.id.schedule_back);
-        Button edit = findViewById(R.id.schedule_edit);
+        back = findViewById(R.id.schedule_back);
+        edit = findViewById(R.id.schedule_edit);
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -68,68 +63,7 @@ public class schedule extends AppCompatActivity {
             }
         });
 
-
-        //getGamesReq();
-
-        for (i=0;i<length*3;i+=3){
-            TextView opponent= (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
-            TextView date = (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
-            TextView location = (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
-            opponent.setId(i);
-            date.setId(i+1);
-            location.setId(i+2);
-
-//            try{
-//                first.setText(players.getJSONObject((i+1)/3).getString("firstName"));
-//                last.setText(players.getJSONObject((i+1)/3).getString("lastName"));
-//                number.setText(players.getJSONObject((i+1)/3).getString("number"));
-//                String temp0 = games.getJSONObject((i+1)/3).getString("opponent");
-//                String temp1 = games.getJSONObject((i+1)/3).getString("date");
-//                String temp2 = games.getJSONObject((i+1)/3).getString("location");
-                opponent.setText("Opponent: ");//+temp0);
-                date.setText("Date: ");//+temp1);
-                location.setText("Location: ");//+temp2);
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-
-
-
-            opponentList.add(opponent);
-            dateList.add(date);
-            locationList.add(location);
-        }
-
-
-        for(i=0;i<opponentList.size();i++){
-            lay.addView(opponentList.get(i));
-            lay.addView(dateList.get(i));
-            lay.addView(locationList.get(i));
-        }
-
-        for (i = 0; i < opponentList.size(); i++) {
-            con.clone(lay);
-            con.connect(opponentList.get(i).getId(), ConstraintSet.LEFT, R.id.schedule_layout, ConstraintSet.LEFT, y);
-            con.connect(opponentList.get(i).getId(), ConstraintSet.TOP, R.id.schedule_layout, ConstraintSet.TOP, (x + (200 * i)));
-            con.applyTo(lay);
-            con.clone(lay);
-            con.connect(dateList.get(i).getId(), ConstraintSet.LEFT, R.id.schedule_layout, ConstraintSet.LEFT, y);
-            con.connect(dateList.get(i).getId(), ConstraintSet.TOP, R.id.schedule_layout, ConstraintSet.TOP, (x + 100 + (200 * i)));
-            con.applyTo(lay);
-            con.clone(lay);
-            con.connect(locationList.get(i).getId(), ConstraintSet.LEFT, R.id.schedule_layout, ConstraintSet.LEFT, y);
-            con.connect(locationList.get(i).getId(), ConstraintSet.TOP, R.id.schedule_layout, ConstraintSet.TOP, (x + 200 + (200 * i)));
-            con.applyTo(lay);
-            x+=100;
-        }
-
-        con.clone(lay);
-        con.connect(back.getId(), ConstraintSet.RIGHT, R.id.schedule_layout, ConstraintSet.RIGHT, y);
-        con.connect(back.getId(), ConstraintSet.LEFT, R.id.schedule_layout, ConstraintSet.LEFT, y);
-        con.connect(back.getId(), ConstraintSet.TOP, locationList.get(length - 1).getId(), ConstraintSet.TOP, 200);
-        con.applyTo(lay);
-
-
+        getGamesReq();
     }
 
     //SHOW SCHEDULE HERE
@@ -153,6 +87,71 @@ public class schedule extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+
+                int i;
+                int y= 150;
+                int x = 200;
+                //int length= games.length();
+                int length = 5;
+                ConstraintSet con=new ConstraintSet();
+
+                for (i=0;i<length*3;i+=3){
+                    TextView opponent= (TextView) LayoutInflater.from(schedule.this).inflate(R.layout.textview, null);
+                    TextView date = (TextView) LayoutInflater.from(schedule.this).inflate(R.layout.textview, null);
+                    TextView location = (TextView) LayoutInflater.from(schedule.this).inflate(R.layout.textview, null);
+                    opponent.setId(i);
+                    date.setId(i+1);
+                    location.setId(i+2);
+
+//            try{
+//                first.setText(players.getJSONObject((i+1)/3).getString("firstName"));
+//                last.setText(players.getJSONObject((i+1)/3).getString("lastName"));
+//                number.setText(players.getJSONObject((i+1)/3).getString("number"));
+//                String temp0 = games.getJSONObject((i+1)/3).getString("opponent");
+//                String temp1 = games.getJSONObject((i+1)/3).getString("date");
+//                String temp2 = games.getJSONObject((i+1)/3).getString("location");
+                    opponent.setText("Opponent: ");//+temp0);
+                    date.setText("Date: ");//+temp1);
+                    location.setText("Location: ");//+temp2);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+
+
+
+                    opponentList.add(opponent);
+                    dateList.add(date);
+                    locationList.add(location);
+                }
+
+
+                for(i=0;i<opponentList.size();i++){
+                    lay.addView(opponentList.get(i));
+                    lay.addView(dateList.get(i));
+                    lay.addView(locationList.get(i));
+                }
+
+                for (i = 0; i < opponentList.size(); i++) {
+                    con.clone(lay);
+                    con.connect(opponentList.get(i).getId(), ConstraintSet.LEFT, R.id.schedule_layout, ConstraintSet.LEFT, y);
+                    con.connect(opponentList.get(i).getId(), ConstraintSet.TOP, R.id.schedule_layout, ConstraintSet.TOP, (x + (200 * i)));
+                    con.applyTo(lay);
+                    con.clone(lay);
+                    con.connect(dateList.get(i).getId(), ConstraintSet.LEFT, R.id.schedule_layout, ConstraintSet.LEFT, y);
+                    con.connect(dateList.get(i).getId(), ConstraintSet.TOP, R.id.schedule_layout, ConstraintSet.TOP, (x + 100 + (200 * i)));
+                    con.applyTo(lay);
+                    con.clone(lay);
+                    con.connect(locationList.get(i).getId(), ConstraintSet.LEFT, R.id.schedule_layout, ConstraintSet.LEFT, y);
+                    con.connect(locationList.get(i).getId(), ConstraintSet.TOP, R.id.schedule_layout, ConstraintSet.TOP, (x + 200 + (200 * i)));
+                    con.applyTo(lay);
+                    x+=100;
+                }
+
+                con.clone(lay);
+                con.connect(back.getId(), ConstraintSet.RIGHT, R.id.schedule_layout, ConstraintSet.RIGHT, y);
+                con.connect(back.getId(), ConstraintSet.LEFT, R.id.schedule_layout, ConstraintSet.LEFT, y);
+                con.connect(back.getId(), ConstraintSet.TOP, locationList.get(length - 1).getId(), ConstraintSet.TOP, 200);
+                con.applyTo(lay);
             }
         }, new Response.ErrorListener() {
             @Override

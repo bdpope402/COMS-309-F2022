@@ -32,6 +32,9 @@ public class roster extends AppCompatActivity {
     private ArrayList<TextView> lastName;
     private ArrayList<TextView> numberList;
     private String id;
+    private ConstraintLayout lay;
+    private Button back;
+    private Button edit;
 
 
     @Override
@@ -42,15 +45,9 @@ public class roster extends AppCompatActivity {
         firstName=new ArrayList<>();
         lastName=new ArrayList<>();
         numberList=new ArrayList<>();
-        int i;
-        int y= 150;
-        int x = 200;
-        //int length= players.length();
-        int length = 5;
-        ConstraintLayout lay=findViewById(R.id.roster_layout);
-        ConstraintSet con=new ConstraintSet();
-        Button back = findViewById(R.id.back_button_roster);
-        Button edit = findViewById(R.id.edit_roster_button);
+        lay=findViewById(R.id.roster_layout);
+        back = findViewById(R.id.back_button_roster);
+        edit = findViewById(R.id.edit_roster_button);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,69 +64,7 @@ public class roster extends AppCompatActivity {
             }
         });
 
-        //getPlayersReq();
-
-        //TABLE NO WORK DELETED
-
-        for (i=0;i<length*3;i+=3){
-            TextView first = (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
-            TextView last = (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
-            TextView number = (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
-            first.setId(i);
-            last.setId(i+1);
-            number.setId(i+2);
-
-//            try{
-//                first.setText(players.getJSONObject((i+1)/3).getString("firstName"));
-//                last.setText(players.getJSONObject((i+1)/3).getString("lastName"));
-//                number.setText(players.getJSONObject((i+1)/3).getString("number"));
-//                String temp0 = players.getJSONObject((i+1)/3).getString("firstName");
-//                String temp1 = players.getJSONObject((i+1)/3).getString("lastName");
-//                String temp2 = players.getJSONObject((i+1)/3).getString("number");
-                first.setText("First Name: ");//+temp0);
-                last.setText("Last Name: ");//+temp1);
-                number.setText("Number: ");//+temp2);
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-
-
-
-            firstName.add(first);
-            lastName.add(last);
-            numberList.add(number);
-        }
-
-
-        for(i=0;i<firstName.size();i++){
-            lay.addView(firstName.get(i));
-            lay.addView(lastName.get(i));
-            lay.addView(numberList.get(i));
-        }
-
-        for (i = 0; i < firstName.size(); i++) {
-            con.clone(lay);
-            con.connect(firstName.get(i).getId(), ConstraintSet.LEFT, R.id.roster_layout, ConstraintSet.LEFT, y);
-            con.connect(firstName.get(i).getId(), ConstraintSet.TOP, R.id.roster_layout, ConstraintSet.TOP, (x + (200 * i)));
-            con.applyTo(lay);
-            con.clone(lay);
-            con.connect(lastName.get(i).getId(), ConstraintSet.LEFT, R.id.roster_layout, ConstraintSet.LEFT, y);
-            con.connect(lastName.get(i).getId(), ConstraintSet.TOP, R.id.roster_layout, ConstraintSet.TOP, (x + 100 + (200 * i)));
-            con.applyTo(lay);
-            con.clone(lay);
-            con.connect(numberList.get(i).getId(), ConstraintSet.LEFT, R.id.roster_layout, ConstraintSet.LEFT, y);
-            con.connect(numberList.get(i).getId(), ConstraintSet.TOP, R.id.roster_layout, ConstraintSet.TOP, (x + 200 + (200 * i)));
-            con.applyTo(lay);
-            x+=100;
-        }
-
-        con.clone(lay);
-        con.connect(back.getId(), ConstraintSet.RIGHT, R.id.roster_layout, ConstraintSet.RIGHT, y);
-        con.connect(back.getId(), ConstraintSet.LEFT, R.id.roster_layout, ConstraintSet.LEFT, y);
-        con.connect(back.getId(), ConstraintSet.TOP, numberList.get(length - 1).getId(), ConstraintSet.TOP, 200);
-        con.applyTo(lay);
-
-
+        getPlayersReq();
     }
 
 
@@ -155,6 +90,71 @@ public class roster extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+
+                int i;
+                int y= 150;
+                int x = 200;
+                //int length= players.length();
+                int length = 5;
+                ConstraintSet con=new ConstraintSet();
+
+                for (i=0;i<length*3;i+=3){
+                    TextView first = (TextView) LayoutInflater.from(roster.this).inflate(R.layout.textview, null);
+                    TextView last = (TextView) LayoutInflater.from(roster.this).inflate(R.layout.textview, null);
+                    TextView number = (TextView) LayoutInflater.from(roster.this).inflate(R.layout.textview, null);
+                    first.setId(i);
+                    last.setId(i+1);
+                    number.setId(i+2);
+
+//            try{
+//                first.setText(players.getJSONObject((i+1)/3).getString("firstName"));
+//                last.setText(players.getJSONObject((i+1)/3).getString("lastName"));
+//                number.setText(players.getJSONObject((i+1)/3).getString("number"));
+//                String temp0 = players.getJSONObject((i+1)/3).getString("firstName");
+//                String temp1 = players.getJSONObject((i+1)/3).getString("lastName");
+//                String temp2 = players.getJSONObject((i+1)/3).getString("number");
+                    first.setText("First Name: ");//+temp0);
+                    last.setText("Last Name: ");//+temp1);
+                    number.setText("Number: ");//+temp2);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+
+
+
+                    firstName.add(first);
+                    lastName.add(last);
+                    numberList.add(number);
+                }
+
+
+                for(i=0;i<firstName.size();i++){
+                    lay.addView(firstName.get(i));
+                    lay.addView(lastName.get(i));
+                    lay.addView(numberList.get(i));
+                }
+
+                for (i = 0; i < firstName.size(); i++) {
+                    con.clone(lay);
+                    con.connect(firstName.get(i).getId(), ConstraintSet.LEFT, R.id.roster_layout, ConstraintSet.LEFT, y);
+                    con.connect(firstName.get(i).getId(), ConstraintSet.TOP, R.id.roster_layout, ConstraintSet.TOP, (x + (200 * i)));
+                    con.applyTo(lay);
+                    con.clone(lay);
+                    con.connect(lastName.get(i).getId(), ConstraintSet.LEFT, R.id.roster_layout, ConstraintSet.LEFT, y);
+                    con.connect(lastName.get(i).getId(), ConstraintSet.TOP, R.id.roster_layout, ConstraintSet.TOP, (x + 100 + (200 * i)));
+                    con.applyTo(lay);
+                    con.clone(lay);
+                    con.connect(numberList.get(i).getId(), ConstraintSet.LEFT, R.id.roster_layout, ConstraintSet.LEFT, y);
+                    con.connect(numberList.get(i).getId(), ConstraintSet.TOP, R.id.roster_layout, ConstraintSet.TOP, (x + 200 + (200 * i)));
+                    con.applyTo(lay);
+                    x+=100;
+                }
+
+                con.clone(lay);
+                con.connect(back.getId(), ConstraintSet.RIGHT, R.id.roster_layout, ConstraintSet.RIGHT, y);
+                con.connect(back.getId(), ConstraintSet.LEFT, R.id.roster_layout, ConstraintSet.LEFT, y);
+                con.connect(back.getId(), ConstraintSet.TOP, numberList.get(length - 1).getId(), ConstraintSet.TOP, 200);
+                con.applyTo(lay);
             }
         }, new Response.ErrorListener() {
             @Override
