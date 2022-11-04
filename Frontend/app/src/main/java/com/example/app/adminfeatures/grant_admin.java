@@ -39,6 +39,8 @@ public class grant_admin extends AppCompatActivity {
     private EditText username;
     private Button back;
     private JSONObject info;
+    private String user;
+    private String perms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +65,7 @@ public class grant_admin extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     if (login.profile.getString("permLv").equals("Admin")) {
-                        String perms = privileges.getSelectedItem().toString();
-                        String user = username.getText().toString();
-                        putReq(perms, user);
+                        putReq();
                     }
                     else {
                         msgResponse.setText("You do not have the permission to do this");
@@ -86,12 +86,13 @@ public class grant_admin extends AppCompatActivity {
 
     }
 
-    private void putReq(String perms, String username) {
+    private void putReq() {
         RequestQueue queue = Volley.newRequestQueue(grant_admin.this);
+        perms = privileges.getSelectedItem().toString();
+        user = username.getText().toString();
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/"+user;
 
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/"+username;
-
-        getReq(username);
+        getReq();
 
         try {
             info.remove("permLv");
@@ -127,12 +128,17 @@ public class grant_admin extends AppCompatActivity {
         queue.add(request);
     }
 
-    private void getReq(String user) {
+    private void getReq() {
         RequestQueue queue = Volley.newRequestQueue(grant_admin.this);
-
 //        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
         String url = "http://coms-309-013.class.las.iastate.edu:8080/users/" + user;
         JSONObject json = new JSONObject();
+        try {
+            json.put("username", user);
+            json.put("permLv", perms);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         final String requestBody = json.toString();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

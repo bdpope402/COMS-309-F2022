@@ -16,8 +16,10 @@
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="16dp"
             android:text="BACK"
-            tools:layout_editor_absoluteX="115dp"
-            tools:layout_editor_absoluteY="7dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

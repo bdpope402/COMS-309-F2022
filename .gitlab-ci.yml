@@ -2,15 +2,15 @@
 stages:
   - mavenbuild
   - maventest
-  - mavenDeploy
   # - androidtry
   - androidbuild
   - androidtest
+  - mavenDeploy
 
 maven-build:   #this is a JOB
   stage: mavenbuild
   tags:
-    - backend_tag                      # this is LINK to the shell runner on the remote-server
+    - cfergen_tag                      # this is LINK to the shell runner on the remote-server
   script:
     - cd Backend/SpringBackend                 #change directory to where you have your springboot application
     - mvn package
@@ -18,7 +18,7 @@ maven-build:   #this is a JOB
 maven-test:
   stage: maventest
   tags:
-    - backend_tag
+    - cfergen_tag
   script:
     - cd Backend/SpringBackend
     - mvn test
@@ -33,7 +33,7 @@ android-build:
     - export GRADLE_USER_HOME=`pwd`/.gradle
     - chmod +x ./Frontend/gradlew
   tags:
-   - android_tag
+   - mless_tag
   script:
     - cd Frontend
     - ./gradlew build
