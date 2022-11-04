@@ -33,7 +33,7 @@ android-build:
     - export GRADLE_USER_HOME=`pwd`/.gradle
     - chmod +x ./Frontend/gradlew
   tags:
-   - android_tag
+   - mike_tag
   script:
     - cd Frontend
     - ./gradlew build
