@@ -45,7 +45,8 @@ public class roster extends AppCompatActivity {
         int i;
         int y= 150;
         int x = 200;
-        int length= players.length();
+        //int length= players.length();
+        int length = 5;
         ConstraintLayout lay=findViewById(R.id.roster_layout);
         ConstraintSet con=new ConstraintSet();
         Button back = findViewById(R.id.back_button_roster);
@@ -66,7 +67,7 @@ public class roster extends AppCompatActivity {
             }
         });
 
-        getPlayersReq();
+        //getPlayersReq();
 
         //TABLE NO WORK DELETED
 
@@ -78,19 +79,19 @@ public class roster extends AppCompatActivity {
             last.setId(i+1);
             number.setId(i+2);
 
-            try{
+//            try{
 //                first.setText(players.getJSONObject((i+1)/3).getString("firstName"));
 //                last.setText(players.getJSONObject((i+1)/3).getString("lastName"));
 //                number.setText(players.getJSONObject((i+1)/3).getString("number"));
-                String temp0 = players.getJSONObject((i+1)/3).getString("firstName");
-                String temp1 = players.getJSONObject((i+1)/3).getString("lastName");
-                String temp2 = players.getJSONObject((i+1)/3).getString("number");
-                first.setText("First Name: "+temp0);
-                last.setText("Last Name: "+temp1);
-                number.setText("Number: "+temp2);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+//                String temp0 = players.getJSONObject((i+1)/3).getString("firstName");
+//                String temp1 = players.getJSONObject((i+1)/3).getString("lastName");
+//                String temp2 = players.getJSONObject((i+1)/3).getString("number");
+                first.setText("First Name: ");//+temp0);
+                last.setText("Last Name: ");//+temp1);
+                number.setText("Number: ");//+temp2);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
 
 
 

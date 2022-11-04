@@ -44,13 +44,14 @@ public class schedule extends AppCompatActivity {
         int i;
         int y= 150;
         int x = 200;
-        int length= games.length();
+        //int length= games.length();
+        int length = 5;
 
         ConstraintLayout lay=findViewById(R.id.schedule_layout);
         ConstraintSet con=new ConstraintSet();
 
         Button back = findViewById(R.id.schedule_back);
-        Button edit = findViewById(R.id.schdule_edit);
+        Button edit = findViewById(R.id.schedule_edit);
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +69,7 @@ public class schedule extends AppCompatActivity {
         });
 
 
-        getGamesReq();
+        //getGamesReq();
 
         for (i=0;i<length*3;i+=3){
             TextView opponent= (TextView) LayoutInflater.from(this).inflate(R.layout.textview, null);
@@ -78,19 +79,19 @@ public class schedule extends AppCompatActivity {
             date.setId(i+1);
             location.setId(i+2);
 
-            try{
+//            try{
 //                first.setText(players.getJSONObject((i+1)/3).getString("firstName"));
 //                last.setText(players.getJSONObject((i+1)/3).getString("lastName"));
 //                number.setText(players.getJSONObject((i+1)/3).getString("number"));
-                String temp0 = games.getJSONObject((i+1)/3).getString("opponent");
-                String temp1 = games.getJSONObject((i+1)/3).getString("date");
-                String temp2 = games.getJSONObject((i+1)/3).getString("location");
-                opponent.setText("Opponent: "+temp0);
-                date.setText("Date: "+temp1);
-                location.setText("Location: "+temp2);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+//                String temp0 = games.getJSONObject((i+1)/3).getString("opponent");
+//                String temp1 = games.getJSONObject((i+1)/3).getString("date");
+//                String temp2 = games.getJSONObject((i+1)/3).getString("location");
+                opponent.setText("Opponent: ");//+temp0);
+                date.setText("Date: ");//+temp1);
+                location.setText("Location: ");//+temp2);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
 
 
 
