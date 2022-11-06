@@ -8,15 +8,18 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.app.AccountDetails;
+import com.example.app.MainActivity;
 import com.example.app.R;
 import com.example.app.activity_menu;
 import com.example.app.admin_page;
 import com.example.app.login;
 import com.example.app.pass_change;
+import com.example.app.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -144,12 +147,22 @@ public class grant_admin extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    info.put("username", response.getString("username"));
-                    info.put("phoneNum", response.getString("phoneNum"));
-                    info.put("email", response.getString("email"));
-                    info.put("password", response.getString("password"));
-                    info.put("permLv", response.getString("permLv"));
-                } catch (JSONException e) {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                info.put("username", response.getString("username"));
+                                info.put("phoneNum", response.getString("phoneNum"));
+                                info.put("email", response.getString("email"));
+                                info.put("password", response.getString("password"));
+                                info.put("permLv", response.getString("permLv"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, 10000);
+                } catch( Exception e) {
                     e.printStackTrace();
                 }
             }
