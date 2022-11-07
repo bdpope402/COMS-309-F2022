@@ -44,12 +44,14 @@ public class grant_admin extends AppCompatActivity {
     private JSONObject info;
     private String user;
     private String perms;
+    private RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grant_admin);
         info = new JSONObject();
+        queue = Volley.newRequestQueue(grant_admin.this);
 
         privileges = (Spinner) findViewById(R.id.privileges);
         msgResponse = (TextView) findViewById(R.id.msgResponse);
@@ -90,7 +92,6 @@ public class grant_admin extends AppCompatActivity {
     }
 
     private void putReq() {
-        RequestQueue queue = Volley.newRequestQueue(grant_admin.this);
         perms = privileges.getSelectedItem().toString();
         user = username.getText().toString();
         String url = "http://coms-309-013.class.las.iastate.edu:8080/users/"+user;
@@ -132,8 +133,6 @@ public class grant_admin extends AppCompatActivity {
     }
 
     private void getReq() {
-        RequestQueue queue = Volley.newRequestQueue(grant_admin.this);
-//        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
         String url = "http://coms-309-013.class.las.iastate.edu:8080/users/" + user;
         JSONObject json = new JSONObject();
         try {
