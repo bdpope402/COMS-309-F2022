@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,35 +8,19 @@
     tools:context=".MainActivity"
     android:background="@drawable/frontpage">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="113dp"
-        android:layout_marginEnd="3dp"
-        android:shadowColor="@color/yellow"
-        android:shadowDx="5"
-        android:shadowDy="2.5"
-        android:shadowRadius="1.6"
-        android:text="Welcome to the Iowa State Game day App"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/black"
-        android:textSize="34sp" />
-
     <Button
         android:id="@+id/register"
         android:layout_width="120dp"
         android:layout_height="78dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="212dp"
-        android:layout_marginEnd="264dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="200dp"
         android:backgroundTint="@color/yellow"
         android:text="REGISTER"
-        android:textColor="@color/dark_red" />
+        android:textColor="@color/dark_red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/login"
@@ -44,9 +28,11 @@
         android:layout_height="78dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="212dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="4dp"
         android:backgroundTint="@color/dark_red"
+        android:text="LOGIN"
         android:textColor="@color/yellow"
-        android:text="LOGIN" />
-</RelativeLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
