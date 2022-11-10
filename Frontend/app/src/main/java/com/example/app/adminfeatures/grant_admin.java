@@ -8,15 +8,18 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.app.AccountDetails;
+import com.example.app.MainActivity;
 import com.example.app.R;
 import com.example.app.activity_menu;
 import com.example.app.admin_page;
 import com.example.app.login;
 import com.example.app.pass_change;
+import com.example.app.register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,12 +42,16 @@ public class grant_admin extends AppCompatActivity {
     private EditText username;
     private Button back;
     private JSONObject info;
+    private String user;
+    private String perms;
+    private RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grant_admin);
         info = new JSONObject();
+        queue = Volley.newRequestQueue(grant_admin.this);
 
         privileges = (Spinner) findViewById(R.id.privileges);
         msgResponse = (TextView) findViewById(R.id.msgResponse);
@@ -63,9 +70,7 @@ public class grant_admin extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     if (login.profile.getString("permLv").equals("Admin")) {
-                        String perms = privileges.getSelectedItem().toString();
-                        String user = username.getText().toString();
-                        putReq(perms, user);
+                        putReq();
                     }
                     else {
                         msgResponse.setText("You do not have the permission to do this");
@@ -86,12 +91,12 @@ public class grant_admin extends AppCompatActivity {
 
     }
 
-    private void putReq(String perms, String username) {
-        RequestQueue queue = Volley.newRequestQueue(grant_admin.this);
+    private void putReq() {
+        perms = privileges.getSelectedItem().toString();
+        user = username.getText().toString();
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/"+user;
 
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/"+username;
-
-        getReq(username);
+        getReq();
 
         try {
             info.remove("permLv");
@@ -106,7 +111,6 @@ public class grant_admin extends AppCompatActivity {
             public void onResponse(String response) {
                 msgResponse.setText("You have successfully granted permissions!");
             }
-
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -128,23 +132,36 @@ public class grant_admin extends AppCompatActivity {
         queue.add(request);
     }
 
-    private void getReq(String user) {
-        RequestQueue queue = Volley.newRequestQueue(grant_admin.this);
-
-//        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
+    private void getReq() {
         String url = "http://coms-309-013.class.las.iastate.edu:8080/users/" + user;
         JSONObject json = new JSONObject();
+        try {
+            json.put("username", user);
+            json.put("permLv", perms);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         final String requestBody = json.toString();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    info.put("username", response.getString("username"));
-                    info.put("phoneNum", response.getString("phoneNum"));
-                    info.put("email", response.getString("email"));
-                    info.put("password", response.getString("password"));
-                    info.put("permLv", response.getString("permLv"));
-                } catch (JSONException e) {
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                info.put("username", response.getString("username"));
+                                info.put("phoneNum", response.getString("phoneNum"));
+                                info.put("email", response.getString("email"));
+                                info.put("password", response.getString("password"));
+                                info.put("permLv", response.getString("permLv"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, 10000);
+                } catch( Exception e) {
                     e.printStackTrace();
                 }
             }

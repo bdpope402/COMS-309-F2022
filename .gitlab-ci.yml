@@ -2,15 +2,15 @@
 stages:
   - mavenbuild
   - maventest
-  - mavenDeploy
   # - androidtry
   - androidbuild
   - androidtest
+  - mavenDeploy
 
 maven-build:   #this is a JOB
   stage: mavenbuild
   tags:
-    - backend_tag                      # this is LINK to the shell runner on the remote-server
+    - cfergen_tag                      # this is LINK to the shell runner on the remote-server
   script:
     - cd Backend/SpringBackend                 #change directory to where you have your springboot application
     - mvn package
@@ -18,13 +18,42 @@ maven-build:   #this is a JOB
 maven-test:
   stage: maventest
   tags:
-    - backend_tag
+    - cfergen_tag
   script:
     - cd Backend/SpringBackend
     - mvn test
   artifacts:
     paths:
       - Backend/target/*.jar
+
+android-build:
+  image: gjandres/android-ci:latest
+  stage: androidbuild
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+    - chmod +x ./Frontend/gradlew
+  tags:
+   - mless_tag
+  script:
+    - cd Frontend
+    - ./gradlew build
+  artifacts:
+    paths:
+    - Android_test/app/build/outputs/
+
+
+android-test:
+  image: gjandres/android-ci:latest
+  stage: androidtest
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+    - chmod +x ./Frontend/gradlew
+  tags:
+   - tma_tag
+  script:
+    - cd Frontend
+    - ./gradlew test
+
 maven-deploy:
   stage: mavenDeploy
   tags:
@@ -48,30 +77,3 @@ maven-deploy:
 #  script:
 #    - cd Frontend                    #change directory to where you have your android application
 #    - ./gradlew assemble
-android-build:
-  image: gjandres/android-ci:latest
-  stage: androidbuild
-  before_script:
-    - export GRADLE_USER_HOME=`pwd`/.gradle
-    - chmod +x ./Frontend/gradlew
-  tags:
-   - android_tag
-  script:
-    - cd Frontend
-    - ./gradlew build
-  artifacts:
-    paths:
-    - Android_test/app/build/outputs/
-
-
-android-test:
-  image: gjandres/android-ci:latest
-  stage: androidtest
-  before_script:
-    - export GRADLE_USER_HOME=`pwd`/.gradle
-    - chmod +x ./Frontend/gradlew
-  tags:
-   - android_tag
-  script:
-    - cd Frontend
-    - ./gradlew test
