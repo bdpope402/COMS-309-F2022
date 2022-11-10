@@ -17,8 +17,7 @@ public class GameController {
     final private String success = "{\"message\":\"success\"}";
     final private String failure = "{\"message\":\"failure\"}";
 
-    @OneToMany(targetEntity=Game.class, mappedBy="/games",
-            fetch= FetchType.EAGER)
+    @GetMapping(path = "/games")
     List<Game> getAllGames(){
         return gameRespository.findAll();
     }
