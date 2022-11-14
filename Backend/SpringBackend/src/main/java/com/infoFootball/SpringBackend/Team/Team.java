@@ -1,10 +1,10 @@
-package com.infoFootball.SpringBackend.Schedule;
+package com.infoFootball.SpringBackend.Team;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-
+@Entity
 public class Team {
-
+    @Id
     private String teamName;
 
     private String teamLocation;

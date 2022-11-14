@@ -3,6 +3,7 @@ package com.infoFootball.SpringBackend.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.infoFootball.SpringBackend.Team.*;
 
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;

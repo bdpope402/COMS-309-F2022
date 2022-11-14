@@ -1,5 +1,6 @@
 package com.infoFootball.SpringBackend.Schedule;
 
+import com.infoFootball.SpringBackend.Team.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 @Repository

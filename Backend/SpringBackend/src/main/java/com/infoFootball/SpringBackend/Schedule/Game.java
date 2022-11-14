@@ -1,6 +1,8 @@
 package com.infoFootball.SpringBackend.Schedule;
 
 
+import com.infoFootball.SpringBackend.Team.Team;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,8 +11,12 @@ public class Game {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer gameID;
 
+    @ManyToOne
+    @JoinColumn(name = "home_team_team_name")
     private Team homeTeam;
 
+    @ManyToOne
+    @JoinColumn(name = "away_team_team_name")
     private Team awayTeam;
 
     private String time;
