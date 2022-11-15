@@ -1,3 +1,10 @@
+/**
+ * @author Michael Less
+ *  This screen is used to direct the user to either deleting or adding a game to
+ *  the schedule
+ *
+ */
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +16,12 @@ import android.widget.Button;
 
 public class schedule_edit extends AppCompatActivity {
 
+
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

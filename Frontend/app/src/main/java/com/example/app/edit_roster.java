@@ -1,3 +1,10 @@
+/**
+ * @author Michael Less
+ *  This screen allows one to either add, delete, or update a player on the roster
+ *
+ */
+
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;

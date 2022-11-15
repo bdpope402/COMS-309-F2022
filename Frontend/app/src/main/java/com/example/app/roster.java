@@ -1,3 +1,9 @@
+/**
+ * @author Michael Less
+ *  This screen is a view of all player objects in the roster array.
+ *  It shows this by creating text boxes for each player's first, last and number
+ */
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +43,11 @@ public class roster extends AppCompatActivity {
     private Button edit;
 
 
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +79,11 @@ public class roster extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Volley GET request. This gets the information for the roster in the form of a JSON
+     * ARRAY, it will store this in a specific array created earlier in the class
+     * It also creates text boxes to display the data received
+     */
     private void getPlayersReq() {
         RequestQueue queue = Volley.newRequestQueue(roster.this);
 

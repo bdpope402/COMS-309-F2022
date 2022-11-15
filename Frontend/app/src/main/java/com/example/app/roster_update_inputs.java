@@ -1,3 +1,10 @@
+/**
+ * @author Michael Less
+ *  This screen actually changes the information of a player on the backened
+ *  given the ID from the previous page (roster_update)
+ *
+ */
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;

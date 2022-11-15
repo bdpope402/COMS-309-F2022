@@ -1,3 +1,9 @@
+/**
+ * @author Michael Less
+ *  This screen is used to add games to the schedule
+ *
+ */
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +33,12 @@ public class schedule_add extends AppCompatActivity {
     private EditText date;
     private TextView response;
 
+
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +84,10 @@ public class schedule_add extends AppCompatActivity {
         });
     }
 
+    /**
+     * This is a POST request to add the information inputted into a game object, then
+     * submit it to the backend.
+     */
     private void postReq() {
         RequestQueue queue = Volley.newRequestQueue(schedule_add.this);
         //TODO ADD CORRECT URL
