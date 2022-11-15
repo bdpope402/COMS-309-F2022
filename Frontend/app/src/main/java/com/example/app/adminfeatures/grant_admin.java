@@ -1,3 +1,9 @@
+/**
+ * @author Tyler Atkinson
+ * This activity allows one to grant another user admin permissions of different levels if one
+ * has the correct permissions.
+ */
+
 package com.example.app.adminfeatures;
 
 import com.android.volley.Request;
@@ -46,6 +52,11 @@ public class grant_admin extends AppCompatActivity {
     private String perms;
     private RequestQueue queue;
 
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +102,10 @@ public class grant_admin extends AppCompatActivity {
 
     }
 
+    /**
+     * Volley PUT request for granting admin permissions. Calls getReq() to get the information
+     * needed from the database to change it and send it back to the database.
+     */
     private void putReq() {
         perms = privileges.getSelectedItem().toString();
         user = username.getText().toString();
@@ -132,6 +147,9 @@ public class grant_admin extends AppCompatActivity {
         queue.add(request);
     }
 
+    /**
+     * Volley GET request. Gets information from the database as a JSON object to be used by putReq().
+     */
     private void getReq() {
         String url = "http://coms-309-013.class.las.iastate.edu:8080/users/" + user;
         JSONObject json = new JSONObject();

@@ -1,3 +1,8 @@
+/**
+ * @author Tyler Atkinson
+ * This screen allows a user to register a new profile based on the information that they provide.
+ */
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +36,11 @@ public class register extends AppCompatActivity implements View.OnClickListener{
     private EditText email;
     private EditText phone;
 
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +56,10 @@ public class register extends AppCompatActivity implements View.OnClickListener{
         register.setOnClickListener(this);
     }
 
+    /**
+     * Checks for NULL strings by looking at string length.
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         int error = 0;
@@ -72,6 +86,10 @@ public class register extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
+    /**
+     * Volley POST request. Takes the information provided in the EditText boxes and puts them into
+     * a JSONObject that is sent up to the database to be stored as a new profile.
+     */
     private void postReq() {
         RequestQueue queue = Volley.newRequestQueue(register.this);
 //        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/register/";

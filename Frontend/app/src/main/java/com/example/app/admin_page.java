@@ -1,3 +1,8 @@
+/**
+ * @author Tyler Atkinson
+ * This screen displays options for those with varying levels of admin permissions. This page also
+ * displays the user's current admin permission level.
+ */
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +34,11 @@ public class admin_page extends AppCompatActivity {
     private TextView response;
     private TextView admin_level;
 
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

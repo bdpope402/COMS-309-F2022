@@ -1,3 +1,9 @@
+/**
+ * @author Tyler Atkinson
+ * This screen shows the user all of the food items that a vendor has for sale, as well as a vendor's
+ * location.
+ */
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +43,11 @@ public class concessions_info extends AppCompatActivity {
     private Button back;
     private ConstraintLayout lin;
 
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +75,10 @@ public class concessions_info extends AppCompatActivity {
         getVendorReq();
     }
 
+    /**
+     * Volley GET request. Pulls the vendor's information down from the database to be displayed and
+     * stored in a JSONObject.
+     */
     private void getVendorReq() {
         RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
         String url = "http://coms-309-013.class.las.iastate.edu:8080/vendors/" + concessions.vendor_name;
@@ -102,6 +117,10 @@ public class concessions_info extends AppCompatActivity {
         queue.add(request);
     }
 
+    /**
+     * Volley GET request. Pulls down an array of FOODMENU items and creates text boxes for the different
+     * information that is taken from the objects.
+     */
     private void getMenuReq() {
 //        RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
 //        String url = null;

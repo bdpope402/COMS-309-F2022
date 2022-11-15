@@ -1,3 +1,8 @@
+/**
+ * @author Tyler Atkinson
+ * This screen allows a user to login if they have an existing account.
+ */
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +49,11 @@ public class login extends AppCompatActivity {
     public static String userInput;
     public static String passInput;
 
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +83,11 @@ public class login extends AppCompatActivity {
         });
     }
 
+    /**
+     * Volley GET request. This method pulls the information of a user's profile from the database
+     * and stores it in a public state JSONObject to be used later, as well as takes the user to the
+     * next screen if their profile exists.
+     */
     private void getReq() {
         RequestQueue queue = Volley.newRequestQueue(login.this);
 

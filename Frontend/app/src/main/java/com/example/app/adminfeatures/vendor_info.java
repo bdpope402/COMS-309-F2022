@@ -1,3 +1,8 @@
+/**
+ * @author Tyler Atkinson
+ * This screen allows one to choose whether to login or register their vendor profile
+ */
+
 package com.example.app.adminfeatures;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +41,10 @@ public class vendor_info extends AppCompatActivity {
     public static JSONObject vendor;
     private TextView msgResponse;
 
+    /**
+     * Creates the vendor info screen based off of the .xml file that is associated with this activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +79,10 @@ public class vendor_info extends AppCompatActivity {
         });
     }
 
+    /**
+     * Volley GET request. Gets the information from the database to add to a JSON object that is
+     * accessed by the next screen to be able to display the information.
+     */
     private void getReq() {
         RequestQueue queue = Volley.newRequestQueue(vendor_info.this);
 

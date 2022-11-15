@@ -1,3 +1,9 @@
+/**
+ * @author Tyler Atkinson
+ * This page allows a vendor to be able to register themselves and get their business's information
+ * in the database.
+ */
+
 package com.example.app.adminfeatures;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +37,11 @@ public class vendor_register extends AppCompatActivity {
     private EditText username;
     private EditText location;
 
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +69,10 @@ public class vendor_register extends AppCompatActivity {
         });
     }
 
+    /**
+     * Volley POST request. This takes the strings the are in the EditText boxes and adds them to a
+     * JSONObject that is to be sent to the database to be stored as a new vendor profile.
+     */
     private void postReq() {
         RequestQueue queue = Volley.newRequestQueue(vendor_register.this);
         String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/register/";
