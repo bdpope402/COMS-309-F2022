@@ -1,7 +1,10 @@
 package com.infoFootball.SpringBackend.Schedule;
 
+import com.infoFootball.SpringBackend.Player.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.infoFootball.SpringBackend.Team.*;
 
@@ -23,5 +26,10 @@ public class GameController {
         return gameRespository.findAll();
     }
 
+    @PostMapping(path="/games/new")
+    public String newGame(@RequestBody Game newGame) {
+        gameRespository.save(newGame);
+        return "Success";
+    }
 
 }
