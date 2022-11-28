@@ -23,13 +23,13 @@ public class GameController {
         return gameRespository.findAll();
     }
 
-    @GetMapping(path = "/games/{awayTeam}")
-    Game getGameByAwayTeam(@PathVariable Team awayTeam) {
+    @GetMapping(path = "/games/get")
+    Game getGameByAwayTeam(@RequestBody Team awayTeam) {
         return gameRespository.findByAwayTeam(awayTeam);
     }
 
-    @PutMapping(path = "/games/{awayTeam}")
-    Game updateGame(@PathVariable Team awayTeam, @RequestBody Game newGame) {
+    @PutMapping(path = "/games/update")
+    Game updateGame(@RequestBody Team awayTeam, @RequestBody Game newGame) {
         Game game = gameRespository.findByAwayTeam(awayTeam);
         if (game.equals(null)) {
             return null;
