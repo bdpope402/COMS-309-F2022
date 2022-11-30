@@ -74,7 +74,7 @@ public class vendor_change extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), vendor_info.class)); //placeholder
+                startActivity(new Intent(view.getContext(), add_food.class));
             }
         });
 
@@ -110,7 +110,8 @@ public class vendor_change extends AppCompatActivity {
         StringRequest req = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                putReq();
+                msgResponse.setText("You have successfully created a menu! ID = " + id);
+//                putReq(); //currently does not work
             }
         }, new Response.ErrorListener() {
             @Override
@@ -132,20 +133,22 @@ public class vendor_change extends AppCompatActivity {
         queue.add(req);
     }
 
+    //currently throws a 400 error
     private void putReq() {
         String url = "";
+        String requestadd = "";
         try {
             url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/update/" + vendor_info.vendor.getString("name");
             vendor_info.vendor.remove("menu");
             vendor_info.vendor.put("menu", id);
-            url += "?vendorId=" + vendor_info.vendor.getString("vendorId");
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        JSONObject test = vendor_info.vendor;
-        final String jsonString = vendor_info.vendor.toString();
+//        final String jsonString = vendor_info.vendor.toString();
+        final String jsonString = requestadd;
+        url += requestadd;
         StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

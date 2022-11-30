@@ -23,14 +23,14 @@ import org.json.JSONObject;
 
 public class add_food extends AppCompatActivity {
 
-    EditText foodId;
-    EditText calories;
-    EditText name;
-    EditText price;
-    EditText menuId;
-    Button back;
-    Button add;
-    TextView msgResponse;
+    private EditText foodId;
+    private EditText calories;
+    private EditText name;
+    private EditText price;
+    private EditText menuId;
+    private Button back;
+    private Button add;
+    private TextView msgResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class add_food extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                postReq();
             }
         });
 
@@ -82,6 +82,7 @@ public class add_food extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
+
                     msgResponse.setText("You have successfully added a new food item!");
                 } catch( Exception e) {
                     e.printStackTrace();
