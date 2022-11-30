@@ -52,8 +52,8 @@ public class admin_page extends AppCompatActivity {
         player_info = (Button) findViewById(R.id.change_player);
         response = (TextView) findViewById(R.id.response);
 
-        try { admin_level.setText("Current admin level: " + login.profile.getString("permLv")); }
-        catch (JSONException e) { e.printStackTrace(); }
+//        try { admin_level.setText("Current admin level: " + login.profile.getString("permLv")); }
+//        catch (JSONException e) { e.printStackTrace(); }
 
         grant_admin.setOnClickListener(new View.OnClickListener() {
             @Override

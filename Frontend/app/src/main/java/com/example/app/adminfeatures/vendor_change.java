@@ -26,6 +26,8 @@ import com.example.app.MainActivity;
 import com.example.app.adminfeatures.vendor_info;
 
 import com.example.app.R;
+import com.example.app.login;
+import com.example.app.pass_change;
 import com.example.app.register;
 
 import org.json.JSONException;
@@ -42,6 +44,7 @@ public class vendor_change extends AppCompatActivity {
     private TextView msgResponse;
     Random rand = new Random();
     int id;
+    private RequestQueue queue;
 
     /**
      * Creates the screen based off of the .xml file associated with the activity and adds logic for
@@ -52,6 +55,7 @@ public class vendor_change extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_change);
+        queue = Volley.newRequestQueue(vendor_change.this);
 
         create = findViewById(R.id.create);
         add = findViewById(R.id.add);
@@ -90,7 +94,6 @@ public class vendor_change extends AppCompatActivity {
     }
 
     private void postReq() {
-        RequestQueue queue = Volley.newRequestQueue(vendor_change.this);
         String url = "http://coms-309-013.class.las.iastate.edu:8080/menu/create";
         String request1 = "?";
         try {
@@ -107,16 +110,12 @@ public class vendor_change extends AppCompatActivity {
         StringRequest req = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                try {
-                    msgResponse.setText("You have successfully created a menu! ID = " + id);
-                } catch( Exception e) {
-                    e.printStackTrace();
-                }
+                putReq();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                msgResponse.setText("Looks like something went wrong. Please try again");
+                msgResponse.setText("Looks like something went wrong");
                 error.printStackTrace();
             }
         }) {
@@ -131,5 +130,46 @@ public class vendor_change extends AppCompatActivity {
             }
         };
         queue.add(req);
+    }
+
+    private void putReq() {
+        String url = "";
+        try {
+            url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/update/" + vendor_info.vendor.getString("name");
+            vendor_info.vendor.remove("menu");
+            vendor_info.vendor.put("menu", id);
+            url += "?vendorId=" + vendor_info.vendor.getString("vendorId");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JSONObject test = vendor_info.vendor;
+        final String jsonString = vendor_info.vendor.toString();
+        StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                msgResponse.setText("You have successfully created a menu! ID = " + id);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                msgResponse.setText("Looks like something went wrong. Please try again");
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public byte[] getBody() {
+                return jsonString.getBytes();
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
+
+        queue.add(request);
     }
 }

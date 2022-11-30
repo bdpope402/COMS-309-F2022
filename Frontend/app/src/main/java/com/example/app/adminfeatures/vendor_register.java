@@ -28,6 +28,8 @@ import com.example.app.admin_page;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Random;
+
 public class vendor_register extends AppCompatActivity {
 
     private TextView msgResponse;
@@ -36,6 +38,8 @@ public class vendor_register extends AppCompatActivity {
     private EditText name;
     private EditText username;
     private EditText location;
+    Random rand = new Random();
+    int id;
 
     /**
      * Creates the screen based off of the .xml file associated with the activity and adds logic for
@@ -53,6 +57,7 @@ public class vendor_register extends AppCompatActivity {
         name = findViewById(R.id.vendor_name);
         username = findViewById(R.id.maintainer_username);
         location = findViewById(R.id.location);
+        id = rand.nextInt(1000000000);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,11 +83,11 @@ public class vendor_register extends AppCompatActivity {
         String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/register/";
         JSONObject regDetails = new JSONObject();
         try {
-            regDetails.put("VendorID", 1);
-            regDetails.put("OC", true);
-            regDetails.put("name", name.getText());
-            regDetails.put("location", location.getText());
-            regDetails.put("maintainer_username", username.getText());
+            regDetails.put("vendorId", id);
+            regDetails.put("oc", true);
+            regDetails.put("name", name.getText().toString());
+            regDetails.put("location", location.getText().toString());
+            regDetails.put("maintainer_username", username.getText().toString());
             regDetails.put("menu", null);
         } catch(JSONException e) {
             e.printStackTrace();
