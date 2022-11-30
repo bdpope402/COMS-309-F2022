@@ -67,11 +67,12 @@ public class add_food extends AppCompatActivity {
         String url = "http://coms-309-013.class.las.iastate.edu:8080/item/create/" + menuId.getText().toString();
         JSONObject regDetails = new JSONObject();
         try {
-            regDetails.put("foodId", foodId.getText().toString());
-            regDetails.put("cal", calories.getText().toString());
+            regDetails.put("foodId", Integer.parseInt(foodId.getText().toString()));
+            regDetails.put("cal", Integer.parseInt(calories.getText().toString()));
             regDetails.put("name", name.getText().toString());
-            regDetails.put("price", price.getText().toString());
-            regDetails.put("menuId", menuId.getText().toString());
+            regDetails.put("price", (long) Double.parseDouble(price.getText().toString()));
+            regDetails.put("menuId", Integer.parseInt(menuId.getText().toString()));
+            regDetails.put("stock", 0);
         } catch(JSONException e) {
             e.printStackTrace();
         }

@@ -92,17 +92,17 @@ public class vendor_info extends AppCompatActivity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-//                try {
-//                    if (response.getString("maintainerUsername").equals(maintainer_username.getText().toString())) {
+                try {
+                    if (response.getString("maintainerUsername").equals(maintainer_username.getText().toString())) {
                         vendor = response;
                         startActivity(new Intent(vendor_info.this, vendor_change.class));
-//                    }
-//                    else {
-//                        msgResponse.setText("This is not the correct maintainer username");
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+                    }
+                    else {
+                        msgResponse.setText("This is not the correct maintainer username");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override

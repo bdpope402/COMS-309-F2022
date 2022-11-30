@@ -110,7 +110,7 @@ public class vendor_change extends AppCompatActivity {
         StringRequest req = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                msgResponse.setText("You have successfully created a menu! ID = " + id);
+                msgResponse.setText("You have successfully created a menu! Please write this ID down: " + id);
 //                putReq(); //currently does not work
             }
         }, new Response.ErrorListener() {
@@ -133,22 +133,26 @@ public class vendor_change extends AppCompatActivity {
         queue.add(req);
     }
 
-    //currently throws a 400 error
+    //currently throws a 500 error
     private void putReq() {
         String url = "";
-        String requestadd = "";
+        JSONObject ven = new JSONObject();
         try {
             url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/update/" + vendor_info.vendor.getString("name");
-            vendor_info.vendor.remove("menu");
-            vendor_info.vendor.put("menu", id);
-
+            ven = vendor_info.vendor;
+            ven.remove("menu");
+            ven.put("menu", id);
+//            ven.put("name", vendor_info.vendor.getString("name"));
+//            ven.put("location", vendor_info.vendor.getString("location"));
+//            ven.put("menu", id);
+//            ven.put("vendorId", Integer.parseInt(vendor_info.vendor.getString("vendorId")));
+//            ven.put("status", false);
+//            ven.put("maintainerUsername", vendor_info.vendor.getString("maintainerUsername"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-//        final String jsonString = vendor_info.vendor.toString();
-        final String jsonString = requestadd;
-        url += requestadd;
+        final String jsonString = ven.toString();
         StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
