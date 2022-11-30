@@ -94,6 +94,7 @@ public class concessions_info extends AppCompatActivity {
                     vendor.put("name", response.getString("name"));
                     vendor.put("location", locationString);
                     vendor.put("id", response.getString("id"));
+                    vendor.put("menu", response.getString("menu"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -122,26 +123,26 @@ public class concessions_info extends AppCompatActivity {
      * information that is taken from the objects.
      */
     private void getMenuReq() {
-//        RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
-//        String url = null;
-//        try {
-//            url = "http://coms-309-013.class.las.iastate.edu:8080/menu/" + vendor.getString("id");
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        JSONObject json = new JSONObject();
-//        final String requestBody = json.toString();
-//        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-//            @Override
-//            public void onResponse(JSONArray response) {
-//                try {
-//                    for (int i = 0; i < response.length(); i++) {
-//                        JSONObject responseObj = response.getJSONObject(i);
-//                        menuItems.put(responseObj.toString());
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+        RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
+        String url = null;
+        try {
+            url = "http://coms-309-013.class.las.iastate.edu:8080/menu/" + vendor.getString("menu");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONObject json = new JSONObject();
+        final String requestBody = json.toString();
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject responseObj = response.getJSONObject(i);
+                        menuItems.put(responseObj.toString());
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 int y = 150;
                 int x = 200;
                 int i;
@@ -155,16 +156,16 @@ public class concessions_info extends AppCompatActivity {
                     menu.setId(i);
                     price.setId(i + 1);
                     calories.setId(i + 2);
-//            try {
-//                menu.setText("Item: " + menuItems.getJSONObject((i + 1) / 3).getString("item_name"));
-//                price.setText("Price: " + menuItems.getJSONObject((i + 1) / 3).getString("price"));
-//                calories.setText("Calories: " + menuItems.getJSONObject((i + 1) / 3).getString("calories"));
+            try {
+                menu.setText("Item: " + menuItems.getJSONObject((i + 1) / 3).getString("name"));
+                price.setText("Price: " + menuItems.getJSONObject((i + 1) / 3).getString("price"));
+                calories.setText("Calories: " + menuItems.getJSONObject((i + 1) / 3).getString("calories"));
                     menu.setText("Item: ");
                     price.setText("Price: ");
                     calories.setText("Calories: ");
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
                     item_names.add(menu);
                     item_prices.add(price);
                     item_calories.add(calories);
@@ -197,22 +198,22 @@ public class concessions_info extends AppCompatActivity {
                 constraint.connect(back.getId(), ConstraintSet.LEFT, R.id.menu, ConstraintSet.LEFT, y);
                 constraint.connect(back.getId(), ConstraintSet.TOP, item_calories.get(length - 1).getId(), ConstraintSet.TOP, 200);
                 constraint.applyTo(lin);
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//            }
-//        }){
-//            @Override
-//            public byte[] getBody() {
-//                return requestBody.getBytes();
-//            }
-//
-//            @Override
-//            public String getBodyContentType() {
-//                return "application/json; charset=utf-8";
-//            }
-//        };
-//        queue.add(request);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }){
+            @Override
+            public byte[] getBody() {
+                return requestBody.getBytes();
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
+        queue.add(request);
     }
 }

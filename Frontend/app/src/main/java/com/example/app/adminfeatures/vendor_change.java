@@ -81,7 +81,7 @@ public class vendor_change extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), vendor_info.class)); //placeholder
+                startActivity(new Intent(view.getContext(), delete_food.class));
             }
         });
 
