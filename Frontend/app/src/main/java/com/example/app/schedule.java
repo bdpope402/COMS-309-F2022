@@ -79,7 +79,7 @@ public class schedule extends AppCompatActivity {
         getGamesReq();
     }
 
-    //SHOW SCHEDULE HERE
+    
 
     /**
      * Volley GET request. This requests the schedule JSONArray from the backend. and then
