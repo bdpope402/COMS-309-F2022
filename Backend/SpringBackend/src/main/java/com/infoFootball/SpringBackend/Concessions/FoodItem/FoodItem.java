@@ -13,7 +13,7 @@ public class FoodItem {
     @Id
     private int foodId;
 
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     private FoodMenu menu;
 

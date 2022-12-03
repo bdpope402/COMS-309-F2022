@@ -17,7 +17,7 @@ public class FoodMenu {
     private String menuName; //Name of menu
     private String menuDesc; //Description of menu/season
 
-
+    //@JsonIgnore
     @OneToOne
     private Vendor vendor;
 
