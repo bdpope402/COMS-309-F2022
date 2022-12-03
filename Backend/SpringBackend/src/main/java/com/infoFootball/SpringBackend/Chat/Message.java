@@ -11,7 +11,8 @@ import javax.persistence.ManyToOne;
 public class Message {
 
     @Id
-    int messageId;
+    int id;
+
     String messageContents;
     long timeSent;
 
