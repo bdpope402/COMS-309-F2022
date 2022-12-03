@@ -13,7 +13,7 @@ maven-build:
     - cfergen_tag                      # this is LINK to the shell runner on the remote-server
   script:
     - cd Backend/SpringBackend                 #change directory to where you have your springboot application
-    - mvn clean install -U
+    - mvn package
 
 maven-test:
   stage: maventest
