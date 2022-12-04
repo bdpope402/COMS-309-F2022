@@ -19,6 +19,8 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class game_chat extends AppCompatActivity {
 
@@ -68,9 +70,11 @@ public class game_chat extends AppCompatActivity {
                     cc = new WebSocketClient(new URI(w), (Draft) drafts[0]) {
                         @Override
                         public void onMessage(String message) {
+                            long millis = System.currentTimeMillis();
+                            java.util.Date date = new java.util.Date(millis);
                             Log.d("", "run() returned: " + message);
                             String s = chat.getText().toString();
-                            chat.setText(s + "\nServer:" + message);
+                            chat.setText(s + "\nServer:" + message+"\n"+ date);
                         }
 
                         @Override
