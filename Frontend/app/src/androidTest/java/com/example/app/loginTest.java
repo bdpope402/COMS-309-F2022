@@ -13,6 +13,8 @@ import androidx.test.rule.ActivityTestRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -35,4 +37,14 @@ public class loginTest {
         onView(withId(R.id.textView2)).check(matches(withText("Username:")));
     }
 
+    @Test
+    public void login() {
+        String username = "test";
+        String password = "test";
+        onView(withId(R.id.login)).perform(click());
+        onView(withId(R.id.username)).perform(typeText(username));
+        onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
+        onView(withId(R.id.login)).perform(click());
+        onView(withId(R.id.textView5)).check(matches(withText("Menu")));
+    }
 }
