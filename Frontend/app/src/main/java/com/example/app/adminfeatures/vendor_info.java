@@ -86,7 +86,7 @@ public class vendor_info extends AppCompatActivity {
     private void getReq() {
         vendor = new JSONObject();
         RequestQueue queue = Volley.newRequestQueue(vendor_info.this);
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendors/" + vendor_name.getText().toString();
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/" + vendor_name.getText().toString();
         JSONObject json = new JSONObject();
         final String requestBody = json.toString();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {

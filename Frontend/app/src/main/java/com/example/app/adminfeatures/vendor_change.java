@@ -110,8 +110,8 @@ public class vendor_change extends AppCompatActivity {
         StringRequest req = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                msgResponse.setText("You have successfully created a menu! Please write this ID down: " + id);
-//                putReq(); //currently does not work
+//                msgResponse.setText("You have successfully created a menu! Please write this ID down: " + id);
+                putReq(); //currently does not work
             }
         }, new Response.ErrorListener() {
             @Override

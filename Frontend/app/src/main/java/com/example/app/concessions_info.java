@@ -81,7 +81,7 @@ public class concessions_info extends AppCompatActivity {
      */
     private void getVendorReq() {
         RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendors/" + concessions.vendor_name;
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/" + concessions.vendor_name;
         JSONObject json = new JSONObject();
         final String requestBody = json.toString();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -126,7 +126,7 @@ public class concessions_info extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
         String url = null;
         try {
-            url = "http://coms-309-013.class.las.iastate.edu:8080/menu/" + vendor.getString("menu");
+            url = "http://coms-309-013.class.las.iastate.edu:8080/menu/foodItems/" + vendor.getString("menu");
         } catch (JSONException e) {
             e.printStackTrace();
         }
