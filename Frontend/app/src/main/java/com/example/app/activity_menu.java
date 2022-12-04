@@ -63,7 +63,7 @@ public class activity_menu extends AppCompatActivity {
         page4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), MainActivity.class));
+                startActivity(new Intent(view.getContext(), map.class));
             }
         });
 
