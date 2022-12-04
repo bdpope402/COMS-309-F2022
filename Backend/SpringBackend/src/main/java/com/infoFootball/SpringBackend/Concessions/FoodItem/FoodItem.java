@@ -1,5 +1,6 @@
 package com.infoFootball.SpringBackend.Concessions.FoodItem;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.infoFootball.SpringBackend.Concessions.FoodMenu.FoodMenu;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -12,6 +13,7 @@ public class FoodItem {
     @Id
     private int foodId;
 
+    //@JsonIgnore
     @ManyToOne
     private FoodMenu menu;
 

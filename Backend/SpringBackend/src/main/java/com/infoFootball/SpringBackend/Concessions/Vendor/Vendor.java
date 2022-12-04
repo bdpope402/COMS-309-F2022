@@ -1,5 +1,6 @@
 package com.infoFootball.SpringBackend.Concessions.Vendor;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.infoFootball.SpringBackend.Concessions.FoodMenu.FoodMenu;
 import com.infoFootball.SpringBackend.User.User;
 
@@ -20,6 +21,7 @@ public class Vendor {
     private String location;
     private String maintainerUsername;
 
+    @JsonIgnore
     @OneToOne
     private FoodMenu menu;
 

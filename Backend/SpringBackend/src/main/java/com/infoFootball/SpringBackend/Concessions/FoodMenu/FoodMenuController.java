@@ -1,5 +1,6 @@
 package com.infoFootball.SpringBackend.Concessions.FoodMenu;
 
+import com.infoFootball.SpringBackend.Concessions.FoodItem.FoodItem;
 import com.infoFootball.SpringBackend.Concessions.Vendor.Vendor;
 import com.infoFootball.SpringBackend.Concessions.Vendor.VendorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class FoodMenuController {
     @GetMapping(path = "/menu/all")
     List<FoodMenu> getAllMenus() {
         return menuRepository.findAll();
+    }
+
+    @GetMapping(path = "/menu/foodItems/{id}")
+    List<FoodItem> getAllItemsOfMenu(@PathVariable int id) {
+        return menuRepository.findByMenuId(id).getItems();
     }
 
     @PostMapping(path = "/menu/create")

@@ -16,7 +16,7 @@ public class VendorController {
      * @param vendorName name of vendor
      * @return JSON object of vendor
      */
-    @GetMapping(path = "/vendors/{vendorName}")
+    @GetMapping(path = "/vendor/{vendorName}")
     Vendor getOneVendor(@PathVariable String vendorName) {
         return vendorRepository.findByName(vendorName);
     }

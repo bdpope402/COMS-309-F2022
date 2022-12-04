@@ -1,5 +1,6 @@
 package com.infoFootball.SpringBackend.Concessions.FoodMenu;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.infoFootball.SpringBackend.Concessions.FoodItem.FoodItem;
 import com.infoFootball.SpringBackend.Concessions.Vendor.Vendor;
 
@@ -16,9 +17,11 @@ public class FoodMenu {
     private String menuName; //Name of menu
     private String menuDesc; //Description of menu/season
 
+    //@JsonIgnore
     @OneToOne
     private Vendor vendor;
 
+    @JsonIgnore
     @OneToMany
     private List<FoodItem> items; //List of items in menu
 
