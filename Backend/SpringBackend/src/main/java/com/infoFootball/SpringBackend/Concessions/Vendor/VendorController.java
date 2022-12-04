@@ -47,7 +47,7 @@ public class VendorController {
      * @param oldVendorName String of old vendor name
      * @return JSON of updated vendor object
      */
-    @PutMapping(path = "/vendor/update/{vendorName}")
+    @PutMapping(path = "/vendor/update/{oldVendorName}")
     Vendor updateVendor(@RequestBody Vendor newVendor, @PathVariable String oldVendorName) {
         Vendor oldVendor = vendorRepository.findByName(oldVendorName);
         if (oldVendor == null) {
