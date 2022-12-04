@@ -49,4 +49,22 @@ public class registerTest {
 
         onView(withId(R.id.msgResponse)).check(matches(withText("You have successfully created a new user!")));
     }
+
+    @Test
+    public void noLengthStrings() {
+        String password = "test";
+        String email = "test@gmail.com";
+        String phone = "8889990000";
+        onView(withId(R.id.register)).perform(click());
+        onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
+        onView(withId(R.id.phone)).perform(typeText(phone), closeSoftKeyboard());
+        onView(withId(R.id.email)).perform(typeText(email), closeSoftKeyboard());
+        onView(withId(R.id.register)).perform(click());
+
+        try {
+            Thread.sleep(DELAY);
+        } catch (InterruptedException e) {}
+
+        onView(withId(R.id.msgResponse)).check(matches(withText("Error: Haven't filled out all necessary fields")));
+    }
 }
