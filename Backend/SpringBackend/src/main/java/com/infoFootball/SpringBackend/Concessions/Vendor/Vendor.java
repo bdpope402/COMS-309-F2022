@@ -21,7 +21,6 @@ public class Vendor {
     private String location;
     private String maintainerUsername;
 
-    //@JsonIgnore
     @OneToOne
     private FoodMenu menu;
 

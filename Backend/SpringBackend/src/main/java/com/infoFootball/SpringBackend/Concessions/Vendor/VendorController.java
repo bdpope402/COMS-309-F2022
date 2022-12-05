@@ -31,9 +31,9 @@ public class VendorController {
     }
 
     @GetMapping(path = "/vendor/getMenu/{vendorName}")
-    FoodMenu getMenuVendor(@PathVariable String vendorName) {
+    int getMenuVendor(@PathVariable String vendorName) {
         Vendor cur = vendorRepository.findByName(vendorName);
-        return cur.getMenu();
+        return cur.getMenu().getMenuId();
     }
 
     /**
