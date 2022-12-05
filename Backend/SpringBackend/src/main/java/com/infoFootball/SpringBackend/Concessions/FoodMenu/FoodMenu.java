@@ -18,11 +18,11 @@ public class FoodMenu {
     private String menuDesc; //Description of menu/season
 
     //@JsonIgnore
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Vendor vendor;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE)
     private List<FoodItem> items; //List of items in menu
 
     public FoodMenu() {
@@ -37,6 +37,10 @@ public class FoodMenu {
         this.menuName = name;
         this.menuDesc = desc;
         this.menuId = menuId;
+    }
+
+    public void removeItems(FoodItem foodItem) {
+        items.remove(foodItem);
     }
 
     //Getters and setters
