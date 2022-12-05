@@ -31,9 +31,10 @@ public class VendorController {
     }
 
     @GetMapping(path = "/vendor/getMenu/{vendorName}")
-    int getMenuVendor(@PathVariable String vendorName) {
+    String getMenuVendor(@PathVariable String vendorName) {
         Vendor cur = vendorRepository.findByName(vendorName);
-        return cur.getMenu().getMenuId();
+        String id = "" + cur.getMenu().getMenuId();
+        return id;
     }
 
     /**
@@ -43,8 +44,7 @@ public class VendorController {
     @GetMapping(path = "/vendor/all")
     List<Vendor> getAllVendors() {
         List<Vendor> allVendors = vendorRepository.findAll();
-        for(int i = 0; i < allVendors.size(); i++) {
-            Vendor cur = allVendors.get(i);
+        for (Vendor cur : allVendors) {
             removeMenu(cur);
         }
         return allVendors;
