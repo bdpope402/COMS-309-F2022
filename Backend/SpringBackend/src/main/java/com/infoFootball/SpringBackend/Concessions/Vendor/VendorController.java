@@ -1,5 +1,7 @@
 package com.infoFootball.SpringBackend.Concessions.Vendor;
 
+import com.infoFootball.SpringBackend.Concessions.FoodMenu.FoodMenu;
+import com.infoFootball.SpringBackend.Concessions.FoodMenu.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +12,8 @@ public class VendorController {
 
     @Autowired
     VendorRepository vendorRepository;
+    @Autowired
+    MenuRepository menuRepository;
 
     /**
      * Gets a single vendor by name
@@ -21,13 +25,20 @@ public class VendorController {
         return vendorRepository.findByName(vendorName);
     }
 
+    @GetMapping(path = "/vendor/getMenu/{vendorName}")
+    FoodMenu getMenuVendor(@PathVariable String vendorName) {
+        Vendor cur = vendorRepository.findByName(vendorName);
+        return cur.getMenu();
+    }
+
     /**
      * Gets all vendors
      * @return List of vendors
      */
     @GetMapping(path = "/vendor/all")
     List<Vendor> getAllVendors() {
-        return vendorRepository.findAll();
+        List<Vendor> allVendors = vendorRepository.findAll();
+        return allVendors;
     }
 
     /**
@@ -41,6 +52,14 @@ public class VendorController {
         return "Success";
     }
 
+    @PutMapping(path = "/vendor/saveMenu/{vendor}/{menuId}")
+    String setMenu(@PathVariable String vendor, @PathVariable int menuId) {
+        Vendor cur = vendorRepository.findByName(vendor);
+        cur.setMenu(menuRepository.findByMenuId(menuId));
+        vendorRepository.save(cur);
+        return "Success";
+    }
+
     /**
      * Updates a vendor with a new vendor
      * @param newVendor JSON object of new vendor
@@ -50,11 +69,19 @@ public class VendorController {
     @PutMapping(path = "/vendor/update/{oldVendorName}")
     Vendor updateVendor(@RequestBody Vendor newVendor, @PathVariable String oldVendorName) {
         Vendor oldVendor = vendorRepository.findByName(oldVendorName);
+
         if (oldVendor == null) {
             return null;
+        } else {
+            oldVendor.setMenu(newVendor.getMenu());
+            oldVendor.setId(newVendor.getVendorId());
+            oldVendor.setName(newVendor.getName());
+            oldVendor.setLocation(newVendor.getLocation());
+            oldVendor.setStatus(newVendor.getStatus());
+            oldVendor.setMaintainerUsername(newVendor.getMaintainerUsername());
+            vendorRepository.save(oldVendor);
         }
-        vendorRepository.save(newVendor);
-        return vendorRepository.findByName(oldVendorName);
+        return oldVendor;
     }
 
     /**
