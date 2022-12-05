@@ -73,7 +73,6 @@ public class VendorController {
         if (oldVendor == null) {
             return null;
         } else {
-            oldVendor.setMenu(newVendor.getMenu());
             oldVendor.setId(newVendor.getVendorId());
             oldVendor.setName(newVendor.getName());
             oldVendor.setLocation(newVendor.getLocation());
