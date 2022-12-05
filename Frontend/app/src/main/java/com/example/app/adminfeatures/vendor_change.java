@@ -135,10 +135,11 @@ public class vendor_change extends AppCompatActivity {
 
     //currently throws a 500 error
     private void putReq() {
-        String url = "";
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/saveMenu/";
         JSONObject ven = new JSONObject();
+        String end = "";
         try {
-            url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/update/" + vendor_info.vendor.getString("name");
+            end = vendor_info.vendor.getString("name") + "/" + id;
             ven = vendor_info.vendor;
             ven.remove("menu");
             ven.put("menu", id);
@@ -152,7 +153,8 @@ public class vendor_change extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        final String jsonString = ven.toString();
+        url += end;
+        final String jsonString = end;
         StringRequest request = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

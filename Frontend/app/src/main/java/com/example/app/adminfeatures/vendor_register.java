@@ -99,7 +99,7 @@ public class vendor_register extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
-                    msgResponse.setText("You have successfully created a new user!");
+                    msgResponse.setText("You have successfully created a new vendor!");
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override

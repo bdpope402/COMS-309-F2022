@@ -126,7 +126,7 @@ public class concessions_info extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
         String url = null;
         try {
-            url = "http://coms-309-013.class.las.iastate.edu:8080/menu/foodItems/" + vendor.getString("menu");
+            url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/getMenu/" + vendor.getString("name");
         } catch (JSONException e) {
             e.printStackTrace();
         }

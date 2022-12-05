@@ -33,7 +33,7 @@ public class activity_menu extends AppCompatActivity {
         Button page2 = findViewById(R.id.button2);
         Button page3 = findViewById(R.id.button3);
         Button page4 = findViewById(R.id.button4);
-        Button page5 = findViewById(R.id.button5);
+        Button page5 = findViewById(R.id.admin);
         Button page6 = findViewById(R.id.button6);
         TextView response = findViewById(R.id.response);
 
@@ -71,7 +71,8 @@ public class activity_menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    if (login.profile.getString("permLv").equals("Admin")) {
+                    if (login.profile.getString("permLv").equals("Admin") || login.profile.getString("permLv").equals("Vendor")
+                    || login.profile.getString("permLv").equals("Information Maintainer") || login.profile.getString("permLv").equals("Moderator")) {
                         startActivity(new Intent(view.getContext(), admin_page.class));
                     }
                     else {
