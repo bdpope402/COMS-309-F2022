@@ -43,7 +43,6 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
         LatLng jackTrice = new LatLng(42.013983, -93.635753);
         mMap.addMarker(new MarkerOptions().position(jackTrice).title("Jack Trice Stadium"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jackTrice,15f));
