@@ -15,6 +15,11 @@ public class VendorController {
     @Autowired
     MenuRepository menuRepository;
 
+    Vendor removeMenu(Vendor vendor) {
+        vendor.setMenu(null);
+        return vendor;
+    }
+
     /**
      * Gets a single vendor by name
      * @param vendorName name of vendor
@@ -22,7 +27,7 @@ public class VendorController {
      */
     @GetMapping(path = "/vendor/{vendorName}")
     Vendor getOneVendor(@PathVariable String vendorName) {
-        return vendorRepository.findByName(vendorName);
+        return removeMenu(vendorRepository.findByName(vendorName));
     }
 
     @GetMapping(path = "/vendor/getMenu/{vendorName}")
@@ -38,6 +43,10 @@ public class VendorController {
     @GetMapping(path = "/vendor/all")
     List<Vendor> getAllVendors() {
         List<Vendor> allVendors = vendorRepository.findAll();
+        for(int i = 0; i < allVendors.size(); i++) {
+            Vendor cur = allVendors.get(i);
+            removeMenu(cur);
+        }
         return allVendors;
     }
 
