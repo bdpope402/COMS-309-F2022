@@ -132,7 +132,6 @@ public class vendor_change extends AppCompatActivity {
         queue.add(req);
     }
 
-    //currently throws a 500 error
     private void putReq() {
         String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/saveMenu/";
         JSONObject ven = new JSONObject();
