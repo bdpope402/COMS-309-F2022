@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.infoFootball.SpringBackend.Concessions.FoodMenu.FoodMenu;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -14,7 +15,7 @@ public class FoodItem {
     private int foodId;
 
     //@JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private FoodMenu menu;
 
     private String name;

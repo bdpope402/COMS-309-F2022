@@ -1,6 +1,8 @@
 package com.infoFootball.SpringBackend.Concessions.FoodItem;
 
 import com.infoFootball.SpringBackend.Concessions.FoodMenu.MenuRepository;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +19,9 @@ public class FoodItemController {
 
     @GetMapping(path = "/item/{id}")
     FoodItem getItem(@PathVariable int id) {
-        return foodItemRepository.findByFoodId(id);
+        FoodItem cur = foodItemRepository.findByFoodId(id);
+        cur.setMenu(null);
+        return cur;
     }
 
     @PostMapping(path = "/item/create/{menuId}")
