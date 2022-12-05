@@ -1,10 +1,19 @@
 package com.example.app;
 
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+
 import androidx.test.filters.LargeTest;
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
 import androidx.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4ClassRunner.class)
@@ -12,4 +21,17 @@ import org.junit.runner.RunWith;
 public class concessionsTests {
     @Rule
     public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
+
+    @Test
+    public void viewVendors() {
+        String username = "testUser";
+        String password = "test";
+
+        onView(withId(R.id.login)).perform(click());
+        onView(withId(R.id.username)).perform(typeText(username), closeSoftKeyboard());
+        onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
+        onView(withId(R.id.login)).perform(click());
+        onView(withId(R.id.button2)).perform(click());
+        onView(withText("vendorTest")).check(matches(withText("vendorTest")));
+    }
 }

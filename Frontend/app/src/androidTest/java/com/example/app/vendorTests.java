@@ -30,7 +30,7 @@ public class vendorTests {
 //    public void registerVendor() {
 //        String username = "testingAdmin";
 //        String password = "test";
-//        String vendorName = "vendorTest";
+//        String vendorName = "vendorTestRegister";
 //        String maintainer = "testingAdmin";
 //        String booth = "99";
 //
