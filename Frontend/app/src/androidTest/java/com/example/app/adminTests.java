@@ -34,7 +34,7 @@ public class adminTests {
         onView(withId(R.id.username)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
-        onView(withId(R.id.admin)).perform(click());
+        onView(withText("ADMIN INFO")).perform(click());
         onView(withId(R.id.response)).check(matches(withText("You don't have the permissions to do that")));
     }
 
@@ -47,7 +47,7 @@ public class adminTests {
         onView(withId(R.id.username)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
-        onView(withId(R.id.admin)).perform(click());
+        onView(withText("ADMIN INFO")).perform(click());
         onView(withId(R.id.grant_admin)).perform(click());
         onView(withId(R.id.response)).check(matches(withText("You don't have the right permission level")));
     }
@@ -62,7 +62,7 @@ public class adminTests {
         onView(withId(R.id.username)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
-        onView(withId(R.id.admin)).perform(click());
+        onView(withText("ADMIN INFO")).perform(click());
         onView(withId(R.id.grant_admin)).perform(click());
         onView(withId(R.id.username)).perform(typeText(nonAdminUser), closeSoftKeyboard());
         onView(withId(R.id.privileges)).perform(click());
@@ -88,7 +88,7 @@ public class adminTests {
         onView(withId(R.id.username)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
-        onView(withId(R.id.admin)).perform(click());
+        onView(withText("ADMIN INFO")).perform(click());
         onView(withId(R.id.grant_admin)).perform(click());
         onView(withId(R.id.username)).perform(typeText(nonAdminUser), closeSoftKeyboard());
         onView(withId(R.id.privileges)).perform(click());

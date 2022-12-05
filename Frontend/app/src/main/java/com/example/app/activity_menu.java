@@ -33,7 +33,7 @@ public class activity_menu extends AppCompatActivity {
         Button page2 = findViewById(R.id.button2);
         Button page3 = findViewById(R.id.button3);
         Button page4 = findViewById(R.id.button4);
-        Button page5 = findViewById(R.id.admin);
+        Button page5 = findViewById(R.id.button5);
         Button page6 = findViewById(R.id.button6);
         TextView response = findViewById(R.id.response);
 

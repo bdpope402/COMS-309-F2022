@@ -87,7 +87,7 @@ public class vendor_register extends AppCompatActivity {
             regDetails.put("oc", true);
             regDetails.put("name", name.getText().toString());
             regDetails.put("location", location.getText().toString());
-            regDetails.put("maintainer_username", username.getText().toString());
+            regDetails.put("maintainerUsername", username.getText().toString());
             regDetails.put("menu", null);
         } catch(JSONException e) {
             e.printStackTrace();

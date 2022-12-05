@@ -110,7 +110,6 @@ public class vendor_change extends AppCompatActivity {
         StringRequest req = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-//                msgResponse.setText("You have successfully created a menu! Please write this ID down: " + id);
                 putReq(); //currently does not work
             }
         }, new Response.ErrorListener() {
@@ -140,15 +139,6 @@ public class vendor_change extends AppCompatActivity {
         String end = "";
         try {
             end = vendor_info.vendor.getString("name") + "/" + id;
-            ven = vendor_info.vendor;
-            ven.remove("menu");
-            ven.put("menu", id);
-//            ven.put("name", vendor_info.vendor.getString("name"));
-//            ven.put("location", vendor_info.vendor.getString("location"));
-//            ven.put("menu", id);
-//            ven.put("vendorId", Integer.parseInt(vendor_info.vendor.getString("vendorId")));
-//            ven.put("status", false);
-//            ven.put("maintainerUsername", vendor_info.vendor.getString("maintainerUsername"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

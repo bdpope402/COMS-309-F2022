@@ -38,7 +38,7 @@ public class registerTest {
         String phone = "8889990000";
         onView(withId(R.id.register)).perform(click());
         onView(withId(R.id.username)).perform(typeText(username), closeSoftKeyboard());
-        onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
+        onView(withId(R.id.passwordText)).perform(typeText(password), closeSoftKeyboard());
         onView(withId(R.id.phone)).perform(typeText(phone), closeSoftKeyboard());
         onView(withId(R.id.email)).perform(typeText(email), closeSoftKeyboard());
         onView(withId(R.id.register)).perform(click());
@@ -56,7 +56,7 @@ public class registerTest {
         String email = "test@gmail.com";
         String phone = "8889990000";
         onView(withId(R.id.register)).perform(click());
-        onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
+        onView(withId(R.id.passwordText)).perform(typeText(password), closeSoftKeyboard());
         onView(withId(R.id.phone)).perform(typeText(phone), closeSoftKeyboard());
         onView(withId(R.id.email)).perform(typeText(email), closeSoftKeyboard());
         onView(withId(R.id.register)).perform(click());

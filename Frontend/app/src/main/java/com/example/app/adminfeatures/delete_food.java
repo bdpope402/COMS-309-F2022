@@ -48,14 +48,7 @@ public class delete_food extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //will uncomment this once I find out why I'm getting a 400 error when trying to update vendor
-//                try {
-//                    if (menuId.getText().toString().equals(vendor_info.vendor.getString("menu"))) {
-                        deleteReq();
-//                   }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+                deleteReq();
             }
         });
     }

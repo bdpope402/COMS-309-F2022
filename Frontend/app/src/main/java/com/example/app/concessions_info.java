@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -71,8 +72,7 @@ public class concessions_info extends AppCompatActivity {
                 startActivity(new Intent(concessions_info.this, concessions.class));
             }
         });
-
-        getVendorReq();
+        getMenuId();
     }
 
     /**
@@ -124,12 +124,7 @@ public class concessions_info extends AppCompatActivity {
      */
     private void getMenuReq() {
         RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
-        String url = null;
-        try {
-            url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/getMenu/" + vendor.getString("name");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/menu/foodItems/" + id;
         JSONObject json = new JSONObject();
         final String requestBody = json.toString();
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -215,5 +210,35 @@ public class concessions_info extends AppCompatActivity {
             }
         };
         queue.add(request);
+    }
+
+    public void getMenuId() {
+        RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/getMenu/" + concessions.vendor_name;
+        JSONObject json = new JSONObject();
+        final String requestBody = json.toString();
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                id = response;
+                getVendorReq();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }){
+            @Override
+            public byte[] getBody() {
+                return requestBody.getBytes();
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
+        queue.add(request);
+
     }
 }
