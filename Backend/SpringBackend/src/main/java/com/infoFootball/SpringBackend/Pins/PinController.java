@@ -16,6 +16,12 @@ public class PinController {
         return pinRepository.findAll();
     }
 
+    @PostMapping(path="/pins/new")
+    public String newPin(@RequestBody Pin newPin){
+        pinRepository.save(newPin);
+        return "Success";
+    }
+
     @GetMapping(path= "/pins/{username}")
     List<Pin> getPinsByUsername(@PathVariable String username){
         return pinRepository.findByUsername(username);
@@ -30,5 +36,11 @@ public class PinController {
         newPin.setIDNum(oldPin.getIDNum());
         pinRepository.save(newPin);
         return pinRepository.findByID(newPin.getIDNum());
+    }
+
+    @DeleteMapping(path="/pins/delete/{ID}")
+    String deletePin(@PathVariable Integer ID){
+        pinRepository.deleteByID(ID);
+        return "success";
     }
 }
