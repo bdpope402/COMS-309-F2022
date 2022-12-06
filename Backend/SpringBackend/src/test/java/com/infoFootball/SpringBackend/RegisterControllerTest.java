@@ -32,8 +32,9 @@ import org.springframework.test.web.servlet.MockMvc;
 //import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 //import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @RunWith(SpringRunner.class)
@@ -59,7 +60,8 @@ public class RegisterControllerTest {
 
         controller.perform(post("/login/register")
                 .contentType(MediaType.APPLICATION_JSON).content(jsonUser.toString())) //Sends in the json user
-                .andExpect(status().isOk());
+                .andExpect(status().isOk()) //Test that it gets a request
+                .andExpect(content().string("Success")); //Checks to see response is correct
     }
 
 
