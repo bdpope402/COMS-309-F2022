@@ -54,7 +54,7 @@ public class FoodItemController {
         cur.setPrice(-1);
         cur.setCal(-1);
         cur.setStock(-1);
-        foodItemRepository.save(cur);
+        foodItemRepository.save(cur); //test
         return "Success";
     }
 //    String delete(@PathVariable int id) {
