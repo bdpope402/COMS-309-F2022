@@ -16,10 +16,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Random;
+
 @RunWith(AndroidJUnit4ClassRunner.class)
 @LargeTest
 public class registerTest {
-    private static final int DELAY = 500;
+    private static final int DELAY = 2500;
+    Random rand = new Random();
 
     @Rule
     public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
@@ -32,7 +35,7 @@ public class registerTest {
 
     @Test
     public void register() {
-        String username = "classTest";
+        String username = "" + rand.nextInt(1000000000);;
         String password = "test";
         String email = "test@gmail.com";
         String phone = "8889990000";
@@ -42,12 +45,10 @@ public class registerTest {
         onView(withId(R.id.phone)).perform(typeText(phone), closeSoftKeyboard());
         onView(withId(R.id.email)).perform(typeText(email), closeSoftKeyboard());
         onView(withId(R.id.register)).perform(click());
-
+        onView(withId(R.id.msgResponse)).check(matches(withText("You have successfully created a new user!")));
         try {
             Thread.sleep(DELAY);
         } catch (InterruptedException e) {}
-
-        onView(withId(R.id.msgResponse)).check(matches(withText("You have successfully created a new user!")));
     }
 
     @Test
@@ -55,16 +56,12 @@ public class registerTest {
         String password = "test";
         String email = "test@gmail.com";
         String phone = "8889990000";
+
         onView(withId(R.id.register)).perform(click());
         onView(withId(R.id.passwordText)).perform(typeText(password), closeSoftKeyboard());
         onView(withId(R.id.phone)).perform(typeText(phone), closeSoftKeyboard());
         onView(withId(R.id.email)).perform(typeText(email), closeSoftKeyboard());
         onView(withId(R.id.register)).perform(click());
-
-        try {
-            Thread.sleep(DELAY);
-        } catch (InterruptedException e) {}
-
         onView(withId(R.id.msgResponse)).check(matches(withText("Error: Haven't filled out all necessary fields")));
     }
 }

@@ -34,6 +34,9 @@ public class adminTests {
         onView(withId(R.id.username)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
+        try {
+            Thread.sleep(DELAY);
+        } catch (InterruptedException e) {}
         onView(withText("ADMIN INFO")).perform(click());
         onView(withId(R.id.response)).check(matches(withText("You don't have the permissions to do that")));
     }
@@ -47,6 +50,9 @@ public class adminTests {
         onView(withId(R.id.username)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
+        try {
+            Thread.sleep(DELAY);
+        } catch (InterruptedException e) {}
         onView(withText("ADMIN INFO")).perform(click());
         onView(withId(R.id.grant_admin)).perform(click());
         onView(withId(R.id.response)).check(matches(withText("You don't have the right permission level")));
@@ -62,6 +68,9 @@ public class adminTests {
         onView(withId(R.id.username)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
+        try {
+            Thread.sleep(DELAY);
+        } catch (InterruptedException e) {}
         onView(withText("ADMIN INFO")).perform(click());
         onView(withId(R.id.grant_admin)).perform(click());
         onView(withId(R.id.username)).perform(typeText(nonAdminUser), closeSoftKeyboard());
@@ -88,6 +97,9 @@ public class adminTests {
         onView(withId(R.id.username)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
+        try {
+            Thread.sleep(DELAY);
+        } catch (InterruptedException e) {}
         onView(withText("ADMIN INFO")).perform(click());
         onView(withId(R.id.grant_admin)).perform(click());
         onView(withId(R.id.username)).perform(typeText(nonAdminUser), closeSoftKeyboard());

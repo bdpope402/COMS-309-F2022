@@ -43,6 +43,7 @@ public class concessions_info extends AppCompatActivity {
     private ArrayList<TextView> item_calories;
     private Button back;
     private ConstraintLayout lin;
+    RequestQueue queue;
 
     /**
      * Creates the screen based off of the .xml file associated with the activity and adds logic for
@@ -59,7 +60,7 @@ public class concessions_info extends AppCompatActivity {
         item_prices = new ArrayList<>();
         item_calories = new ArrayList<>();
         back = (Button) findViewById(R.id.back);
-        //int length = menuItems.length()
+        queue = Volley.newRequestQueue(concessions_info.this);
 
         vend_name = findViewById(R.id.vendor_name);
         vend_name.setText(concessions.vendor_name);
@@ -80,7 +81,6 @@ public class concessions_info extends AppCompatActivity {
      * stored in a JSONObject.
      */
     private void getVendorReq() {
-        RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
         String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/" + concessions.vendor_name;
         JSONObject json = new JSONObject();
         final String requestBody = json.toString();
@@ -123,7 +123,6 @@ public class concessions_info extends AppCompatActivity {
      * information that is taken from the objects.
      */
     private void getMenuReq() {
-        RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
         String url = "http://coms-309-013.class.las.iastate.edu:8080/menu/foodItems/" + id;
         JSONObject json = new JSONObject();
         final String requestBody = json.toString();
@@ -133,7 +132,7 @@ public class concessions_info extends AppCompatActivity {
                 try {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject responseObj = response.getJSONObject(i);
-                        menuItems.put(responseObj.toString());
+                        menuItems.put(responseObj);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -141,7 +140,8 @@ public class concessions_info extends AppCompatActivity {
                 int y = 150;
                 int x = 200;
                 int i;
-                int length = 10;
+//                int length = 10;
+                int length = menuItems.length();
                 ConstraintSet constraint = new ConstraintSet();
 
                 for (i = 0; i < length * 3; i += 3) {
@@ -151,16 +151,16 @@ public class concessions_info extends AppCompatActivity {
                     menu.setId(i);
                     price.setId(i + 1);
                     calories.setId(i + 2);
-            try {
-                menu.setText("Item: " + menuItems.getJSONObject((i + 1) / 3).getString("name"));
-                price.setText("Price: " + menuItems.getJSONObject((i + 1) / 3).getString("price"));
-                calories.setText("Calories: " + menuItems.getJSONObject((i + 1) / 3).getString("calories"));
-                    menu.setText("Item: ");
-                    price.setText("Price: ");
-                    calories.setText("Calories: ");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+                    try {
+                        menu.setText("Item: " + menuItems.getJSONObject((i + 1) / 3).getString("name"));
+                        price.setText("Price: " + menuItems.getJSONObject((i + 1) / 3).getString("price"));
+                        calories.setText("Calories: " + menuItems.getJSONObject((i + 1) / 3).getString("cal"));
+//                        menu.setText("Item: ");
+//                        price.setText("Price: ");
+//                        calories.setText("Calories: ");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     item_names.add(menu);
                     item_prices.add(price);
                     item_calories.add(calories);
@@ -213,7 +213,6 @@ public class concessions_info extends AppCompatActivity {
     }
 
     public void getMenuId() {
-        RequestQueue queue = Volley.newRequestQueue(concessions_info.this);
         String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/getMenu/" + concessions.vendor_name;
         JSONObject json = new JSONObject();
         final String requestBody = json.toString();
