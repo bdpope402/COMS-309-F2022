@@ -37,9 +37,9 @@ public class friends_list extends AppCompatActivity {
         setContentView(R.layout.activity_friends_list);
         buttons = new ArrayList<>();
         back = (Button) findViewById(R.id.back);
-//        getReq();
+        getReq();
 
-        lin = findViewById(R.id.concessions);
+        lin = findViewById(R.id.friends);
 
         add = findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
@@ -52,9 +52,13 @@ public class friends_list extends AppCompatActivity {
 
     private void getReq() {
         RequestQueue queue = Volley.newRequestQueue(friends_list.this);
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/all"; //will need to change
-        JSONObject json = new JSONObject();
-        final String requestBody = json.toString();
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/get/friend/";
+        String end = "";
+        try {
+            end += login.profile.getString("username");
+        } catch (JSONException e) {e.printStackTrace();}
+        url += end;
+        final String requestBody = end;
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -85,7 +89,7 @@ public class friends_list extends AppCompatActivity {
                     n.setId(i + 1);
                     n.setTag(i + 1);
                     try {
-                        n.setText(friends.get(i).getString("name"));
+                        n.setText(friends.get(i).getString("friend2"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
