@@ -1,5 +1,6 @@
 package com.infoFootball.SpringBackend.Concessions.FoodItem;
 
+import com.infoFootball.SpringBackend.Concessions.FoodMenu.FoodMenuController;
 import com.infoFootball.SpringBackend.Concessions.FoodMenu.MenuRepository;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -43,11 +44,22 @@ public class FoodItemController {
         return foodItemRepository.findByFoodId(id);
     }
 
-    @Transactional
+    //@Transactional
     @DeleteMapping(path = "/item/delete/{id}")
     String delete(@PathVariable int id) {
-        foodItemRepository.deleteByFoodId(id);
+        FoodItem cur = foodItemRepository.findByFoodId(id);
+        //cur.setFoodId(-1);
+        cur.setMenu(null);
+        cur.setName("null");
+        cur.setPrice(-1);
+        cur.setCal(-1);
+        cur.setStock(-1);
+        foodItemRepository.save(cur);
         return "Success";
     }
+//    String delete(@PathVariable int id) {
+//        foodItemRepository.deleteByFoodId(id);
+//        return "Success";
+//    }
 
 }
