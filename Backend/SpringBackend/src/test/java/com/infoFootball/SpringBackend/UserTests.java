@@ -49,7 +49,7 @@ public class UserTests {
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(jsonUser.toString()) //Send in json USER
-                .when().request("POST", "/login/register");
+                .when().request("POST", "/login/register"); //The url and request type
 
         //Checking status code
         int statusCode = response.getStatusCode();
