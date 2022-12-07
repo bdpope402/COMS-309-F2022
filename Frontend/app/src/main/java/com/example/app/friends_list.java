@@ -80,7 +80,7 @@ public class friends_list extends AppCompatActivity {
                 back.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivity(new Intent(friends_list.this, private_message.class));
+                        startActivity(new Intent(friends_list.this, AccountDetails.class));
                     }
                 });
 
@@ -99,7 +99,7 @@ public class friends_list extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             friend_name = n.getText().toString();
-//                            startActivity(new Intent(friends_list.this, private_message.class));
+                            startActivity(new Intent(friends_list.this, private_message.class));
                         }
                     });
                     buttons.add(n);
