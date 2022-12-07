@@ -32,7 +32,14 @@ public class FoodMenuController {
 
     @GetMapping(path = "/menu/foodItems/{id}")
     List<FoodItem> getAllItemsOfMenu(@PathVariable int id) {
-        return menuRepository.findByMenuId(id).getItems();
+        FoodMenu menu = menuRepository.findByMenuId(id);
+        List<FoodItem> items = menu.getItems();
+
+        for(int i =0; i< menu.getItems().size(); i++) {
+            items.get(i).setMenu(null);
+        }
+
+        return items;
     }
 
     @PostMapping(path = "/menu/create")
