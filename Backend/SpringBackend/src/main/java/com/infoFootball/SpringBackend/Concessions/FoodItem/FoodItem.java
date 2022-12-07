@@ -1,8 +1,10 @@
 package com.infoFootball.SpringBackend.Concessions.FoodItem;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.infoFootball.SpringBackend.Concessions.FoodMenu.FoodMenu;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -12,7 +14,8 @@ public class FoodItem {
     @Id
     private int foodId;
 
-    @ManyToOne
+    //@JsonIgnore
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private FoodMenu menu;
 
     private String name;

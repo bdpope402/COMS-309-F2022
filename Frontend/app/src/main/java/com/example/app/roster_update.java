@@ -1,3 +1,10 @@
+/**
+ * @author Michael Less
+ * This screen is used to update the information of a player on the backend.
+ * This is an intermediate screen to grab the ID of the player they want to
+ * edit
+ */
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +21,12 @@ public class roster_update extends AppCompatActivity {
     private EditText ID;
     public static String IDint;
 
+
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,3 +1,8 @@
+/**
+ * @author Tyler Atkinson
+ * This screen allows one to choose whether to login or register their vendor profile
+ */
+
 package com.example.app.adminfeatures;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +41,10 @@ public class vendor_info extends AppCompatActivity {
     public static JSONObject vendor;
     private TextView msgResponse;
 
+    /**
+     * Creates the vendor info screen based off of the .xml file that is associated with this activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,23 +79,23 @@ public class vendor_info extends AppCompatActivity {
         });
     }
 
+    /**
+     * Volley GET request. Gets the information from the database to add to a JSON object that is
+     * accessed by the next screen to be able to display the information.
+     */
     private void getReq() {
+        vendor = new JSONObject();
         RequestQueue queue = Volley.newRequestQueue(vendor_info.this);
-
-//        String url = "https://26ee0a9a-f41e-41c7-9e14-e30c8ccd3267.mock.pstmn.io/object/";
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendors/" + vendor_name;
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/" + vendor_name.getText().toString();
         JSONObject json = new JSONObject();
         final String requestBody = json.toString();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (response.getString("maintainer_name").equals(maintainer_username.getText())) {
-                        vendor.put("id", response.getString("id"));
-                        vendor.put("maintainer_username",response.getString("maintainer_name"));
-                        vendor.put("name", response.getString("name"));
-                        vendor.put("location", response.getString("location"));
-                        startActivity(new Intent(vendor_info.this, vendor_change.class)); //placeholder
+                    if (response.getString("maintainerUsername").equals(maintainer_username.getText().toString())) {
+                        vendor = response;
+                        startActivity(new Intent(vendor_info.this, vendor_change.class));
                     }
                     else {
                         msgResponse.setText("This is not the correct maintainer username");

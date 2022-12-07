@@ -1,6 +1,8 @@
 package com.infoFootball.SpringBackend.Concessions.Vendor;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.infoFootball.SpringBackend.Concessions.FoodMenu.FoodMenu;
+import com.infoFootball.SpringBackend.User.User;
 
 import javax.persistence.*;
 
@@ -17,8 +19,9 @@ public class Vendor {
     private String name;
     private boolean OC; //True for open - false for closed
     private String location;
+    private String maintainerUsername;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private FoodMenu menu;
 
     /**
@@ -50,6 +53,10 @@ public class Vendor {
 
 
     // SET FUNCTIONS //
+
+    public void setMaintainerUsername(String maintainerUsername) {
+        this.maintainerUsername = maintainerUsername;
+    }
 
     /**
      * Sets ID of vendor
@@ -131,6 +138,10 @@ public class Vendor {
      */
     public FoodMenu getMenu() {
         return this.menu;
+    }
+
+    public String getMaintainerUsername() {
+        return this.maintainerUsername;
     }
 
 }

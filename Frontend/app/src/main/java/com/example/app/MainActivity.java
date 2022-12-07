@@ -1,3 +1,8 @@
+/**
+ * @author Tyler Atkinson
+ * This is the first screen that users will see. Gives the option to either login or register a new
+ * account.
+ */
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +15,11 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     Button loginButton, registerButton;
 
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

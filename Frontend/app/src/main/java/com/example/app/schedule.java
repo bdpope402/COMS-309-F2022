@@ -1,3 +1,10 @@
+/**
+ * @author Michael Less
+ *   This screen gives a view of all the games in the schdule
+ *
+ *
+ */
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +42,12 @@ public class schedule extends AppCompatActivity {
     private Button back;
     private Button edit;
 
+
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +80,12 @@ public class schedule extends AppCompatActivity {
     }
 
     //SHOW SCHEDULE HERE
+
+    /**
+     * Volley GET request. This requests the schedule JSONArray from the backend. and then
+     * puts it into a seperate array, then displays that Array by dynamically creating
+     * TextViews
+     */
     private void getGamesReq() {
         RequestQueue queue = Volley.newRequestQueue(schedule.this);
 

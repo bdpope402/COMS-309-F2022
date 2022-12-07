@@ -17,6 +17,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".add_friend"
+            android:exported="false" />
+        <activity
+            android:name=".friends_list"
+            android:exported="false" />
+        <activity
+            android:name=".adminfeatures.delete_food"
+            android:exported="false" />
+        <activity
+            android:name=".adminfeatures.add_food"
+            android:exported="false" />
+        <activity
             android:name=".schedule_delete"
             android:exported="false" />
         <activity
@@ -27,7 +39,7 @@
             android:exported="false" />
         <activity
             android:name=".schedule"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".roster_update_inputs"
             android:exported="false" />

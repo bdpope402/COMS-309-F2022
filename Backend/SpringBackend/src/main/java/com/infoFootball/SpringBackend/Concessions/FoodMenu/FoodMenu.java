@@ -1,5 +1,6 @@
 package com.infoFootball.SpringBackend.Concessions.FoodMenu;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.infoFootball.SpringBackend.Concessions.FoodItem.FoodItem;
 import com.infoFootball.SpringBackend.Concessions.Vendor.Vendor;
 
@@ -16,10 +17,12 @@ public class FoodMenu {
     private String menuName; //Name of menu
     private String menuDesc; //Description of menu/season
 
-    @OneToOne
+    //@JsonIgnore
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Vendor vendor;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.REMOVE)
     private List<FoodItem> items; //List of items in menu
 
     public FoodMenu() {
@@ -34,6 +37,10 @@ public class FoodMenu {
         this.menuName = name;
         this.menuDesc = desc;
         this.menuId = menuId;
+    }
+
+    public void removeItems(FoodItem foodItem) {
+        items.remove(foodItem);
     }
 
     //Getters and setters

@@ -1,5 +1,6 @@
 package com.infoFootball.SpringBackend.Concessions.FoodMenu;
 
+import com.infoFootball.SpringBackend.Concessions.FoodItem.FoodItem;
 import com.infoFootball.SpringBackend.Concessions.Vendor.Vendor;
 import com.infoFootball.SpringBackend.Concessions.Vendor.VendorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,18 @@ public class FoodMenuController {
         return menuRepository.findAll();
     }
 
+    @GetMapping(path = "/menu/foodItems/{id}")
+    List<FoodItem> getAllItemsOfMenu(@PathVariable int id) {
+        FoodMenu menu = menuRepository.findByMenuId(id);
+        List<FoodItem> items = menu.getItems();
+
+        for(int i =0; i< menu.getItems().size(); i++) {
+            items.get(i).setMenu(null);
+        }
+
+        return items;
+    }
+
     @PostMapping(path = "/menu/create")
     String createMenu(@RequestParam String menuName, @RequestParam String menuDesc, @RequestParam int menuId, @RequestParam int vendorId) {
         Vendor vendor = vendorRepository.findByVendorId(vendorId);
@@ -50,7 +63,7 @@ public class FoodMenuController {
         return menuRepository.findByMenuId(menuId);
     }
 
-    @Transactional
+    //@Transactional
     @DeleteMapping(path = "/menu/delete/{id}")
     String deleteMenu(@PathVariable int id) {
         menuRepository.deleteByMenuId(id);

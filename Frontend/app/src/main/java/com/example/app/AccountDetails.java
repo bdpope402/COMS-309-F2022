@@ -1,3 +1,9 @@
+/**
+ * @author Tyler Atkinson & Michael Less
+ * This screen allows one to view their account information and can choose to change their password
+ * which will take them to a new screen.
+ */
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,8 +37,13 @@ public class AccountDetails extends AppCompatActivity {
     private TextView password;
     private TextView number;
     private TextView email;
+    private Button friends;
 
-
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +55,7 @@ public class AccountDetails extends AppCompatActivity {
         password = (TextView) findViewById(R.id.password_here);
         Button back = findViewById((R.id.back_menu));
         Button change_pass = findViewById((R.id.button_change_pass));
+        friends = findViewById(R.id.friends);
 
         getReq();
 
@@ -60,8 +72,19 @@ public class AccountDetails extends AppCompatActivity {
                 startActivity(new Intent(view.getContext(), pass_change.class));
             }
         });
+
+        friends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), friends_list.class));
+            }
+        });
     }
 
+    /**
+     * Volley GET request. This method gets the user's information from the database and sets the
+     * text boxes to display the information on the screen.
+     */
     private void getReq() {
         RequestQueue queue = Volley.newRequestQueue(AccountDetails.this);
 

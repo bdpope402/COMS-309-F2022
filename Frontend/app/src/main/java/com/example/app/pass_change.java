@@ -1,3 +1,7 @@
+/**
+ * @author Tyler Atkinson & Michael Less
+ * This screen allows one to change their account's password
+ */
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +30,11 @@ public class pass_change extends AppCompatActivity {
     private EditText pass2;
     private TextView msgResponse;
 
-
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +63,10 @@ public class pass_change extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Volley PUT request. This request grabs the account information from the login public JSONObject
+     * "profile", removes the password line, and puts the new password inside to be sent to the database.
+     */
     private void putReq() {
         RequestQueue queue = Volley.newRequestQueue(pass_change.this);
 

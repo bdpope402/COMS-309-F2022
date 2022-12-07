@@ -1,3 +1,9 @@
+/**
+ * @author Michael Less
+ * This class is used for adding new players into the database for the roster
+ *
+ */
+
 package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +34,11 @@ public class roster_add extends AppCompatActivity {
     private TextView response;
 
 
-
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +90,10 @@ public class roster_add extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Volley POST request that will take the inputted first name, last name, and number
+     * and post a new player to the backend
+     */
         private void postReq() {
             RequestQueue queue = Volley.newRequestQueue(roster_add.this);
             String url = "http://coms-309-013.class.las.iastate.edu:8080/players/new";

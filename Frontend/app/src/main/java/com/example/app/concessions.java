@@ -1,3 +1,9 @@
+/**
+ * @author Tyler Atkinson
+ * This screen creates buttons for every vendor that it pulls from the database. These buttons allow
+ * one to go to a vendor's menu page and see what they have for sale.
+ */
+
 package com.example.app;
 
 import android.annotation.SuppressLint;
@@ -41,6 +47,11 @@ public class concessions extends AppCompatActivity {
     public static String vendor_name;
     private ConstraintLayout lin;
 
+    /**
+     * Creates the screen based off of the .xml file associated with the activity and adds logic for
+     * things like button presses and other functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +63,9 @@ public class concessions extends AppCompatActivity {
         lin = findViewById(R.id.concessions);
     }
 
+    /**
+     * Volley GET request. Pulls down all vendors in a JSONArray and creates buttons for them.
+     */
     private void getReq() {
         RequestQueue queue = Volley.newRequestQueue(concessions.this);
         String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/all";
