@@ -37,7 +37,7 @@ public class friends_list extends AppCompatActivity {
         setContentView(R.layout.activity_friends_list);
         buttons = new ArrayList<>();
         back = (Button) findViewById(R.id.back);
-        getReq();
+//        getReq();
 
         lin = findViewById(R.id.concessions);
 
@@ -45,7 +45,7 @@ public class friends_list extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(friends_list.this, add_friend.class));
+                startActivity(new Intent(friends_list.this, add_friend.class));
             }
         });
     }
@@ -101,8 +101,10 @@ public class friends_list extends AppCompatActivity {
                     buttons.add(n);
                 }
 
-                for (i = 0; i < count; i++) {
-                    lin.addView(buttons.get(i));
+                if (count != 0) {
+                    for (i = 0; i < count; i++) {
+                        lin.addView(buttons.get(i));
+                    }
                 }
 
                 for (i = 0; i < count; i++) {

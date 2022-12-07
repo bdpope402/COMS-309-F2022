@@ -46,38 +46,26 @@ public class add_friend extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postReq();
+                putReq();
             }
         });
     }
 
-    private void postReq() {
+    private void putReq() {
         RequestQueue queue = Volley.newRequestQueue(add_friend.this);
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/login/register/";
-        JSONObject regDetails = new JSONObject();
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/friend/";
+        String end = "";
         try {
-            regDetails.put("username", name.getText().toString());
+            end += login.profile.getString("username") + "/" + name.getText().toString();
         } catch(JSONException e) {
             e.printStackTrace();
         }
-
-        final String request = regDetails.toString();
-
-        StringRequest req = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        url += end;
+        final String request = end;
+        StringRequest req = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                try {
-                    msgResponse.setText("You have successfully added a new friend!");
-                    final Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            startActivity(new Intent(add_friend.this, friends_list.class));
-                        }
-                    }, 2000);
-                } catch( Exception e) {
-                    e.printStackTrace();
-                }
+                msgResponse.setText("You have successfully added a new friend!");
             }
         }, new Response.ErrorListener() {
             @Override
