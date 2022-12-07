@@ -98,7 +98,7 @@ public class VendorController {
      * @param vendorName name of vendor to be removed
      * @return Success string if completed
      */
-    @Transactional
+    //@Transactional
     @DeleteMapping(path = "/vendor/delete/{vendorName}")
     String deleteVendor(@PathVariable String vendorName) {
         vendorRepository.deleteByName(vendorName);

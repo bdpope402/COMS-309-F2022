@@ -63,7 +63,7 @@ public class FoodMenuController {
         return menuRepository.findByMenuId(menuId);
     }
 
-    @Transactional
+    //@Transactional
     @DeleteMapping(path = "/menu/delete/{id}")
     String deleteMenu(@PathVariable int id) {
         menuRepository.deleteByMenuId(id);
