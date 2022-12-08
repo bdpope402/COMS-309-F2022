@@ -1,9 +1,11 @@
 package com.infoFootball.SpringBackend;
 
+import com.infoFootball.SpringBackend.Pins.PinRepository;
 import com.infoFootball.SpringBackend.Player.Player;
 import com.infoFootball.SpringBackend.Player.PlayerRespository;
 import io.restassured.response.Response;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,6 +26,9 @@ public class BdpopeTests {
 
     @Autowired
     PlayerRespository playerRepository;
+
+    @Autowired
+    PinRepository pinRepository;
 
     @Before
     public void Setup(){
@@ -54,7 +59,7 @@ public class BdpopeTests {
     }
 
     @Test
-    public void testGetPlayers() throws Exception {
+    public void testMultiplePlayers() throws Exception {
         JSONObject jsonPlayer = new JSONObject();
         jsonPlayer.put("firstName", "John");
         jsonPlayer.put("lastName", "Doe");
@@ -115,8 +120,39 @@ public class BdpopeTests {
     }
 
    @Test
-   public  void testPlayerDelete(){
+   public  void testPinNew() throws Exception{
+       JSONObject jsonPin = new JSONObject();
+       jsonPin.put("username", "bdpope_test");
+       jsonPin.put("latitude", 67.7778);
+       jsonPin.put("longitude", 77.6764);
+       jsonPin.put("pinName", "Where I parked my car");
 
+       Response response = RestAssured.given()
+               .header("Content-Type", "application/json")
+               .body(jsonPin.toString()) //Send in json USER
+               .when().request("POST", "/pins/new");
+
+       String returnString = response.getBody().asString();
+       assertEquals("Success", returnString);
+
+
+
+   }
+
+   @Test
+    public void testGetPins() throws Exception{
+
+       JSONObject jsonPin = new JSONObject();
+       jsonPin.put("username", "bdpope_test2");
+       jsonPin.put("latitude", 67.7778);
+       jsonPin.put("longitude", 77.6764);
+       jsonPin.put("pinName", "Where I parked my dad's car");
+
+       Response response1 = RestAssured.given()
+               .when().request("GET", "/pins/bdpope_test2");
+
+       assertNotEquals(null, response1.getBody().asString());
+       assertEquals(200, response1.getStatusCode());
    }
 
 
