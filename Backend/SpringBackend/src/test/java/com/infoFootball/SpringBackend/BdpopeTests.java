@@ -8,10 +8,8 @@ import com.infoFootball.SpringBackend.User.UserRepository;
 import io.restassured.response.Response;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -45,7 +43,7 @@ public class BdpopeTests {
 
         Player newPlayer = new Player("testPlayer", "Doe", "12");
 
-        Response response = RestAssured.given();
+        Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .body(jsonPlayer.toString()) //Send in json USER
                 .when().request("POST", "/player/new"); //The url and request type
