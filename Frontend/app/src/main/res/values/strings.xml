@@ -30,4 +30,5 @@
     <string name="title_activity_admin_page">admin_page</string>
     <string name="title_activity_concessions">concessions</string>
     <string name="title_activity_roster_update2">roster_update2</string>
+    <string name="title_activity_map">map</string>
 </resources>

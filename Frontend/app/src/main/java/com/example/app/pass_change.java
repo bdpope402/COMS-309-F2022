@@ -57,7 +57,21 @@ public class pass_change extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(pass1.getText().toString().equals(pass2.getText().toString())){
-                    putReq();
+                    int error = 0;
+
+                    if (pass1.getText().toString().trim().length() <= 0) {
+                        error += 1;
+                    }
+                    else if (pass2.getText().toString().trim().length() <= 0) {
+                        error += 1;
+                    }
+                    if (error != 0) {
+                        msgResponse.setText("Error: Haven't filled out all necessary fields");
+                        error = 0;
+                    }
+                    else {
+                        putReq();
+                    }
                 }
             }
         });
