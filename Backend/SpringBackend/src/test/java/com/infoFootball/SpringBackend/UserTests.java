@@ -51,8 +51,6 @@ public class UserTests {
         jsonUser.put("phoneNum",phoneNum);
         jsonUser.put("permLv",permLv);
 
-        User newUser = new User("testUser", "testPassword", "testEmail@email", "123456789", "Admin");
-
         //Create a post request
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
@@ -89,7 +87,56 @@ public class UserTests {
 
     @Test
     public void updateUser() throws Exception {
+        //Value for the updated password
+        String newPassword = "superStrongPassword!";
 
+        //Creating user JSON object to update user
+        JSONObject updatedJsonUser = new JSONObject();
+        updatedJsonUser.put("username", username);
+        updatedJsonUser.put("password",newPassword);
+        updatedJsonUser.put("email",email);
+        updatedJsonUser.put("phoneNum",phoneNum);
+        updatedJsonUser.put("permLv",permLv);
+
+        //Create a put request
+        Response response = RestAssured.given()
+                .header("Content-Type", "application/json")
+                .body(updatedJsonUser.toString()) //Send in json USER
+                .when().request("PUT", "/users/" + username); //The url and request type
+
+        //Checking status code
+        int statusCode = response.getStatusCode();
+        assertEquals(200, statusCode);
+
+        //Compare to values of user that was created
+        assertEquals(newPassword, response.jsonPath().get("password"));
     }
+
+    @Test
+    public void loginTest() {
+        String password = this.password;
+
+        //Create a get request
+        Response response = RestAssured.given()
+                .when().request("GET", "/login/" + username); //The url and request type
+
+        //Checking status code
+        int statusCode = response.getStatusCode();
+        assertEquals(200, statusCode);
+
+        assertEquals(username, response.jsonPath().get("username"));
+        assertEquals(password, response.jsonPath().get("password"));
+    }
+
+
+//      This case doesnt work
+//    @Test
+//    public void deleteUser() {
+//        Response response = RestAssured.given()
+//                .delete("/users/testUser");
+//                //.when().request("DELETE", "/users/testUser"); //The url and request type
+//
+//        assertEquals("Success", response.getBody().asString());
+//    }
 
 }
