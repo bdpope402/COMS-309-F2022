@@ -36,11 +36,12 @@ public class User {
      * @param password User's password
      * @param phoneNum User's phone number
      */
-    public User(String username, String email, String password, String phoneNum) {
+    public User(String username, String password, String email, String phoneNum, String permLv ) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.phoneNum = phoneNum;
+        this.permLv = permLv;
     }
 
     // SET FUNCTIONS //

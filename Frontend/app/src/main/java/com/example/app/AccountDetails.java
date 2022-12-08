@@ -37,6 +37,7 @@ public class AccountDetails extends AppCompatActivity {
     private TextView password;
     private TextView number;
     private TextView email;
+    private Button friends;
 
     /**
      * Creates the screen based off of the .xml file associated with the activity and adds logic for
@@ -54,6 +55,7 @@ public class AccountDetails extends AppCompatActivity {
         password = (TextView) findViewById(R.id.password_here);
         Button back = findViewById((R.id.back_menu));
         Button change_pass = findViewById((R.id.button_change_pass));
+        friends = findViewById(R.id.friends);
 
         getReq();
 
@@ -68,6 +70,13 @@ public class AccountDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(view.getContext(), pass_change.class));
+            }
+        });
+
+        friends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), friends_list.class));
             }
         });
     }

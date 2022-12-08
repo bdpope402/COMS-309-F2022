@@ -164,24 +164,12 @@ public class grant_admin extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    final Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                info.put("username", response.getString("username"));
-                                info.put("phoneNum", response.getString("phoneNum"));
-                                info.put("email", response.getString("email"));
-                                info.put("password", response.getString("password"));
-                                info.put("permLv", response.getString("permLv"));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, 10000);
-                } catch( Exception e) {
-                    e.printStackTrace();
-                }
+                    info.put("username", response.getString("username"));
+                    info.put("phoneNum", response.getString("phoneNum"));
+                    info.put("email", response.getString("email"));
+                    info.put("password", response.getString("password"));
+                    info.put("permLv", response.getString("permLv"));
+                } catch (JSONException e) {e.printStackTrace();}
             }
         }, new Response.ErrorListener() {
             @Override
