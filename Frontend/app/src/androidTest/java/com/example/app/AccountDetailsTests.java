@@ -22,7 +22,7 @@ import java.util.Random;
 @RunWith(AndroidJUnit4ClassRunner.class)
 @LargeTest
 public class AccountDetailsTests {
-    public static final int DELAY = 2500;
+    public static final int DELAY = 500;
     Random rand = new Random();
 
     @Rule
@@ -30,8 +30,7 @@ public class AccountDetailsTests {
 
     @Test
     public void detailsTest (){
-        //String username="" + rand.nextInt(1000000000);
-        String username="test";
+        String username = "" + rand.nextInt(1000000000);
         String password = "test";
         String email = "test@gmail.com";
         String phone = "8889990000";
@@ -45,7 +44,7 @@ public class AccountDetailsTests {
         onView(withId(R.id.register)).perform(click());
 
         try {
-            Thread.sleep(DELAY);
+            Thread.sleep(2100);
         } catch (InterruptedException e) {}
 
         onView(withId(R.id.login)).perform(click());
@@ -66,7 +65,6 @@ public class AccountDetailsTests {
         onView(withId(R.id.password_here)).check(matches(withText("test")));
         onView(withId(R.id.email_here)).check(matches(withText("test@gmail.com")));
         onView(withId(R.id.number_here)).check(matches(withText("8889990000")));
-        onView(withId(R.id.name_here)).check(matches(withText("test")));
 
 
     }

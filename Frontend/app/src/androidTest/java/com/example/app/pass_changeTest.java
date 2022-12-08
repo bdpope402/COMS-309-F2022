@@ -23,7 +23,7 @@ import java.util.Random;
 @RunWith(AndroidJUnit4ClassRunner.class)
 @LargeTest
 public class pass_changeTest {
-    public static final int DELAY = 2500;
+    public static final int DELAY = 500;
 
     @Rule
     public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
@@ -57,31 +57,54 @@ public class pass_changeTest {
         } catch (InterruptedException e) {}
 
         onView(withId(R.id.new_pass1)).perform(typeText(newPassword), closeSoftKeyboard());
-        onView(withId(R.id.new_pass1)).perform(typeText(newPassword), closeSoftKeyboard());
+        onView(withId(R.id.new_pass2)).perform(typeText(newPassword), closeSoftKeyboard());
 
         onView(withId(R.id.confirm_button)).perform(click());
 
         onView(withId(R.id.response)).check(matches(withText("You have successfully changed your password!")));
+    }
 
-//        onView(withId(R.id.back_button)).perform(click());
-//
-//
-//
-//        try {
-//            Thread.sleep(DELAY);
-//        } catch (InterruptedException e) {}
-//
-//
-//        onView(withId(R.id.password_here)).check(matches(withText("testing")));
+    @Test
+    public void changePass2 () {
+        String username="test";
+        String password = "testing";
+        String newPassword = "test";
 
+
+        onView(withId(R.id.login)).perform(click());
+        onView(withId(R.id.username)).perform(typeText(username), closeSoftKeyboard());
+        onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
+        onView(withId(R.id.login)).perform(click());
+
+        try {
+            Thread.sleep(DELAY);
+        } catch (InterruptedException e) {}
+
+        onView(withId(R.id.button6)).perform(click());
+
+        try {
+            Thread.sleep(DELAY);
+        } catch (InterruptedException e) {}
+
+        onView(withId(R.id.button_change_pass)).perform(click());
+
+        try {
+            Thread.sleep(DELAY);
+        } catch (InterruptedException e) {}
+
+        onView(withId(R.id.new_pass1)).perform(typeText(newPassword), closeSoftKeyboard());
+        onView(withId(R.id.new_pass2)).perform(typeText(newPassword), closeSoftKeyboard());
+
+        onView(withId(R.id.confirm_button)).perform(click());
+
+        onView(withId(R.id.response)).check(matches(withText("You have successfully changed your password!")));
     }
 
     //should send error msg if empty fields
     @Test
     public void changePassFail (){
-        String username="test";
-        String password = "test";
-        String newPassword = "testing";
+        String username="testUser";
+        String password = "testPassword";
 
 
         onView(withId(R.id.login)).perform(click());
@@ -107,7 +130,7 @@ public class pass_changeTest {
 
         onView(withId(R.id.confirm_button)).perform(click());
 
-        onView(withId(R.id.response)).check(matches(withText("It looks like something went wrong. Please try again")));
+        onView(withId(R.id.response)).check(matches(withText("Error: Haven't filled out all necessary fields")));
 
 
     }
