@@ -1,6 +1,9 @@
 package com.infoFootball.SpringBackend.Concessions.FoodItem;
 
+import com.infoFootball.SpringBackend.Concessions.FoodMenu.FoodMenuController;
 import com.infoFootball.SpringBackend.Concessions.FoodMenu.MenuRepository;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +20,9 @@ public class FoodItemController {
 
     @GetMapping(path = "/item/{id}")
     FoodItem getItem(@PathVariable int id) {
-        return foodItemRepository.findByFoodId(id);
+        FoodItem cur = foodItemRepository.findByFoodId(id);
+        cur.setMenu(null);
+        return cur;
     }
 
     @PostMapping(path = "/item/create/{menuId}")
@@ -39,11 +44,22 @@ public class FoodItemController {
         return foodItemRepository.findByFoodId(id);
     }
 
-    @Transactional
+    //@Transactional
     @DeleteMapping(path = "/item/delete/{id}")
     String delete(@PathVariable int id) {
-        foodItemRepository.deleteByFoodId(id);
+        FoodItem cur = foodItemRepository.findByFoodId(id);
+        //cur.setFoodId(-1);
+        cur.setMenu(null);
+        cur.setName("null");
+        cur.setPrice(-1);
+        cur.setCal(-1);
+        cur.setStock(-1);
+        foodItemRepository.save(cur); //test
         return "Success";
     }
+//    String delete(@PathVariable int id) {
+//        foodItemRepository.deleteByFoodId(id);
+//        return "Success";
+//    }
 
 }

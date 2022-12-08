@@ -38,6 +38,24 @@
             android:exported="false"
             android:label="@string/title_activity_map" />
         <activity
+            android:name=".private_message"
+            android:exported="false" />
+        <activity
+            android:name=".add_friend"
+            android:exported="false" />
+        <activity
+            android:name=".friends_list"
+            android:exported="false" />
+        <activity
+            android:name=".adminfeatures.delete_food"
+            android:exported="false" />
+        <activity
+            android:name=".adminfeatures.add_food"
+            android:exported="false" />
+        <activity
+            android:name=".game_chat"
+            android:exported="false" />
+        <activity
             android:name=".schedule_delete"
             android:exported="false" />
         <activity

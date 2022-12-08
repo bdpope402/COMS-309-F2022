@@ -21,7 +21,7 @@ public class Vendor {
     private String location;
     private String maintainerUsername;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private FoodMenu menu;
 
     /**

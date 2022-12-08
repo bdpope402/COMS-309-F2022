@@ -3,6 +3,7 @@ package com.infoFootball.SpringBackend.Concessions.Vendor;
 import com.infoFootball.SpringBackend.Concessions.FoodMenu.FoodMenu;
 import com.infoFootball.SpringBackend.Concessions.FoodMenu.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -97,6 +98,7 @@ public class VendorController {
      * @param vendorName name of vendor to be removed
      * @return Success string if completed
      */
+    //@Transactional
     @DeleteMapping(path = "/vendor/delete/{vendorName}")
     String deleteVendor(@PathVariable String vendorName) {
         vendorRepository.deleteByName(vendorName);

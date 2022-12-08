@@ -30,7 +30,7 @@ public class LoginController {
         if (curUser != null) {
             return curUser;
         } else {
-            User errorUser = new User("UserNull", "Null", "Null", "Null");
+            User errorUser = new User("UserNull", "Null", "Null", "Null", "Null");
             return errorUser;
         }
 

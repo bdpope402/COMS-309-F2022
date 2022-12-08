@@ -7,13 +7,13 @@ stages:
   - androidtest
   - mavenDeploy
 
-maven-build:   #this is a JOB
+maven-build:
   stage: mavenbuild
   tags:
     - cfergen_tag                      # this is LINK to the shell runner on the remote-server
   script:
     - cd Backend/SpringBackend                 #change directory to where you have your springboot application
-    - mvn package
+    - mvn -DskipTests=true package
 
 maven-test:
   stage: maventest

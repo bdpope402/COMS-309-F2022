@@ -63,7 +63,10 @@ public class activity_menu extends AppCompatActivity {
         page4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 startActivity(new Intent(view.getContext(), map.class));
+                //startActivity(new Intent(view.getContext(), game_chat.class));
+
             }
         });
 
@@ -71,7 +74,8 @@ public class activity_menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    if (login.profile.getString("permLv").equals("Admin")) {
+                    if (login.profile.getString("permLv").equals("Admin") || login.profile.getString("permLv").equals("Vendor")
+                    || login.profile.getString("permLv").equals("Information Maintainer") || login.profile.getString("permLv").equals("Moderator")) {
                         startActivity(new Intent(view.getContext(), admin_page.class));
                     }
                     else {
