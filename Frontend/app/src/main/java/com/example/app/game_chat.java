@@ -61,9 +61,9 @@ public class game_chat extends AppCompatActivity {
                  * computer, and change the ip address to that of your computer.
                  * If running on the emulator, you can use localhost.
                  */
-                //TODO GET ACTUAL URL
                 //URL + username
-                String w = "ws://10.0.2.2:8080/websocket/" + userInput;
+//                String w = "ws://10.0.2.2:8080/websocket/" + userInput;
+               String w = "http://coms-309-013.class.las.iastate.edu:8080/chat/global/"+ login.userInput;
 
 
                 try {
@@ -80,15 +80,15 @@ public class game_chat extends AppCompatActivity {
                                 if (login.profile.getString("permLv").equals("Admin")) {
                                     level+="(ADMIN)";
                                 }
-                                if (login.profile.getString("permLv").equals("Admin")) {
-                                    level+="(ADMIN)";
+                                if (login.profile.getString("permLv").equals("Maintainer")) {
+                                    level+="(MAINTAINER)";
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 
                             String s = chat.getText().toString();
-                            chat.setText(level + s + "\nServer:" + message+"\n"+ date);
+                            chat.setText(s + "\n" +level+ message+"\n"+ date);
                         }
 
                         @Override
