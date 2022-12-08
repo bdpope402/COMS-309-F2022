@@ -10,7 +10,7 @@
         android:id="@+id/button6"
         android:layout_width="136dp"
         android:layout_height="81dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="48dp"
         android:text="Account Details"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="537dp"
         android:text="Iowa State Gameday"
         android:textAlignment="center"
         android:textSize="34sp"
@@ -35,7 +34,7 @@
         android:id="@+id/textView5"
         android:layout_width="127dp"
         android:layout_height="65dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:text="Menu"
         android:textAlignment="center"
         android:textSize="48sp"
@@ -68,7 +67,7 @@
         android:layout_width="140dp"
         android:layout_height="81dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="28dp"
         android:text="Schedule"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
@@ -77,18 +76,28 @@
         android:id="@+id/button4"
         android:layout_width="140dp"
         android:layout_height="81dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="48dp"
-        android:text="Button"
+        android:text="Map"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="140dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="44dp"
+        android:text="Game Chat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="140dp"
         android:layout_height="81dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="28dp"
         android:text="Admin Info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3" />

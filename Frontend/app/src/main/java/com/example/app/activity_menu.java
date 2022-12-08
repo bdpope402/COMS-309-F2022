@@ -35,6 +35,7 @@ public class activity_menu extends AppCompatActivity {
         Button page4 = findViewById(R.id.button4);
         Button page5 = findViewById(R.id.button5);
         Button page6 = findViewById(R.id.button6);
+        Button page7=findViewById(R.id.button9);
         TextView response = findViewById(R.id.response);
 
         Button logout = findViewById(R.id.button_logout);
@@ -63,7 +64,20 @@ public class activity_menu extends AppCompatActivity {
         page4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                startActivity(new Intent(view.getContext(), map.class));
+                //startActivity(new Intent(view.getContext(), game_chat.class));
+
+            }
+        });
+
+        page7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
                 startActivity(new Intent(view.getContext(), game_chat.class));
+                //startActivity(new Intent(view.getContext(), game_chat.class));
+
             }
         });
 
