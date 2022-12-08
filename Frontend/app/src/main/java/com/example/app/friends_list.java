@@ -39,22 +39,26 @@ public class friends_list extends AppCompatActivity {
         back = (Button) findViewById(R.id.back);
         getReq();
 
-        lin = findViewById(R.id.concessions);
+        lin = findViewById(R.id.friends);
 
         add = findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(friends_list.this, add_friend.class));
+                startActivity(new Intent(friends_list.this, add_friend.class));
             }
         });
     }
 
     private void getReq() {
         RequestQueue queue = Volley.newRequestQueue(friends_list.this);
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/vendor/all"; //will need to change
-        JSONObject json = new JSONObject();
-        final String requestBody = json.toString();
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/get/friend/";
+        String end = "";
+        try {
+            end += login.profile.getString("username");
+        } catch (JSONException e) {e.printStackTrace();}
+        url += end;
+        final String requestBody = end;
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -85,7 +89,17 @@ public class friends_list extends AppCompatActivity {
                     n.setId(i + 1);
                     n.setTag(i + 1);
                     try {
-                        n.setText(friends.get(i).getString("name"));
+                        String[] index = friends.get(i).getString("friendShip").split("\\+" + login.profile.getString("username"));
+                        String a = "";
+                        if (index.length == 0) {
+                            a = index[0];
+                        }
+                        else {
+                            for (int j = 0; j < index.length; j++) {
+                                a += index[j];
+                            }
+                        }
+                        n.setText(a);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -95,14 +109,16 @@ public class friends_list extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             friend_name = n.getText().toString();
-//                            startActivity(new Intent(friends_list.this, private_message.class));
+                            startActivity(new Intent(friends_list.this, private_message.class));
                         }
                     });
                     buttons.add(n);
                 }
 
-                for (i = 0; i < count; i++) {
-                    lin.addView(buttons.get(i));
+                if (count != 0) {
+                    for (i = 0; i < count; i++) {
+                        lin.addView(buttons.get(i));
+                    }
                 }
 
                 for (i = 0; i < count; i++) {
