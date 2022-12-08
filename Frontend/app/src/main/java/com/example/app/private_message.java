@@ -68,6 +68,8 @@ public class private_message extends AppCompatActivity {
                 @Override
                 public void onOpen(ServerHandshake handshake) {
                     Log.d("OPEN", "run() returned: " + "is connecting");
+                    String s = chat.getText().toString();
+                    chat.setText(s + "\nConnected");
                 }
 
                 @Override

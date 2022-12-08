@@ -89,7 +89,17 @@ public class friends_list extends AppCompatActivity {
                     n.setId(i + 1);
                     n.setTag(i + 1);
                     try {
-                        n.setText(friends.get(i).getString("friend2"));
+                        String[] index = friends.get(i).getString("friendShip").split("\\+" + login.profile.getString("username"));
+                        String a = "";
+                        if (index.length == 0) {
+                            a = index[0];
+                        }
+                        else {
+                            for (int j = 0; j < index.length; j++) {
+                                a += index[j];
+                            }
+                        }
+                        n.setText(a);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
