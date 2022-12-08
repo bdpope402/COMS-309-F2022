@@ -18,9 +18,10 @@ import org.springframework.stereotype.Component;
 /**
  *
  * @author Vamsi Krishna Calpakkam
+ * @author bdpope (changes from original)
  *
  */
-@ServerEndpoint("/websocket/{username}")
+@ServerEndpoint("/chat/global/{username}")
 @Component
 public class WebSocketServer {
 
@@ -33,7 +34,7 @@ public class WebSocketServer {
     @OnOpen
     public void onOpen(Session session, @PathParam("username") String username)
             throws IOException {
-        logger.info("Entered into Open");
+        logger.info("Entered into Chat");
 
         sessionUsernameMap.put(session, username);
         usernameSessionMap.put(username, session);
