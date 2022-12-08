@@ -89,7 +89,9 @@ public class private_message extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cc.send(message.getText().toString());
+                try {
+                    cc.send(message.getText().toString() + "\n- " + login.profile.getString("username"));
+                } catch (JSONException e) {e.printStackTrace();}
                 message.setText("");
             }
         });
