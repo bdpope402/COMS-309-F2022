@@ -16,6 +16,7 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ServerHandshake;
+import org.json.JSONException;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -73,8 +74,21 @@ public class game_chat extends AppCompatActivity {
                             long millis = System.currentTimeMillis();
                             java.util.Date date = new java.util.Date(millis);
                             Log.d("", "run() returned: " + message);
+
+                            String level = "";
+                            try {
+                                if (login.profile.getString("permLv").equals("Admin")) {
+                                    level+="(ADMIN)";
+                                }
+                                if (login.profile.getString("permLv").equals("Admin")) {
+                                    level+="(ADMIN)";
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
                             String s = chat.getText().toString();
-                            chat.setText(s + "\nServer:" + message+"\n"+ date);
+                            chat.setText(level + s + "\nServer:" + message+"\n"+ date);
                         }
 
                         @Override
