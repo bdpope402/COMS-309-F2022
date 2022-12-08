@@ -59,7 +59,7 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //getReq();
         binding = ActivityMapBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -70,7 +70,7 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
        markerName=(EditText)findViewById(R.id.pin_name);
        response=(TextView)findViewById(R.id.add_pin_response);
 
-       getReq();
+       //getReq();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -111,35 +111,34 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
         mMap.addMarker(new MarkerOptions().position(jackTrice).title("Jack Trice Stadium"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jackTrice,17f));
 
-        for (int i=0;i<=pins.size();i++){
-            JSONObject mapPin = new JSONObject();
-            mapPin= pins.get(i);
-            try {
-                double latitude2 = mapPin.getDouble("latitude");
-                double longitude2 = mapPin.getDouble("longitude");
-                String name = mapPin.getString("name");
-
-                LatLng newPin = new  LatLng(latitude2,longitude2);
-                mMap.addMarker(new MarkerOptions().position(newPin).title(name));
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-           // LatLng new LatLng(latitude2,longitude2)
-            //LatLng newPin = new LatLng(pins.get(i))
-        }
+//        for (int i=0;i<=pins.size();i++){
+//            JSONObject mapPin = new JSONObject();
+//            mapPin= pins.get(i);
+//            try {
+//                double latitude2 = mapPin.getDouble("latitude");
+//                double longitude2 = mapPin.getDouble("longitude");
+//                String name = mapPin.getString("name");
+//
+//                LatLng newPin = new  LatLng(latitude2,longitude2);
+//                mMap.addMarker(new MarkerOptions().position(newPin).title(name));
+//
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     private void postReq() {
         RequestQueue queue = Volley.newRequestQueue(map.this);
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/login/register/";
+        //String url = "http://coms-309-013.class.las.iastate.edu:8080/login/register/";
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/pins/new";
 //        JSONObject regDetails = new JSONObject();
         JSONObject mapPin = new JSONObject();
         try {
+            mapPin.put("username", login.userInput);
             mapPin.put("latitude", latitude.getText().toString());
             mapPin.put("longitude", longitude.getText().toString());
-            mapPin.put("name", markerName.getText().toString());
+            mapPin.put("pinName", markerName.getText().toString());
         } catch(JSONException e) {
             e.printStackTrace();
         }
@@ -178,7 +177,7 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
     private void getReq() {
         RequestQueue queue = Volley.newRequestQueue(map.this);
 
-        String url = "http://coms-309-013.class.las.iastate.edu:8080/users/" + login.userInput;
+        String url = "http://coms-309-013.class.las.iastate.edu:8080/pins/" + login.userInput;
 
         JSONObject json = new JSONObject();
         final String requestBody = json.toString();
