@@ -2,17 +2,11 @@ package com.infoFootball.SpringBackend;
 
 import com.infoFootball.SpringBackend.Player.Player;
 import com.infoFootball.SpringBackend.Player.PlayerRespository;
-import com.infoFootball.SpringBackend.Register.RegisterController;
-import com.infoFootball.SpringBackend.User.User;
-import com.infoFootball.SpringBackend.User.UserRepository;
 import io.restassured.response.Response;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.Before;
 import org.junit.Test;
-
-import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
