@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Import;
 
 @SpringBootConfiguration(proxyBeanMethods = false)
 @EnableAutoConfiguration
-@Import({LoginController.class, RegisterController.class, UserController.class, PinController.class, VendorController.class, FoodMenuController.class,
+@Import({LoginController.class, RegisterController.class, UserController.class, PinController.class, VendorController.class, LoginController.class, FoodMenuController.class,
 		FoodMenuService.class, FoodItemController.class, PlayerController.class, WebSocket.class, WebSocketServer.class, ConfigWebSocket.class, FriendRelationController.class})
 public class SpringBackendApplication {
 
