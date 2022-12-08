@@ -16,6 +16,7 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ServerHandshake;
+import org.json.JSONException;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -60,9 +61,9 @@ public class game_chat extends AppCompatActivity {
                  * computer, and change the ip address to that of your computer.
                  * If running on the emulator, you can use localhost.
                  */
-                //TODO GET ACTUAL URL
                 //URL + username
-                String w = "ws://10.0.2.2:8080/websocket/" + userInput;
+//                String w = "ws://10.0.2.2:8080/websocket/" + userInput;
+               String w = "http://coms-309-013.class.las.iastate.edu:8080/chat/global/"+ login.userInput;
 
 
                 try {
@@ -73,8 +74,21 @@ public class game_chat extends AppCompatActivity {
                             long millis = System.currentTimeMillis();
                             java.util.Date date = new java.util.Date(millis);
                             Log.d("", "run() returned: " + message);
+
+                            String level = "";
+                            try {
+                                if (login.profile.getString("permLv").equals("Admin")) {
+                                    level+="(ADMIN)";
+                                }
+                                if (login.profile.getString("permLv").equals("Maintainer")) {
+                                    level+="(MAINTAINER)";
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
                             String s = chat.getText().toString();
-                            chat.setText(s + "\nServer:" + message+"\n"+ date);
+                            chat.setText(s + "\n" +level+ message+"\n"+ date);
                         }
 
                         @Override
