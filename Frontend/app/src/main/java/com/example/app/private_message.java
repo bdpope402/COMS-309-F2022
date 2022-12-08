@@ -25,7 +25,7 @@ public class private_message extends AppCompatActivity {
     private TextView chat;
     private Button send;
     private EditText message;
-
+//
     private WebSocketClient cc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
