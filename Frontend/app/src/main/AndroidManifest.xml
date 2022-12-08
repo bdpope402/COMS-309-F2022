@@ -32,6 +32,9 @@
             android:name=".adminfeatures.add_food"
             android:exported="false" />
         <activity
+            android:name=".game_chat"
+            android:exported="false" />
+        <activity
             android:name=".schedule_delete"
             android:exported="false" />
         <activity
