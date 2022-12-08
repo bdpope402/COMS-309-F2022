@@ -75,6 +75,8 @@ public class private_message extends AppCompatActivity {
                 @Override
                 public void onClose(int code, String reason, boolean remote) {
                     Log.d("CLOSE", "onClose() returned: " + reason);
+                    String s = chat.getText().toString();
+                    chat.setText(s + "\nDisconnected");
                 }
 
                 @Override
@@ -91,9 +93,9 @@ public class private_message extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    cc.send(message.getText().toString() + "\n- " + login.profile.getString("username"));
-                } catch (JSONException e) {e.printStackTrace();}
+                java.util.Date date = new java.util.Date();
+                cc.send(message.getText().toString() + "\n" + date);
+
                 message.setText("");
             }
         });
