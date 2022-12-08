@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 
 
-@ServerEndpoint("/globalChat/{username}")
+@ServerEndpoint("/dm/{username}/{otherUser}")
 @Component
 public class WebSocket {
 
@@ -28,16 +28,17 @@ public class WebSocket {
 
     private final Logger logger = LoggerFactory.getLogger(WebSocket.class);
 
+    private String dmUser;
+
     @OnOpen
-    public void onOpen(Session session, @PathParam("username") String username)
+    public void onOpen(Session session, @PathParam("username") String username, @PathParam("otherUser") String otherUser)
             throws IOException {
         logger.info("Entered into Open");
 
         sessionUsernameMap.put(session, username);
         usernameSessionMap.put(username, session);
 
-        String message = "User:" + username + " has Joined the Chat";
-        broadcast(message);
+        dmUser = otherUser;
     }
 
     @OnMessage
@@ -46,14 +47,13 @@ public class WebSocket {
         logger.info("Entered into Message: Got Message:" + message);
         String username = sessionUsernameMap.get(session);
 
-        if (message.startsWith("@")) // Direct message to a user using the format "@username <message>"
-        {
-            String destUsername = message.split(" ")[0].substring(1); // don't do this in your code!
-            sendMessageToPArticularUser(destUsername, "[DM] " + username + ": " + message);
+        if (message.startsWith("@")) { // Direct message to a user using the format "@username <message>"
+            dmUser = message.split(" ")[0].substring(1); // don't do this in your code!
+        } else if (dmUser != null) {// Message to whole chat
+            sendMessageToPArticularUser(dmUser, "[DM] " + username + ": " + message);
             sendMessageToPArticularUser(username, "[DM] " + username + ": " + message);
-        } else // Message to whole chat
-        {
-            broadcast(username + ": " + message);
+        } else {
+            sendMessageToPArticularUser(username,"Please use @ to dm someone");
         }
     }
 
