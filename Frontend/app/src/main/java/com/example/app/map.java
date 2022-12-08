@@ -111,12 +111,24 @@ public class map extends FragmentActivity implements OnMapReadyCallback {
         mMap.addMarker(new MarkerOptions().position(jackTrice).title("Jack Trice Stadium"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jackTrice,17f));
 
-//        for (int i=0;i<=pins.size();i++){
-//            JSONObject mapPin = new JSONObject();
-//            mapPin= pins.get(i);
-//            double longitud = pins.get(i).longitude;
-//            //LatLng newPin = new LatLng(pins.get(i))
-//        }
+        for (int i=0;i<=pins.size();i++){
+            JSONObject mapPin = new JSONObject();
+            mapPin= pins.get(i);
+            try {
+                double latitude2 = mapPin.getDouble("latitude");
+                double longitude2 = mapPin.getDouble("longitude");
+                String name = mapPin.getString("name");
+
+                LatLng newPin = new  LatLng(latitude2,longitude2);
+                mMap.addMarker(new MarkerOptions().position(newPin).title(name));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+           // LatLng new LatLng(latitude2,longitude2)
+            //LatLng newPin = new LatLng(pins.get(i))
+        }
     }
 
     private void postReq() {
