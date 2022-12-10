@@ -119,21 +119,21 @@ public class friends_list extends AppCompatActivity {
                     for (i = 0; i < count; i++) {
                         lin.addView(buttons.get(i));
                     }
-                }
 
-                for (i = 0; i < count; i++) {
+                    for (i = 0; i < count; i++) {
+                        constraint.clone(lin);
+                        constraint.connect(buttons.get(i).getId(), ConstraintSet.RIGHT, R.id.concessions, ConstraintSet.RIGHT, y);
+                        constraint.connect(buttons.get(i).getId(), ConstraintSet.LEFT, R.id.concessions, ConstraintSet.LEFT, y);
+                        constraint.connect(buttons.get(i).getId(), ConstraintSet.TOP, R.id.concessions, ConstraintSet.TOP, (x + (200 * i)));
+                        constraint.applyTo(lin);
+                    }
+
                     constraint.clone(lin);
-                    constraint.connect(buttons.get(i).getId(), ConstraintSet.RIGHT, R.id.concessions, ConstraintSet.RIGHT, y);
-                    constraint.connect(buttons.get(i).getId(), ConstraintSet.LEFT, R.id.concessions, ConstraintSet.LEFT, y);
-                    constraint.connect(buttons.get(i).getId(), ConstraintSet.TOP, R.id.concessions, ConstraintSet.TOP, (x + (200 * i)));
+                    constraint.connect(back.getId(), ConstraintSet.RIGHT, R.id.concessions, ConstraintSet.RIGHT, y);
+                    constraint.connect(back.getId(), ConstraintSet.LEFT, R.id.concessions, ConstraintSet.LEFT, y);
+                    constraint.connect(back.getId(), ConstraintSet.TOP, buttons.get(count - 1).getId(), ConstraintSet.TOP, 200);
                     constraint.applyTo(lin);
                 }
-
-                constraint.clone(lin);
-                constraint.connect(back.getId(), ConstraintSet.RIGHT, R.id.concessions, ConstraintSet.RIGHT, y);
-                constraint.connect(back.getId(), ConstraintSet.LEFT, R.id.concessions, ConstraintSet.LEFT, y);
-                constraint.connect(back.getId(), ConstraintSet.TOP, buttons.get(count - 1).getId(), ConstraintSet.TOP, 200);
-                constraint.applyTo(lin);
             }
         }, new Response.ErrorListener() {
             @Override
